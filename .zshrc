@@ -85,7 +85,7 @@ compinit
 [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
-
+[[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
 # bind Ctrl+arrows to word jumping
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -93,7 +93,6 @@ bindkey "^[[1;5D" backward-word
 #bindkey "^?" backward-delete-char
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
-bindkey '^[[3~' delete-char
 bindkey '^[[5~' up-line-or-history
 bindkey '^[[6~' down-line-or-history
 bindkey "^[[A" history-beginning-search-backward-end
@@ -101,6 +100,11 @@ bindkey "^[[B" history-beginning-search-forward-end
 bindkey "^r" history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
 bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+
+bindkey '^[[1;5C' forward-word  # [Ctrl-RightArrow] - move forward one word
+bindkey '^[[1;5D' backward-word # [Ctrl-LeftArrow] - move backward one word
+
+bindkey "^[[3~" delete-char # delete forward
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
 
@@ -187,8 +191,5 @@ source ~/aur_git/zsh-git-prompt/zshrc.sh
 ### Set prompt
 ##############
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1='[%(!.${PR_RED}%n.$PR_NO_COLOR%n)%(!.${PR_NO_COLOR}@.$PR_LIGHT_BLUE@)$PR_NO_COLOR%(!.${PR_RED}%m%u.${PR_NO_COLOR}%m%u)$PR_NO_COLOR:%(!.${PR_RED}%2c.${PR_LIGHT_BLUE}%2c)$PR_NO_COLOR]%(?..[${PR_RED}%?$PR_NO_COLOR])%(!.${PR_RED}#.${PR_NO_COLOR}$) %b$(git_super_status)'
-#PROMPT='%B%m%~%b$(git_super_status) %# '
-
-#RPS1="$PR_NO_COLOR(%D{%m-%d %H:%M})$PR_NO_COLOR"
+PS1='[%(!.${PR_RED}%n.$PR_NO_COLOR%n)%(!.${PR_NO_COLOR}@.$PR_LIGHT_BLUE@)$PR_NO_COLOR%(!.${PR_RED}%m%u.${PR_NO_COLOR}%m%u)$PR_NO_COLOR:%(!.${PR_RED}%2c.${PR_LIGHT_BLUE}%2c)$PR_NO_COLOR]%(?..[${PR_RED}%?$PR_NO_COLOR])%b$(git_super_status)%(!.${PR_RED}#.${PR_NO_COLOR}$) '
 unsetopt ALL_EXPORT
