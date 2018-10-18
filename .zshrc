@@ -71,7 +71,6 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-alias cht.sh='/home/sbence/tools/cht.sh --shell'
 
 #dont correct the commands after sudo (dont treat them as arguments)
 alias sudo='nocorrect sudo'
@@ -193,8 +192,3 @@ PS1='[%(!.${PR_RED}%n.$PR_NO_COLOR%n)%(!.${PR_NO_COLOR}@.$PR_LIGHT_BLUE@)$PR_NO_
 
 #RPS1="$PR_NO_COLOR(%D{%m-%d %H:%M})$PR_NO_COLOR"
 unsetopt ALL_EXPORT
-
-
-### Proxy config alias
-alias ikproxy='source /home/sbence/tools/proxy_script.sh IK'
-alias mwproxy='source /home/sbence/tools/proxy_script.sh MW'
