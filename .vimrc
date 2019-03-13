@@ -17,8 +17,9 @@ set smarttab
 retab
 
 "airline config
-let g:airline_powerline_fonts = 1
+set encoding=UTF-8
 let g:airline_theme='angr'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " dont let airline overwrite the loaded tmuxline config
