@@ -187,7 +187,8 @@ zstyle '*' single-ignored show
 ### Source plugins
 ##################
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/git/zsh-git-prompt/zshrc.sh
+#source ~/git/zsh-git-prompt/zshrc.sh
+source ~/.zsh_prompt
 
 ### Set prompt
 ##############
