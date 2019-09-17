@@ -195,3 +195,8 @@ source ~/.zsh_prompt
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 PS1='[%(!.${PR_RED}%n.$PR_NO_COLOR%n)%(!.${PR_NO_COLOR}@.$PR_LIGHT_BLUE@)$PR_NO_COLOR%(!.${PR_RED}%m%u.${PR_NO_COLOR}%m%u)$PR_NO_COLOR:%(!.${PR_RED}%2c.${PR_LIGHT_BLUE}%2c)$PR_NO_COLOR]%(?..[${PR_RED}%?$PR_NO_COLOR])%b$(git_super_status)%(!.${PR_RED}#.${PR_NO_COLOR}$) '
 unsetopt ALL_EXPORT
+
+# autostart tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
