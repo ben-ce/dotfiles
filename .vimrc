@@ -5,6 +5,7 @@ set mouse=a
 set number
 syntax on
 set invlist
+
 "encoding
 set encoding=utf-8
 
@@ -17,8 +18,9 @@ set smarttab
 retab
 
 "airline config
-let g:airline_powerline_fonts = 1
+set encoding=UTF-8
 let g:airline_theme='angr'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " dont let airline overwrite the loaded tmuxline config
@@ -27,5 +29,6 @@ let g:airline#extensions#tmuxline#enabled = 0
 "tmuxline plugin
 call plug#begin('~/.vim/plugged')
     Plug 'edkolev/tmuxline.vim'
-    Plug 'edkolev/promptline.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()

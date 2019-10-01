@@ -188,15 +188,32 @@ zstyle '*' single-ignored show
 ##################
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #source ~/git/zsh-git-prompt/zshrc.sh
-source ~/.zsh_prompt
+#source ~/.zsh_prompt
 
-### Set prompt
-##############
-PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1='[%(!.${PR_RED}%n.$PR_NO_COLOR%n)%(!.${PR_NO_COLOR}@.$PR_LIGHT_BLUE@)$PR_NO_COLOR%(!.${PR_RED}%m%u.${PR_NO_COLOR}%m%u)$PR_NO_COLOR:%(!.${PR_RED}%2c.${PR_LIGHT_BLUE}%2c)$PR_NO_COLOR]%(?..[${PR_RED}%?$PR_NO_COLOR])%b$(git_super_status)%(!.${PR_RED}#.${PR_NO_COLOR}$) '
+# powerline settings
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv user host dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history)
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_USER_DEFAULT_FOREGROUND='238'
+POWERLEVEL9K_USER_DEFAULT_BACKGROUND='110'
+POWERLEVEL9K_HOST_LOCAL_FOREGROUND='238'
+POWERLEVEL9K_HOST_LOCAL_BACKGROUND='110'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='249'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='238'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='249'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='238'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='249'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='238'
+POWERLEVEL9K_DIR_ETC_FOREGROUND='249'
+POWERLEVEL9K_DIR_ETC_BACKGROUND='238'
+
 unsetopt ALL_EXPORT
 
 # autostart tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
