@@ -1,0 +1,88 @@
+* {
+    backgroundcolor: transparent;
+    backgroundcolor-alt: #2e3440;
+    separatorcolor: #003b4252;
+    scrollbarcolor: #3b4252;
+    foregroundcolor: #ECEFF4;
+    selectioncolor: #3b4252;
+
+
+    font-size: 1px;
+    border-color: @separatorcolor;
+    background-color: @backgroundcolor;
+    text-color: @foregroundcolor;
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    spacing: 0;
+}
+
+#listview {
+    spacing: 0;
+    margin: 0;
+    dynamic: true;
+}
+
+#window {
+    transparency: "real";
+    background-color: #282c34d0;
+}
+
+#mainbox {
+    padding: 40;
+}
+
+#element {
+    padding: 8;
+    background-color: @backgroundcolor;
+    border-radius: 3px;
+}
+
+#element.selected.normal {
+    background-color: @selectioncolor;
+    text-color: @foregroundcolor;
+}
+
+#element.alternate.normal {
+    background-color: @backgroundcolor;
+}
+
+#element.normal.active {
+    background-color: #434c5e;
+}
+
+#element.alternate.active {
+    background-color: #434c5e;
+}
+
+#element.selected.active {
+    background-color: @selectioncolor;
+    text-color: @foregroundcolor;
+}
+
+#inputbar {
+    margin: 0;
+    spacing: 0;
+}
+
+#prompt {
+    padding: 16;
+    background-color: @backgroundcolor;
+}
+
+#entry {
+    padding: 16;
+}
+
+#scrollbar {
+    border: 0;
+    width: 8px;
+    handle-color: @scrollbarcolor;
+    handle-width: 8px;
+    background-color: @backgroundcolor;
+}
+
+#scrollbar handle {
+    border: 1px;
+    border-color: #ff0000;
+}

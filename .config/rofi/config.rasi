@@ -1,0 +1,17 @@
+configuration {
+  modi:               "window,run,drun,ssh,combi";
+  combi-modi:         "window,drun,ssh";
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  cycle:              false;
+  hide-scrollbar:     true;
+  disable-history:    false;
+  theme:              "themes/custom-nord";
+/*
+  display-ssh:                   "  ";
+  display-run:                    "";
+  display-drun:                   "";
+  display-window:                 "";
+  display-combi:                  "";
+*/
+}
