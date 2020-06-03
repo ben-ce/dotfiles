@@ -1,3 +1,32 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# Load personal prompt config
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load powerlevel10k
+source $HOME/git/powerlevel10k/powerlevel10k.zsh-theme
+
+# Old prompt color scheme
+#POWERLEVEL9K_USER_DEFAULT_FOREGROUND='238'
+#POWERLEVEL9K_USER_DEFAULT_BACKGROUND='110'
+#POWERLEVEL9K_HOST_LOCAL_FOREGROUND='238'
+#POWERLEVEL9K_HOST_LOCAL_BACKGROUND='110'
+#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='249'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='0'
+#POWERLEVEL9K_DIR_HOME_FOREGROUND='249'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='0'
+#POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='249'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='0'
+#POWERLEVEL9K_DIR_ETC_FOREGROUND='249'
+POWERLEVEL9K_DIR_ETC_BACKGROUND='0'
+#POWERLEVEL9K_STATUS_OK_BACKGROUND='238'
+
+
 #######################################################
 ####### ZSH configuration file    #######
 #######################################################
@@ -50,15 +79,15 @@ EDITOR=vim
 
 ### Load colors
 ###############
-autoload colors zsh/terminfo
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-   colors
-fi
-for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-   eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-   eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-   (( count = $count + 1 ))
-done
+#autoload colors zsh/terminfo
+#if [[ "$terminfo[colors]" -ge 8 ]]; then
+#   colors
+#fi
+#for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+#   eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+#   eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+#   (( count = $count + 1 ))
+#done
 
 
 ### Set alias
@@ -79,6 +108,9 @@ alias sudo='nocorrect sudo'
 #############
 autoload -U compinit
 compinit
+
+# kitty autocompletion
+kitty + complete setup zsh | source /dev/stdin
 
 # bind positional keys to their original functions
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
@@ -186,27 +218,10 @@ zstyle '*' single-ignored show
 
 ### Source plugins
 ##################
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/git/zsh-git-prompt/zshrc.sh
-#source ~/.zsh_prompt
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
-# powerline settings
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv user host dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history)
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_USER_DEFAULT_FOREGROUND='238'
-POWERLEVEL9K_USER_DEFAULT_BACKGROUND='110'
-POWERLEVEL9K_HOST_LOCAL_FOREGROUND='238'
-POWERLEVEL9K_HOST_LOCAL_BACKGROUND='110'
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='249'
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='238'
-POWERLEVEL9K_DIR_HOME_FOREGROUND='249'
-POWERLEVEL9K_DIR_HOME_BACKGROUND='238'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='249'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='238'
-POWERLEVEL9K_DIR_ETC_FOREGROUND='249'
-POWERLEVEL9K_DIR_ETC_BACKGROUND='238'
 
 unsetopt ALL_EXPORT
 

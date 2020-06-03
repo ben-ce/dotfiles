@@ -4,7 +4,7 @@ set mouse=a
 "appearance
 set number
 syntax on
-set invlist
+set cursorline
 
 "encoding
 set encoding=utf-8
@@ -18,17 +18,31 @@ set smarttab
 retab
 
 "airline config
-set encoding=UTF-8
-let g:airline_theme='angr'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " dont let airline overwrite the loaded tmuxline config
 let g:airline#extensions#tmuxline#enabled = 0
 
+" Trun on python-mode plugin
+let g:pymode = 1
+let g:pymode_options = 1
+let g:pymode_lint = 1
+let g:pymode_lint_on_fly = 1
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 1
+set completeopt=menuone,noinsert
+let g:pymode_rope_completion_bind = '<C-Space>'
+
+
 "tmuxline plugin
+let g:pymode_rope_completion = 1
 call plug#begin('~/.vim/plugged')
     Plug 'edkolev/tmuxline.vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'edkolev/promptline.vim'
+    Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+    Plug 'arcticicestudio/nord-vim'
 call plug#end()
+
+colorscheme nord
