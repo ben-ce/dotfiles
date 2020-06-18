@@ -75,7 +75,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HOSTNAME="`hostname`"
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
-EDITOR=vim
+EDITOR=nvim
 
 ### Load colors
 ###############
@@ -104,13 +104,12 @@ alias fgrep='fgrep --color=auto'
 #dont correct the commands after sudo (dont treat them as arguments)
 alias sudo='nocorrect sudo'
 
+alias vim='nocorrect nvim'
+
 ### Bind keys
 #############
 autoload -U compinit
 compinit
-
-# kitty autocompletion
-kitty + complete setup zsh | source /dev/stdin
 
 # bind positional keys to their original functions
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode

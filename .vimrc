@@ -39,10 +39,12 @@ let g:pymode_rope_completion_bind = '<C-Space>'
 "tmuxline plugin
 let g:pymode_rope_completion = 1
 call plug#begin('~/.vim/plugged')
+    Plug 'vim-airline/vim-airline'
     Plug 'edkolev/tmuxline.vim'
     Plug 'edkolev/promptline.vim'
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
     Plug 'arcticicestudio/nord-vim'
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 colorscheme nord
