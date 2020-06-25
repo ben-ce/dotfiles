@@ -9,5 +9,5 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch transparent bars
-polybar bottombar -c ~/.config/polybar/config.transparent.ini &
-polybar topbar -c ~/.config/polybar/config.transparent.ini &
+polybar bottombar -c ~/.config/polybar/config.nord.custom.ini &
+polybar topbar -c ~/.config/polybar/config.nord.custom.ini &
