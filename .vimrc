@@ -45,6 +45,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
     Plug 'arcticicestudio/nord-vim'
     Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 colorscheme nord
+
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <C-n> :NERDTreeToggle<CR>

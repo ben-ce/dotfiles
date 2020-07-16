@@ -15,5 +15,5 @@ configuration {
   display-drun:         " ";
   display-window:       " ";
   hide-scrollbar:       true;
-  theme:                "themes/nord";
+  theme:                "themes/styles/nord";
 }
