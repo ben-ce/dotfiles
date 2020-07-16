@@ -1,0 +1,47 @@
+//----------------------
+// Colors
+//----------------------
+
+* {
+    nord0:			 #2E3440;
+    nord1: 			 #3B4252;
+    nord2: 			 #434C5E;
+    nord3: 			 #4C566A;
+    nord4: 			 #D8DEE9;
+    nord5:  			 #E5E9F0;
+    nord6:  			 #ECEFF4;
+    nord7: 			 #8FBCBB;
+    nord8:   			 #88C0D0;
+    nord9:  			 #81A1C1;
+    nord10: 			 #5E81AC;
+    nord11: 			 #BF616A;
+    nord12: 			 #D08770;
+    nord13: 			 #EBCB8B;
+    nord14: 			 #A3BE8C;
+    nord15: 			 #B48EAD;
+    background:                  @nord1;
+    foreground:                  @nord6;
+    selected-normal-foreground:  @nord6;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @nord1;
+    selected-urgent-foreground:  @nord6;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @nord1;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @nord1;
+    bordercolor:                 @nord8;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @nord3;
+    border-color:                @nord8;
+    spacing:                     2;
+    separatorcolor:              @nord1;
+    urgent-background:           @background;
+    selected-urgent-background:  @nord2;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @nord2;
+}
