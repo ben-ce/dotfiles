@@ -1,124 +1,81 @@
-/*
- *
- * Author : Aditya Shakya (adi1090x)
- * Mail : adi1090x@gmail.com
- * Github : @adi1090x
- * Reddit : @adi1090x
- *
- */
+configuration {
+    modi: "window,run,drun";
+    theme: "clean";
+    show-icons: true;
+    font: "Hack 10";
+}
 
 @import "colors.rasi"
 
-/* ########### */
-
 * {
-  /* General */
-  text-font:                            "Comfortaa 12";
-  icon-font:                            "Hurmit Nerd Font Mono 32";
-  icon-font-small:                      "Hurmit Nerd Font Mono 24";
-
-  option-6-listview-spacing:            10px;
-
-  menu-window-padding:                   5px 15px;
-  menu-inputbar-margin:                  10px 0px;
-  menu-prompt-padding:                   10px 20px 10px 20px;
-  menu-prompt-margin:                    0px 0px 0px -2px;
-  menu-element-border:                   10px;
-  menu-element-padding:                  3px 8px -1px -40px;
+    selected-background: #d8c45d;
+    selected-foreground: black;
 }
-
-/* ########### */
 
 #window {
-  width: 29%;
-  height: 20%;
+    width: 450px;
+    height: 120px;
+    background-color: @background-solid;
+    padding: 5px;
 }
 
-/* ########### */
-
-* {
-  background-color: @background;
-  text-color: @foreground;
-  font: @icon-font;
+#mainbox {
+    border:  0;
+    padding: 0;
+    children: [listview];
+    background-color: @background-solid;
 }
 
-#horibox {
-  children: [ listview ];
-}
 #listview {
-  layout: horizontal;
-}
-#element {
-  padding: @option-element-padding;
-  background-color: @background-light;
-}
-#element.selected {
-  background-color: @accent;
-  text-color: @background;
+    columns: 4;
+    layout: vertical;
+    background-color: transparent;
 }
 
-/* ########### */
-
-* {
-  font: @text-font;
-}
-#window {
-  padding: @menu-window-padding;
-  children: [ inputbar, horibox ];
-}
-#inputbar {
-  children: [ textbox-prompt-colon, prompt ];
-  margin: @menu-inputbar-margin;
-}
-prompt,
-textbox-prompt-colon {
-  padding: @menu-prompt-padding;
-  border: 2px;
-  border-color: @accent;
-}
-#prompt {
-  margin: @menu-prompt-margin;
-  background-color: @background-light;
-  text-color: @accent;
-}
-#textbox-prompt-colon {
-  expand: false;
-  str: "System";
-  background-color: @accent;
-  text-color: @background;
-}
-#horibox {
-  padding: 0px;
-}
-#listview {
-  spacing: @option-6-listview-spacing;
-  lines: 5;
-}
-#element {
-  font: @icon-font;
-  border: @menu-element-border;
-  padding: @menu-element-padding;
-  border-color: @background-light;
-}
-#element.selected {
-  border-color: @accent;
-}
-element.active,
-element.selected.urgent {
-  background-color: @on;
-  text-color: @background;
-  border-color: @on;
-}
-element.selected.urgent {
-  border-color: @accent;
-}
-element.urgent,
-element.selected.active {
-  background-color: @off;
-  text-color: @background;
-  border-color: @off;
-}
-element.selected.active {
-  border-color: @accent;
+element {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    orientation: vertical;
 }
 
+element-icon {
+    size: 48px;
+    margin: 2px;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+#element.normal.normal {
+    background-color: rgba(0, 0, 0, 0);
+    text-color:       @foreground;
+}
+
+#element.selected.normal {
+    background-color: @selected-background;
+    text-color:       @selected-foreground;
+    border-color: #d07ef2;
+}
+
+#element.alternate.normal {
+    background-color: rgba(0,0,0,0);
+    text-color:       @foreground;
+}
+
+#mode-switcher {
+    border:       0px 0px 0px ;
+    border-color: @separatorcolor;
+}
+
+#button {
+    spacing:    0;
+    text-color: @foreground;
+}
+
+#button.selected {
+    background-color: @selected-background;
+    text-color:       @selected-foreground;
+}
