@@ -42,9 +42,11 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-bindsym $mod+Shift+e exec $HOME/git/rofi/bin/menu_powermenu.sh
+# Exit i3 options on the statusbar
 #bindsym $mod+Shift+e mode "$mode_system"
+
+# Exit i3 in powermenu
+bindsym $mod+Shift+e exec ~/.config/rofi/launch.sh powermenu
 
 # lock screen simply
 bindsym $mod+shift+x exec betterlockscreen -l blur
@@ -236,7 +238,7 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 no_focus [class="plasmashell" window_type="notification"]
 
 # Define gaps globally
-gaps inner 30
+gaps inner 35
 
 
 # Permanent screen resolution
@@ -249,6 +251,7 @@ exec --no-startup-id /usr/bin/feh --randomize --bg-fill $HOME/Nextcloud/Pictures
 exec --no-startup-id keepassxc
 exec --no-startup-id nextcloud
 exec --no-startup-id /usr/bin/dunst -config $HOME/.config/dunst/dunstrc
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Setup composer
 exec_always --no-startup-id /usr/bin/picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
