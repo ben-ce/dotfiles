@@ -46,7 +46,7 @@ POWERLEVEL9K_DIR_ETC_BACKGROUND='0'
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt APPEND_HISTORY
 # setopt AUTO_LIST
-# setopt AUTO_REMOVE_SLASH
+setopt AUTO_REMOVE_SLASH
 # setopt AUTO_RESUME
 unsetopt BG_NICE
 setopt CORRECT
@@ -74,6 +74,10 @@ zmodload -a zsh/zprof zprof
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
+### Autoload word style selector
+autoload -U select-word-style
+select-word-style bash
+
 ### Set variables
 #################
 PATH="/usr/local/bin:/usr/local/sbin/:$PATH"
@@ -81,21 +85,7 @@ HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
 HOSTNAME="`hostname`"
-LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
 EDITOR=nvim
-
-### Load colors
-###############
-#autoload colors zsh/terminfo
-#if [[ "$terminfo[colors]" -ge 8 ]]; then
-#   colors
-#fi
-#for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-#   eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-#   eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-#   (( count = $count + 1 ))
-#done
-
 
 ### Set alias
 #############
