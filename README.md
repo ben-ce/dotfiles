@@ -3,13 +3,11 @@
  - zsh-syntax-highlighting
  - zsh-autosuggestions
  - zsh-completions
- - zsh-theme-powerlevel9k
- - powerline-fonts
- - awesome-terminal-fonts
+ - zsh-theme-powerlevel10k-git
+ - nerd-fonts-jetbrains-mono
+ - nerd-fonts-meslo
  - python-virtualenvwrapper
- - tmux
  - vim
     - plugged plugin manager
-    - Plug 'edkolev/tmuxline.vim'
     - Plug 'vim-airline/vim-airline'
     - Plug 'vim-airline/vim-airline-themes'
