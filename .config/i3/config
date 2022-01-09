@@ -19,37 +19,11 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-#set $Locker i3lock && sleep 1
-set $Locker betterlockscreen -l blur && sleep 1
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-# Exit i3 options on the statusbar
-#bindsym $mod+Shift+e mode "$mode_system"
-
 # Exit i3 in powermenu
 bindsym $mod+Shift+e exec ~/.config/rofi/launch.sh powermenu
 
 # lock screen simply
-bindsym $mod+shift+x exec betterlockscreen -l blur
+bindsym $mod+shift+x exec betterlockscreen -l dimblur
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -82,6 +56,7 @@ bindsym $mod+Shift+q kill
 # start rofi
 # bindsym $mod+d exec --no-startup-id rofi -show run -lines 10 -eh 2 -width 30 -padding 800 -font "Cantarell 11"
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -theme launchpad -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -107,7 +82,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+
 bindsym $mod+b split h
 
 # split in vertical orientation
@@ -235,13 +210,15 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="(?i)*libreoffice*"] floating disable
 for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"]
+for_window [class="plank"] floating enable; border none
+for_window [class="cairo-dock"] floating enable; border none
 
 # Define gaps globally
-gaps inner 35
+gaps inner 15
 
 
 # Permanent screen resolution
-exec_always --no-startup-id $HOME/.screenlayout/i3_1440p.sh
+#exec_always --no-startup-id $HOME/.screenlayout/i3_1440p.sh
 
 # set background
 exec --no-startup-id /usr/bin/feh --randomize --bg-fill $HOME/Nextcloud/Pictures/wallpaper/*
@@ -254,3 +231,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Setup composer
 exec_always --no-startup-id /usr/bin/picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
+
+# Change display resolution with autorandr for the correct profile
+exec_always --no-startup-id /usr/bin/autorandr --change

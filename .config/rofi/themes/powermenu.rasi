@@ -1,6 +1,5 @@
 configuration {
     modi: "window,run,drun";
-    theme: "clean";
     show-icons: true;
     font: "Hack 10";
 }
@@ -42,11 +41,44 @@ element {
 element-icon {
     size: 48px;
     margin: 2px;
+    horizontal-align: 0.5;
 }
 
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
+}
+
+#element-text.normal.normal {
+    background-color: rgba(0, 0, 0, 0);
+    text-color:       @foreground;
+}
+
+#element-text.selected.normal {
+    background-color: @selected-background;
+    text-color:       @selected-foreground;
+    border-color: #d07ef2;
+}
+
+#element-text.alternate.normal {
+    background-color: rgba(0,0,0,0);
+    text-color:       @foreground;
+}
+
+#element-icon.normal.normal {
+    background-color: rgba(0, 0, 0, 0);
+    text-color:       @foreground;
+}
+
+#element-icon.selected.normal {
+    background-color: @selected-background;
+    text-color:       @selected-foreground;
+    border-color: #d07ef2;
+}
+
+#element-icon.alternate.normal {
+    background-color: rgba(0,0,0,0);
+    text-color:       @foreground;
 }
 
 #element.normal.normal {

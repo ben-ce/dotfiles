@@ -9,10 +9,10 @@ if [ -z "$@" ]; then
 else
     if [ "$1" = "Shutdown" ]; then
         systemctl poweroff
-    elif [ "$1" = "Exit" ]; then
+    elif [ "$1" = "Logout" ]; then
         i3-msg exit
     elif [ "$1" = "Reboot" ]; then
-        systemctl reboot
+        reboot
     elif [ "$1" = "Suspend" ]; then
         systemctl suspend
     fi
