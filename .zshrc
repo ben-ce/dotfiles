@@ -82,6 +82,8 @@ select-word-style bash
 autoload -U compinit
 compinit
 
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 ### Set variables
 #################
 PATH="/usr/local/bin:/usr/local/sbin/:$PATH"
