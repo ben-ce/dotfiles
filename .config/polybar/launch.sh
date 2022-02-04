@@ -11,3 +11,4 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # Launch transparent bars
 # polybar bottombar -c ~/.config/polybar/config.nord.simple.color.ini &
 polybar topbar -c ~/.config/polybar/config.nord.simple.color.detached.ini &
+polybar topbar2 -c ~/.config/polybar/config.nord.simple.color.detached.ini &
