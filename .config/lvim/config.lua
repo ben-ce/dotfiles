@@ -57,9 +57,12 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.terminal.direction ="horizontal"
+lvim.builtin.terminal.shading_factor = nil
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.lualine.options.theme = "onenord"
+lvim.builtin.treesitter.matchup = { enable = true }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -82,7 +85,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = false
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
@@ -147,11 +150,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.plugins = {
   {"rmehri01/onenord.nvim"},
   {"andersevenrud/nordic.nvim"},
-  {
-  "karb94/neoscroll.nvim",
-  event = "WinScrolled",
-  config = function()
-  require('neoscroll').setup({
+  {"EdenEast/nightfox.nvim"},
+  {"RRethy/vim-illuminate"},
+  {"karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require("neoscroll").setup {
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
         '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
@@ -163,26 +167,41 @@ lvim.plugins = {
         easing_function = nil,        -- Default easing function
         pre_hook = nil,              -- Function to run before the scrolling animation starts
         post_hook = nil,              -- Function to run after the scrolling animation ends
-        })
-  end
-},
+      }
+      end,
+  },
 
   {"lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     config = function()
       require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
+      -- for example, context is off by default, use this to turn it on
         char = "▏",
         filetype_exclude = {"help", "terminal", "dashboard"},
         buftype_exclude = {"terminal"},
         blankline_indent = false,
         space_char_blankline = " ",
         show_current_context = true,
-        show_current_context_start = true,
+        show_current_context_start = false,
         show_first_indent_level = false,
       }
       end,
-  }
+  },
+  -- {"andymass/vim-matchup",
+  --   event = "CursorMoved",
+  --   config = function()
+  --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  --   end,
+  -- },
+  {"ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function()
+      require "lsp_signature".setup()
+    end,
+  },
+  {"simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
