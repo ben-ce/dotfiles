@@ -13,3 +13,5 @@ configuration {
   display-window:       " ";
 }
 @theme "themes/nord"
+
+/* vim:ft=css

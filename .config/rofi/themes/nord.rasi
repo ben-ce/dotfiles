@@ -1,89 +1,75 @@
+@import "colors.rasi"
+
 * {
-
-    bg0:     #2E3440;
-    bg1:     #3B4252;
-    fg0:     #D8DEE9;
-
-    accent-color:     #88C0D0;
-    urgent-color:     #EBCB8B;
-
-    background-color:   transparent;
-    text-color:         @fg0;
-
-    margin:     0;
-    padding:    0;
-    spacing:    0;
+  background-color:   transparent;
+  text-color:         @foreground;
+  spacing:    0;
 }
 
 window {
-    location:   center;
-    width:      800;
-    y-offset:   -160;
-
-    background-color:   @bg0;
+  location:     center;
+  width:        400;
+  y-offset:     -160;
+  background-color:   @background;
 }
 
 inputbar {
-    spacing:    8px;
-    padding:    8px;
-
-    background-color:   @bg1;
+  spacing:    8px;
+  padding:    8px;
+  background-color:   @background;
 }
 
 prompt, entry, element-icon, element-text {
-    vertical-align: 0.5;
-    placeholder: "Search";
-}
-
-prompt {
-    text-color: @accent-color;
+  vertical-align: 0.5;
+  placeholder: "Search";
 }
 
 textbox {
-    padding:            8px;
-    background-color:   @bg1;
+  padding:            8px;
+  background-color:   @background;
 }
 
 listview {
-    padding:    0;
-    lines:      10;
-    columns:    2;
-    fixed-height:   false;
+  padding:    0;
+  lines:      10;
+  fixed-height:   false;
 }
 
 element {
-    padding:    6px;
-    spacing:    6px;
+  padding:    6px;
+  spacing:    6px;
 }
 
 element normal normal {
-    text-color: @fg0;
+  text-color: @foreground;
 }
 
 element normal urgent {
-    text-color: @urgent-color;
+  text-color: @nord13;
 }
 
 element normal active {
-    text-color: @accent-color;
+  text-color: @nord8;
 }
 
 element selected {
-    text-color: @bg0;
+  text-color: @background;
 }
 
 element selected normal, element selected active {
-    background-color:   @accent-color;
+  background-color:   @nord13;
 }
 
 element selected urgent {
-    background-color:   @urgent-color;
+  background-color:   @nord13;
 }
 
 element-icon {
-    size:   24px;
+  size:   24px;
 }
 
 element-text {
-    text-color: inherit;
+  text-color: inherit;
 }
+
+/* vim:ft=css

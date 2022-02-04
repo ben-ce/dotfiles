@@ -1,18 +1,10 @@
+@import "colors.rasi"
+
 * {
-
-    bg0:  #24242480;
-    bg1:  #363636;
-    bg2:  #f5f5f520;
-    bg3:  #f5f5f540;
-    bg4:  #0860f2E6;
-
-    fg0:  #f5f5f5;
-    fg1:  #f5f5f580;
-
-    background-color: transparent;
-    text-color:       @fg0;
-    padding:          0px;
-    margin:           0px;
+  background-color: transparent;
+  text-color:       @foreground;
+  padding:          0;
+  margin:           0;
 }
 
 window {
@@ -27,22 +19,15 @@ mainbox {
 }
 
 inputbar {
-  background-color: @bg2;
-
+  background-color: @background;
   margin:   80px calc( 50% - 220px ) 0px;
   padding:  4px 4px;
   spacing:  4px;
-
   border:         1px;
   border-radius:  2px;
-  border-color:   @bg3;
-
-  children: [icon-search,entry];
+  border-color:   @nord3;
 }
 
-prompt {
-  enabled:  false;
-}
 
 icon-search {
   expand:   false;
@@ -52,7 +37,6 @@ icon-search {
 
 entry {
   placeholder:        "Search";
-  placeholder-color:  @fg1;
 }
 
 listview {
@@ -72,11 +56,12 @@ element {
   spacing:      8px;
 
   orientation:    vertical;
-  border-radius:  16px;
+  border-radius:  36px;
 }
 
 element selected {
-  background-color: #88c0d0;
+  text-color: @background;
+  background-color: @nord8;
 }
 
 element-icon {
