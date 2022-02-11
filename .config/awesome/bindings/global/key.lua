@@ -88,9 +88,12 @@ awful.keyboard.append_global_keybindings{
       group       = 'launcher',
       on_press    = function() menubar.show() end,
    },
+  awful.key({mod.alt}, "Tab", function()
+     awesome.emit_signal("bling::window_switcher::turn_on")
+  end, {description = "Window Switcher", group = "bling"})
 }
 
--- tags related keybindings
+-- tags related. keybindings
 awful.keyboard.append_global_keybindings{
    awful.key{
       modifiers   = {mod.super},
