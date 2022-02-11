@@ -25,6 +25,7 @@ theme.nord14 = "#A3BE8C"
 theme.nord15 = "#B48EAD"
 
 theme.font          = "JetBrainsMono Nerd Font 12"
+theme.title_font    = theme.font
 theme.transparent   = "#00000000"
 
 theme.bg_normal     = theme.nord0
@@ -54,7 +55,29 @@ theme.taglist_fg_empty = theme.nord3
 theme.taglist_bg_urgent = theme.bg_normal
 theme.taglist_fg_urgent = theme.nord11
 
-theme.taglist_squares_sel                       = ''
-theme.taglist_squares_unsel                     = ''
+theme.taglist_squares_sel                       = nil
+theme.taglist_squares_unsel                     = nil
+
+theme.wallpaper = '~/Pictures/Mojave-nord-dark.png'
+
+theme.window_switcher_widget_bg = theme.bg_normal              -- The bg color of the widget
+theme.window_switcher_widget_border_width = 0            -- The border width of the widget
+theme.window_switcher_widget_border_radius = 10           -- The border radius of the widget
+theme.window_switcher_widget_border_color = theme.border_normal    -- The border color of the widget
+theme.window_switcher_clients_spacing = 20               -- The space between each client item
+theme.window_switcher_client_icon_horizontal_spacing = 5 -- The space between client icon and text
+theme.window_switcher_client_width = 150                 -- The width of one client widget
+theme.window_switcher_client_height = 250                -- The height of one client widget
+theme.window_switcher_client_margins = 10                -- The margin between the content and the border of the widget
+theme.window_switcher_thumbnail_margins = 10             -- The margin between one client thumbnail and the rest of the widget
+theme.thumbnail_scale = false                            -- If set to true, the thumbnails fit policy will be set to "fit" instead of "auto"
+theme.window_switcher_name_margins = 10                  -- The margin of one clients title to the rest of the widget
+theme.window_switcher_name_valign = "center"             -- How to vertically align one clients title
+theme.window_switcher_name_forced_width = 200            -- The width of one title
+theme.window_switcher_name_font = theme.font             -- The font of all titles
+theme.window_switcher_name_normal_color = theme.fg_normal      -- The color of one title if the client is unfocused
+theme.window_switcher_name_focus_color = theme.nord13       -- The color of one title if the client is focused
+theme.window_switcher_icon_valign = "center"             -- How to vertically align the one icon
+theme.window_switcher_icon_width = 24                    -- The width of one icon
 
 return theme

@@ -13,7 +13,7 @@ _M.awesomemenu = {
    {'manual', apps.manual_cmd},
    {'edit config', apps.editor_cmd .. ' ' .. awesome.conffile},
    {'restart', awesome.restart},
-   {'quit', awesome.quit},
+   {'quit', function() awesome.quit() end},
 }
 
 _M.mainmenu = awful.menu{
@@ -160,7 +160,9 @@ function _M.create_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             _M.keyboardlayout,
             wibox.widget.systray(),
-            _M.textclock,
+            require("widgets.bluetooth"),
+            require("widgets.battery"),
+            require("widgets.calendar").create(s),
             s.layoutbox,
          }
       }
