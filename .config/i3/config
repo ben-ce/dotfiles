@@ -25,10 +25,6 @@ bindsym $mod+Shift+e exec ~/.config/rofi/launch.sh powermenu
 # lock screen simply
 bindsym $mod+shift+x exec betterlockscreen -l dimblur
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -216,21 +212,25 @@ for_window [class="cairo-dock"] floating enable; border none
 # Define gaps globally
 gaps inner 15
 
-
-# Permanent screen resolution
-#exec_always --no-startup-id $HOME/.screenlayout/i3_1440p.sh
-
 # set background
 exec --no-startup-id /usr/bin/feh --randomize --bg-fill $HOME/Nextcloud/Pictures/wallpaper/*
 
 # Autostart applications
-exec --no-startup-id keepassxc
-exec --no-startup-id nextcloud
 exec --no-startup-id /usr/bin/dunst -config $HOME/.config/dunst/dunstrc
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Setup composer
-exec_always --no-startup-id /usr/bin/picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
 
 # Change display resolution with autorandr for the correct profile
 exec_always --no-startup-id /usr/bin/autorandr --change
+
+exec_always --no-startup-id /usr/bin/dex --environment i3 --autostart --search-paths "$XDG_CONFIG_HOME/autostart"
+## Moved these to start with dex
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+#exec --no-startup-id nm-applet
+# Powermanagement
+#exec_always --no-startup-id /usr/bin/xfce4-power-manager --daemon
+# Setup composer
+#exec_always --no-startup-id /usr/bin/picom -b --config $HOME/.config/picom/picom_noblur_rounded_corners.conf --experimental-backends
+
+#exec --no-startup-id keepassxc
+#exec --no-startup-id nextcloud
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

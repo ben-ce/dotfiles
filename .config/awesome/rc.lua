@@ -8,7 +8,7 @@ local beautiful = require("beautiful")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 local themes = {
-   "nord"           -- 1
+    "nord"           -- 1
 }
 
 local chosen_theme = themes[1]
@@ -38,4 +38,8 @@ require("rules")
 
 -- {{{ Signals and startup error handling
 require("signals")
+-- }}}
+
+-- {{{ Autostart applications
+require("config.xdg_autostart")
 -- }}}

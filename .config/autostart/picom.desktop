@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/picom -b --config $HOME/.config/picom/picom_noblur_rounded_corners.conf --experimental-backends
+Name=picom
+Comment=a compositor for X11
+Type=Application

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/keepassxc
+Name=keepassxc
+Comment=a modern open-source password manager
+Type=Application
