@@ -1,6 +1,8 @@
 local awful = require'awful'
 require'awful.autofocus'
 local wibox = require'wibox'
+local gears = require("gears")
+local beautiful = require("beautiful")
 
 client.connect_signal('mouse::enter', function(c)
    c:activate{context = 'mouse_enter', raise = false}
@@ -54,3 +56,13 @@ client.connect_signal('request::titlebars', function(c)
       layout = wibox.layout.align.horizontal,
    }
 end)
+
+-- Add awesome native rounded corners to clients (no anti-aliasing). For a better look use the picom compositor.
+-- client.connect_signal("manage", function(c)
+-- 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+-- 		awful.placement.no_offscreen(c)
+-- 	end
+-- 	c.shape = function(cr, w, h)
+-- 		gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius)
+-- 	end
+-- end)
