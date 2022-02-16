@@ -15,14 +15,14 @@ awful.keyboard.append_global_keybindings{
       modifiers   = {mod.super, mod.shift},
       key         = 'e',
       description = 'Power menu',
-      group       = 'utility',
+      group       = 'launcher',
       on_press    = function() awful.spawn.with_shell("~/.config/rofi/launch.sh powermenu") end,
   },
   awful.key{
       modifiers   = {mod.super},
       key         = 'd',
       description = 'show rofi',
-      group       = 'app',
+      group       = 'launcher',
       on_press    = function() awful.spawn("rofi -show drun") end,
   },
    awful.key{
