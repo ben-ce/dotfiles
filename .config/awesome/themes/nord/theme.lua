@@ -58,7 +58,11 @@ theme.taglist_fg_urgent = theme.nord11
 theme.taglist_squares_sel                       = nil
 theme.taglist_squares_unsel                     = nil
 
-theme.wallpaper = '~/Pictures/Mojave-nord-dark.png'
+theme.hotkeys_modifiers_fg = theme.nord7
+theme.hotkeys_border_width = 3
+theme.hotkeys_border_color = theme.nord2
+
+theme.wallpaper = '~/Pictures/wallpaper/WhiteSur-light.png'
 
 theme.window_switcher_widget_bg = theme.bg_normal              -- The bg color of the widget
 theme.window_switcher_widget_border_width = 0            -- The border width of the widget
