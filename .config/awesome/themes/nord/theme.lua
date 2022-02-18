@@ -24,9 +24,19 @@ theme.nord13 = "#EBCB8B"
 theme.nord14 = "#A3BE8C"
 theme.nord15 = "#B48EAD"
 
+theme.red     = theme.nord11
+theme.orange  = theme.nord12
+theme.green   = theme.nord14
+theme.yellow  = theme.nord13
+theme.blue    = theme.nord8
+theme.white   = theme.nord4
+
 theme.font          = "JetBrainsMono Nerd Font 12"
+theme.icon_font     = "Ionicons"
+theme.icon_size     = 24
 theme.title_font    = theme.font
 theme.transparent   = "#00000000"
+theme.systray_icon_spacing  = dpi(8)
 
 theme.bg_normal     = theme.nord0
 theme.bg_focus      = theme.bg_normal
