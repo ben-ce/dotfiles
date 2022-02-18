@@ -1,144 +1,76 @@
---      ██████╗  █████╗ ████████╗████████╗███████╗██████╗ ██╗   ██╗
---      ██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗╚██╗ ██╔╝
---      ██████╔╝███████║   ██║      ██║   █████╗  ██████╔╝ ╚████╔╝
---      ██╔══██╗██╔══██║   ██║      ██║   ██╔══╝  ██╔══██╗  ╚██╔╝
---      ██████╔╝██║  ██║   ██║      ██║   ███████╗██║  ██║   ██║
---      ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝
-
--------------------------------------------------
--- Battery Widget for Awesome Window Manager
--- Shows the battery status using the ACPI tool
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/battery-widget
-
--- @author Pavel Makhov
--- @copyright 2017 Pavel Makhov
--------------------------------------------------
-
-
--- ===================================================================
--- Initialization
--- ===================================================================
-
-
-local awful = require("awful")
-local watch = require("awful.widget.watch")
 local wibox = require("wibox")
-local clickable_container = require("widgets.clickable-container")
+local beautiful = require("beautiful")
 local gears = require("gears")
-local dpi = require("beautiful").xresources.apply_dpi
-local apps = require("config.apps")
-local PATH_TO_ICONS = os.getenv("HOME") .. "/.config/awesome/icons/battery/"
 
 
--- ===================================================================
--- Widget Creation
--- ===================================================================
-
-
-local widget = wibox.widget {
-   {
-      id = "icon",
-      widget = wibox.widget.imagebox,
-      resize = true
-   },
-   layout = wibox.layout.fixed.horizontal
-}
-
-local widget_button = clickable_container(wibox.container.margin(widget, dpi(7), dpi(7), dpi(7), dpi(7)))
-widget_button:buttons(
-   gears.table.join(
-      awful.button({}, 1, nil,
-         function()
-            awful.spawn(apps.power_manager)
-         end
-      )
-   )
-)
--- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-local battery_popup = awful.tooltip({
-   objects = {widget_button},
-   mode = "outside",
-   align = "left",
-   referred_positions = {"right", "left", "top", "bottom"}
+local battery_icon = wibox.widget({
+  font = beautiful.font,
+	align = "center",
+	valign = "center",
+	widget = wibox.widget.textbox,
 })
 
-local function show_battery_warning()
-   naughty.notify {
-      icon = PATH_TO_ICONS .. "battery-alert.svg",
-      icon_size = dpi(48),
-      text = "Huston, we have a problem",
-      title = "Battery is dying",
-      timeout = 5,
-      hover_timeout = 0.5,
-      position = "top_right",
-      bg = "#d32f2f",
-      fg = "#EEE9EF",
-      width = 248
-   }
-end
+local battery_prog = wibox.widget({
+	max_value = 100,
+	min_value = 0,
+	value = 20,
+	forced_height = 3,
+	forced_width = 75,
+	color = beautiful.red,
+	background_color = beautiful.primary,
+	shape = gears.shape.rounded_bar,
+	widget = wibox.widget.progressbar,
+})
 
-local last_battery_check = os.time()
+awesome.connect_signal("signal::battery", function(percentage, state)
+	local value = percentage
 
-watch("acpi -i", 1,
-   function(_, stdout)
-      local battery_info = {}
-      local capacities = {}
-      for s in stdout:gmatch("[^\r\n]+") do
-         local status, charge_str, time = string.match(s, ".+: (%a+), (%d?%d?%d)%%,?.*")
-         if status ~= nil then
-            table.insert(battery_info, {status = status, charge = tonumber(charge_str)})
-         else
-            local cap_str = string.match(s, ".+:.+last full capacity (%d+)")
-            table.insert(capacities, tonumber(cap_str))
-         end
-      end
+	local bat_icon = "  "
+	local bat_color = beautiful.green
+  battery_icon.font = "MesloLGS Nerd Font 15"
 
-      local capacity = 0
-      for _, cap in ipairs(capacities) do
-         capacity = capacity + cap
-      end
+	if value >= 0 and value <= 15 then
+		bat_icon = "﮻ "
+		bat_color = beautiful.red
+	elseif value > 15 and value <= 20 then
+		bat_icon = "  "
+		bat_color = beautiful.red
+  elseif value > 20 and value <= 30 then
+		bat_icon = "  "
+		bat_color = beautiful.orange
+	elseif value > 30 and value <= 40 then
+		bat_icon = "  "
+		bat_color = beautiful.orange
+	elseif value > 40 and value <= 50 then
+		bat_icon = "  "
+		bat_color = beautiful.yellow
+	elseif value > 50 and value <= 60 then
+		bat_icon = "  "
+		bat_color = beautiful.yellow
+	elseif value > 60 and value <= 70 then
+		bat_icon = "  "
+		bat_color = beautiful.yellow
+	elseif value > 70 and value <= 80 then
+		bat_icon = "  "
+		bat_color = beautiful.white
+	elseif value > 80 and value <= 90 then
+		bat_icon = "  "
+		bat_color = beautiful.white
+	elseif value > 90 and value <= 100 then
+		bat_icon = "  "
+		bat_color = beautiful.white
+	end
 
-      local charge = 0
-      local status
-      for i, batt in ipairs(battery_info) do
-         if batt.charge >= charge then
-            status = batt.status -- use most charged battery status
-            -- this is arbitrary, and maybe another metric should be used
-         end
+	-- if charging
+	if state == 1 then
+    battery_icon.font = beautiful.icon_font .. " " .. beautiful.icon_size
+		bat_icon = " "
+		bat_color = beautiful.blue
+	end
 
-         charge = charge + batt.charge * capacities[i]
-      end
-      charge = charge / capacity
+	battery_prog.value = percentage
 
-      if (charge >= 0 and charge < 15) then
-         if status ~= "Charging" and os.difftime(os.time(), last_battery_check) > 300 then
-            -- if 5 minutes have elapsed since the last warning
-            last_battery_check = time()
+	battery_icon.markup = "<span foreground='" .. bat_color .. "'>" .. bat_icon .. "</span>"
+end)
 
-            show_battery_warning()
-         end
-      end
-
-      local battery_icon_name = "battery"
-
-      if status == "Charging" or status == "Full" then
-         battery_icon_name = battery_icon_name .. "-charging"
-      end
-
-      local rounded_charge = math.floor(charge / 10) * 10
-      if (rounded_charge == 0) then
-         battery_icon_name = battery_icon_name .. "-outline"
-      elseif (rounded_charge ~= 100) then
-         battery_icon_name = battery_icon_name .. "-" .. rounded_charge
-      end
-
-      widget.icon:set_image(PATH_TO_ICONS .. battery_icon_name .. ".svg")
-      -- Update popup text
-      battery_popup.text = string.gsub(stdout, "\n$", "")
-      collectgarbage("collect")
-   end,
-   widget
-)
-
-return widget_button
+return battery_icon

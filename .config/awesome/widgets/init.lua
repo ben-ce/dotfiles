@@ -31,6 +31,17 @@ _M.launcher = awful.widget.launcher{
 _M.keyboardlayout = awful.widget.keyboardlayout()
 _M.textclock      = wibox.widget.textclock()
 
+-- Create a containger for the systray to apply margins
+_M.tray = wibox.widget{
+   {
+    widget = wibox.widget.systray
+   },
+      left = 2,
+      right = 2,
+      top = 6,
+      bottom = 6,
+      widget = wibox.container.margin
+}
 
 function _M.create_promptbox() return awful.widget.prompt() end
 
@@ -159,8 +170,8 @@ function _M.create_wibox(s)
          {
             layout = wibox.layout.fixed.horizontal,
             _M.keyboardlayout,
-            wibox.widget.systray(),
-            require("widgets.bluetooth"),
+            _M.tray,
+            require("widgets.bat2"),
             require("widgets.battery"),
             require("widgets.calendar").create(s),
             s.layoutbox,
