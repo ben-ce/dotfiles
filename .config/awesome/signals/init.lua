@@ -1,7 +1,6 @@
-return {
-   naughty = require'signals.naughty',
-   tag     = require'signals.tag',
-   screen  = require'signals.screen',
-   client  = require'signals.client',
-   ruled   = require'signals.ruled',
-}
+require'signals.naughty'
+require'signals.tag'
+require'signals.screen'
+require'signals.client'
+require'signals.ruled'
+require'signals.battery'
