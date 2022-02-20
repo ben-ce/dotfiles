@@ -31,11 +31,12 @@ theme.yellow  = theme.nord13
 theme.blue    = theme.nord8
 theme.white   = theme.nord4
 
-theme.font          = "JetBrainsMono Nerd Font 12"
-theme.icon_font     = "Ionicons"
-theme.icon_size     = 24
-theme.title_font    = theme.font
-theme.transparent   = "#00000000"
+theme.font_name       = "JetBrainsMono Nerd Font "
+theme.font            = theme.font_name .. "12"
+theme.icon_font_name  = "Ionicons "
+theme.icon_font       = theme.icon_font_name .. "24"
+theme.title_font      = theme.font
+theme.transparent     = "#00000000"
 theme.systray_icon_spacing  = dpi(8)
 
 theme.bg_normal     = theme.nord0
