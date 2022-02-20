@@ -171,7 +171,6 @@ function _M.create_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             _M.keyboardlayout,
             _M.tray,
-            require("widgets.bat2"),
             require("widgets.battery"),
             require("widgets.calendar").create(s),
             s.layoutbox,
