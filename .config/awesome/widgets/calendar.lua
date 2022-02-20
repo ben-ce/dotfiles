@@ -31,7 +31,7 @@ calendar.create = function(screen)
    local clock_widget = wibox.widget.textclock("  %Y %b %d  %H:%M ", 30)
 
    local cal_shape = function(cr, width, height)
-      gears.shape.rounded_rect(cr, width, height, false, false, true, true, 12)
+      gears.shape.rounded_rect(cr, width, height, false, false, true, true, dpi(12))
    end
 
    -- Calendar Widget
@@ -42,7 +42,7 @@ calendar.create = function(screen)
       font = beautiful.title_font,
       long_weekdays = true,
       margin = 10, -- 10
-      style_month = {border_width = 1, padding = 12, shape = cal_shape, padding = 25},
+      style_month = {border_width = 1, padding = 20, shape = cal_shape},
       style_header = {border_width = 0, bg_color = "#00000000"},
       style_weekday = {border_width = 0, bg_color = "#00000000"},
       style_normal = {border_width = 0, bg_color = "#00000000"},
