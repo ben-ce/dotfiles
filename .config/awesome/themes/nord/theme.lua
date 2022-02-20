@@ -1,5 +1,4 @@
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
+local dpi = require("beautiful").xresources.apply_dpi
 local gtable = require("gears.table")
 local default_theme = require("themes.default.theme")
 
@@ -40,7 +39,7 @@ theme.transparent     = "#00000000"
 theme.systray_icon_spacing  = dpi(8)
 
 theme.bg_normal     = theme.nord0
-theme.bg_focus      = theme.bg_normal
+theme.bg_focus      = theme.nord1
 theme.bg_urgent     = theme.bg_normal
 theme.bg_minimize   = theme.bg_normal
 theme.bg_systray    = theme.bg_normal
@@ -57,14 +56,15 @@ theme.border_marked = theme.nord11
 theme.border_focus  = theme.nord0
 
 -- theme.taglist_spacing = dpi(5)
-theme.taglist_bg_focus = theme.bg_normal
-theme.taglist_fg_focus = theme.fg_normal
+theme.taglist_font        = "Iosevka 12"
+theme.taglist_bg_focus    = theme.bg_focus
+theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
 theme.taglist_fg_occupied = theme.nord14
-theme.taglist_bg_empty = theme.bg_normal
-theme.taglist_fg_empty = theme.nord3
-theme.taglist_bg_urgent = theme.bg_normal
-theme.taglist_fg_urgent = theme.nord11
+theme.taglist_bg_empty    = theme.bg_normal
+theme.taglist_fg_empty    = theme.nord3
+theme.taglist_bg_urgent   = theme.bg_normal
+theme.taglist_fg_urgent   = theme.nord11
 
 theme.taglist_squares_sel                       = nil
 theme.taglist_squares_unsel                     = nil

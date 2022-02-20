@@ -4,7 +4,7 @@ local awful = require'awful'
 local hotkeys_popup = require'awful.hotkeys_popup'
 local beautiful = require'beautiful'
 local wibox = require'wibox'
-
+local dpi = beautiful.xresources.apply_dpi
 local apps = require'config.apps'
 local mod = require'bindings.modkeys'
 
@@ -73,10 +73,25 @@ function _M.create_layoutbox(s)
    }
 end
 
+local taglist_padding = 10
+
 function _M.create_taglist(s)
    return awful.widget.taglist{
       screen = s,
       filter = awful.widget.taglist.filter.all,
+      widget_template = {
+        {
+          {
+            id = 'text_role',
+            widget = wibox.widget.textbox
+          },
+          left = dpi(taglist_padding),
+          right = dpi(taglist_padding),
+          widget = wibox.container.margin
+        },
+        id = 'background_role',
+        widget = wibox.container.background
+      },
       buttons = {
          awful.button{
             modifiers = {},
