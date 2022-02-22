@@ -88,9 +88,16 @@ awful.keyboard.append_global_keybindings{
       group       = 'launcher',
       on_press    = function() menubar.show() end,
    },
-  awful.key({mod.alt}, "Tab", function()
-     awesome.emit_signal("bling::window_switcher::turn_on")
-  end, {description = "Window Switcher", group = "bling"})
+   awful.key{
+      modifiers   = {mod.super, mod.shift},
+      key         = 'x',
+      description = 'Lock screen',
+      group       = 'awesome',
+      on_press    = function () awful.spawn(apps.screenlocker) end,
+  },
+   awful.key({mod.alt}, "Tab", function()
+      awesome.emit_signal("bling::window_switcher::turn_on")
+   end, {description = "Window Switcher", group = "bling"})
 }
 
 -- tags related. keybindings
