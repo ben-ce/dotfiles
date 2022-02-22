@@ -1,6 +1,7 @@
 local dpi = require("beautiful").xresources.apply_dpi
 local gtable = require("gears.table")
 local default_theme = require("themes.default.theme")
+local gears = require("gears")
 
 local theme = {}
 -- Override elements in the custom theme table with the default ones
@@ -46,7 +47,7 @@ theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = theme.nord4
 theme.fg_focus      = theme.fg_normal
-theme.fg_urgent     = theme.fg_normal
+theme.fg_urgent     = theme.nord11
 theme.fg_minimize   = theme.fg_normal
 
 theme.useless_gap   = dpi(15)
@@ -56,7 +57,7 @@ theme.border_marked = theme.nord11
 theme.border_focus  = theme.nord0
 
 -- theme.taglist_spacing = dpi(5)
-theme.taglist_font        = "Iosevka 12"
+theme.taglist_font        = "Iosevka 22"
 theme.taglist_bg_focus    = theme.bg_focus
 theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
@@ -73,7 +74,11 @@ theme.hotkeys_modifiers_fg = theme.nord7
 theme.hotkeys_border_width = 3
 theme.hotkeys_border_color = theme.nord2
 
-theme.wallpaper = '~/Pictures/wallpaper/WhiteSur-light.png'
+local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
+theme.wallpaper       = '~/Pictures/wallpaper/WhiteSur-light.png'
+theme.menu_icon       = icondir .. 'arch.png'
+theme.widget_vol      = icondir .. 'volume/mirage/volume.png'
+theme.widget_icon_gap = 2
 
 theme.window_switcher_widget_bg = theme.bg_normal              -- The bg color of the widget
 theme.window_switcher_widget_border_width = 0            -- The border width of the widget
