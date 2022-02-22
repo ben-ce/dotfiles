@@ -1,6 +1,7 @@
 local _M = {}
 
 local awful = require'awful'
+local gears = require'gears'
 local hotkeys_popup = require'awful.hotkeys_popup'
 local beautiful = require'beautiful'
 local wibox = require'wibox'
@@ -24,7 +25,7 @@ _M.mainmenu = awful.menu{
 }
 
 _M.launcher = awful.widget.launcher{
-   image = beautiful.awesome_icon,
+   image = beautiful.menu_icon,
    menu = _M.mainmenu
 }
 
@@ -36,11 +37,15 @@ _M.tray = wibox.widget{
    {
     widget = wibox.widget.systray
    },
-      left = 2,
-      right = 2,
+      left = 6,
+      right = 6,
       top = 6,
       bottom = 6,
       widget = wibox.container.margin
+}
+
+_M.volume = wibox.widget{
+  widget = require("widgets.pipewire")({icon = beautiful.widget_vol, font = beautiful.font, space = beautiful.widget_icon_gap}),
 }
 
 function _M.create_promptbox() return awful.widget.prompt() end
@@ -137,33 +142,33 @@ end
 
 function _M.create_tasklist(s)
    return awful.widget.tasklist{
-      screen = s,
-      filter = awful.widget.tasklist.filter.currenttags,
-      buttons = {
-         awful.button{
-            modifiers = {},
-            button    = 1,
-            on_press  = function(c)
-               c:activate{context = 'tasklist', action = 'toggle_minimization'}
-            end,
-         },
-         awful.button{
-            modifiers = {},
-            button    = 3,
-            on_press  = function() awful.menu.client_list{theme = {width = 250}}   end,
-         },
-         awful.button{
-            modifiers = {},
-            button    = 4,
-            on_press  = function() awful.client.focus.byidx(-1) end
-         },
-         awful.button{
-            modifiers = {},
-            button    = 5,
-            on_press  = function() awful.client.focus.byidx(1) end
-         },
-      }
-   }
+    screen = s,
+    filter = awful.widget.tasklist.filter.currenttags,
+    buttons = {
+      awful.button{
+        modifiers = {},
+        button    = 1,
+        on_press  = function(c)
+          c:activate{context = 'tasklist', action = 'toggle_minimization'}
+        end,
+      },
+      awful.button{
+        modifiers = {},
+        button    = 3,
+        on_press  = function() awful.menu.client_list{theme = {width = 250}}   end,
+      },
+      awful.button{
+        modifiers = {},
+        button    = 4,
+        on_press  = function() awful.client.focus.byidx(-1) end
+      },
+      awful.button{
+        modifiers = {},
+        button    = 5,
+        on_press  = function() awful.client.focus.byidx(1) end
+      },
+    },
+  }
 end
 
 function _M.create_wibox(s)
@@ -186,6 +191,7 @@ function _M.create_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             _M.keyboardlayout,
             _M.tray,
+            _M.volume,
             require("widgets.battery"),
             require("widgets.calendar").create(s),
             s.layoutbox,
