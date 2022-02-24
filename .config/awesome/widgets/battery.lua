@@ -70,11 +70,13 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
 
   if kind == 0 then
     bat_icon = ''
-    battery_widget.set_markup("<span foreground='" .. beautiful.green .. "'>" .. bat_icon .. "</span>")
+    battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>",beautiful.green, bat_icon)
+    battery_widget.value.markup = string.format("%s", "N/A")
     battery_tooltip.text = string.format('%s', "Unknown device, likely running on AC Line Power.")
   elseif kind == 1 then
     bat_icon = ''
-    battery_widget.set_markup("<span foreground='" .. beautiful.blue .. "'>" .. bat_icon .. "</span>")
+    battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>",beautiful.green, bat_icon)
+    battery_widget.value.markup = string.format("%s", "value")
     battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
   else
   	if value >= 0 and value <= 15 then
