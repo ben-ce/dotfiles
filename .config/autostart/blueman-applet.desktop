@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/blueman-applet
+Name=blueman-applet
+Comment=a tray applet for managing bluetooth
+Type=Application

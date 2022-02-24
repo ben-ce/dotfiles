@@ -45,7 +45,25 @@ _M.tray = wibox.widget{
 }
 
 _M.volume = wibox.widget{
-  widget = require("widgets.pipewire")({icon = beautiful.widget_vol, font = beautiful.font, space = beautiful.widget_icon_gap}),
+  {
+  widget = require("widgets.pipewire")({icon = beautiful.widget_vol, font = beautiful.font, space = beautiful.widget_icon_gap})
+  },
+      left = 6,
+      right = 6,
+      top = 6,
+      bottom = 6,
+      widget = wibox.container.margin
+}
+
+_M.battery = wibox.widget{
+  {
+  widget = require("widgets.battery")
+  },
+      left = 6,
+      right = 6,
+      top = 6,
+      bottom = 6,
+      widget = wibox.container.margin
 }
 
 function _M.create_promptbox() return awful.widget.prompt() end
@@ -192,7 +210,7 @@ function _M.create_wibox(s)
             _M.keyboardlayout,
             _M.tray,
             _M.volume,
-            require("widgets.battery"),
+            _M.battery,
             require("widgets.calendar").create(s),
             s.layoutbox,
          }

@@ -77,34 +77,19 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
     battery_widget.set_markup("<span foreground='" .. beautiful.blue .. "'>" .. bat_icon .. "</span>")
     battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
   else
-  	if value >= 0 and value <= 15 then
+  	if value >= 0 and value <= 20 then
       bat_icon = ""
   		bat_color = beautiful.red
-  	elseif value > 15 and value <= 20 then
-      bat_icon = ""
-  		bat_color = beautiful.red
-    elseif value > 20 and value <= 30 then
+    elseif value > 20 and value <= 40 then
       bat_icon = ""
   		bat_color = beautiful.orange
-  	elseif value > 30 and value <= 40 then
-      bat_icon = ""
-  		bat_color = beautiful.orange
-  	elseif value > 40 and value <= 50 then
+  	elseif value > 40 and value <= 60 then
       bat_icon = ""
   		bat_color = beautiful.yellow
-  	elseif value > 50 and value <= 60 then
-      bat_icon = ""
-  		bat_color = beautiful.yellow
-  	elseif value > 60 and value <= 70 then
-      bat_icon = ""
-  		bat_color = beautiful.yellow
-  	elseif value > 70 and value <= 80 then
+  	elseif value > 60 and value <= 85 then
       bat_icon = ""
   		bat_color = beautiful.white
-  	elseif value > 80 and value <= 90 then
-      bat_icon = ""
-  		bat_color = beautiful.white
-  	elseif value > 90 and value <= 100 then
+  	elseif value > 85 and value <= 100 then
       bat_icon = ""
   	  bat_color = beautiful.white
   	end
