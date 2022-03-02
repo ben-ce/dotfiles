@@ -186,6 +186,37 @@ function _M.create_tasklist(s)
         on_press  = function() awful.client.focus.byidx(1) end
       },
     },
+        layout   = {
+        spacing_widget = {
+            {
+                forced_width  = 5,
+                shape = gears.shape.circle,
+                widget        = wibox.widget.separator
+            },
+            valign = "center",
+            halign = "center",
+            widget = wibox.container.place,
+        },
+        spacing = 10,
+        layout  = wibox.layout.fixed.horizontal
+    },
+    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+    -- not a widget instance.
+    widget_template = {
+        {
+            wibox.widget.base.make_widget(),
+            forced_height = 5,
+            id            = "background_role",
+            widget        = wibox.container.background,
+        },
+        {
+            awful.widget.clienticon,
+            margins = 5,
+            widget  = wibox.container.margin
+        },
+        nil,
+        layout = wibox.layout.align.vertical,
+    },
   }
 end
 

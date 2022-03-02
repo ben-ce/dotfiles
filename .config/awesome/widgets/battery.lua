@@ -66,16 +66,17 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
 	local bat_color = beautiful.white
   local time = time_to_empty
   local time_to_x = 'empty'
-  local percentage_font = beautiful.font
 
   if kind == 0 then
     bat_icon = ''
-    battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>",beautiful.green, bat_icon)
+    bat_color = beautiful.green
+    battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
     battery_widget.value.markup = string.format("%s", "N/A")
     battery_tooltip.text = string.format('%s', "Unknown device, likely running on AC Line Power.")
   elseif kind == 1 then
     bat_icon = ''
-    battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>",beautiful.green, bat_icon)
+    bat_color = beautiful.blue
+    battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
     battery_widget.value.markup = string.format("%s", "value")
     battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
   else
@@ -102,8 +103,10 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
       bat_color = beautiful.green
       time = time_to_full
       time_to_x = 'full'
-  	end
-    battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>", bat_color, bat_icon)
+      battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
+    else
+      battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>", bat_color, bat_icon)
+    end
     battery_widget.value.markup = string.format("%d%%", value)
     battery_tooltip.text = string.format("State: %s \nPercentage: %3d%% \nTime to %s: %s", upower.DeviceState[state], percentage, time_to_x, upower_widget.to_clock(time))
   end
