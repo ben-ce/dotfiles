@@ -76,6 +76,7 @@ theme.hotkeys_border_color = theme.nord2
 
 local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
 theme.wallpaper       = '~/Pictures/wallpaper/WhiteSur-light.png'
+theme.wallpaper_dir   = '~/Pictures/wallpaper/'
 theme.menu_icon       = icondir .. 'arch.png'
 theme.widget_vol      = icondir .. 'volume/mirage/volume.png'
 theme.widget_icon_gap = 2
