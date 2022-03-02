@@ -19,6 +19,14 @@ ruled.client.connect_signal('request::rules', function()
       id = 'floating',
       rule_any = {
          instance = {'copyq', 'pinentry'},
+         type = {
+            'popup_menu',
+            'dropdown_menu',
+            'toolbar',
+            'dialog',
+            'menu',
+            'notification',
+         },
          class = {
             'Arandr',
             'Blueman-manager',
