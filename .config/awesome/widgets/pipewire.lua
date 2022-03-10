@@ -24,7 +24,7 @@ local worker = function(user_args)
 	local icon = args.icon;
   local font = beautiful.font
 	local timeout = 2;
-	
+
 	volume_widget = wibox.widget{
 		layout = wibox.layout.fixed.horizontal,
 		spacing = args.space,
@@ -86,7 +86,6 @@ local worker = function(user_args)
 				-- awful.spawn("amixer set Master 5%-", false);
 			elseif button == 1 then
 				awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false);
-        
 			end;
 			awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume_widget, stdout, stderr) end)
 		end
