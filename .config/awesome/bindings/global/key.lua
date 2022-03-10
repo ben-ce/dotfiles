@@ -25,6 +25,13 @@ awful.keyboard.append_global_keybindings{
       group       = 'launcher',
       on_press    = function() awful.spawn("rofi -show drun") end,
   },
+  awful.key{
+      modifiers   = {mod.super, mod.shift},
+      key         = 'd',
+      description = 'show rofi launchpad',
+      group       = 'launcher',
+      on_press    = function() awful.spawn("rofi -theme launchpad -show drun") end,
+  },
    awful.key{
       modifiers   = {mod.super},
       key         = 's',
