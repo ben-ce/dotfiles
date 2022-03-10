@@ -8,6 +8,7 @@ local wibox = require'wibox'
 local dpi = beautiful.xresources.apply_dpi
 local apps = require'config.apps'
 local mod = require'bindings.modkeys'
+local clickable_container = require("widgets.clickable-container")
 
 _M.awesomemenu = {
    {'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end},
@@ -32,7 +33,7 @@ _M.launcher = awful.widget.launcher{
 _M.keyboardlayout = awful.widget.keyboardlayout()
 _M.textclock      = wibox.widget.textclock()
 
--- Create a containger for the systray to apply margins
+-- Create a container for the systray to apply margins
 _M.tray = wibox.widget{
    {
     widget = wibox.widget.systray
@@ -43,6 +44,20 @@ _M.tray = wibox.widget{
       bottom = 6,
       widget = wibox.container.margin
 }
+_M.tray:connect_signal(
+  'mouse::enter',
+  function ()
+    beautiful.bg_systray = beautiful.bg_focus
+  end
+)
+_M.tray:connect_signal(
+  'mouse::leave',
+  function ()
+    beautiful.bg_systray = beautiful.bg_normal
+  end
+)
+
+_M.tray_button = clickable_container(_M.tray)
 
 _M.volume = wibox.widget{
   {
@@ -54,6 +69,7 @@ _M.volume = wibox.widget{
       bottom = 6,
       widget = wibox.container.margin
 }
+_M.volume_button = clickable_container(_M.volume)
 
 _M.battery = wibox.widget{
   {
@@ -65,6 +81,7 @@ _M.battery = wibox.widget{
       bottom = 6,
       widget = wibox.container.margin
 }
+_M.battery_button = clickable_container(_M.battery)
 
 function _M.create_promptbox() return awful.widget.prompt() end
 
@@ -239,9 +256,9 @@ function _M.create_wibox(s)
          {
             layout = wibox.layout.fixed.horizontal,
             _M.keyboardlayout,
-            _M.tray,
-            _M.volume,
-            _M.battery,
+            _M.tray_button,
+            _M.volume_button,
+            _M.battery_button,
             require("widgets.calendar").create(s),
             s.layoutbox,
          }
