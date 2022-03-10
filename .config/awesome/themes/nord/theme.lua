@@ -57,7 +57,7 @@ theme.border_marked = theme.nord11
 theme.border_focus  = theme.nord0
 
 -- theme.taglist_spacing = dpi(5)
-theme.taglist_font        = "Iosevka 22"
+theme.taglist_font        = "Iosevka 24"
 theme.taglist_bg_focus    = theme.bg_focus
 theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
