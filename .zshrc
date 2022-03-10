@@ -100,9 +100,6 @@ EDITOR=nvim
 
 ### Set alias
 #############
-alias ll='ls -lh'
-alias la='ls -alh'
-
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -117,7 +114,9 @@ alias sudo='nocorrect sudo'
 alias vim='nocorrect ~/.local/bin/lvim'
 alias cat='bat'
 alias ssh='kitty +kitten ssh'
-alias ls='exa'
+alias ls='exa -h --icons'
+alias ll='exa -lhgb --icons'
+alias la='exa -alhgb --icons'
 
 ### Bind keys
 #############
