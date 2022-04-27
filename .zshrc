@@ -156,6 +156,24 @@ bindkey "^[[1;5D" backward-word
 bindkey "^r" history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
 
+# run command line as user root via sudo:
+function sudo-command-line () {
+    [[ -z $BUFFER ]] && zle up-history
+    local cmd="sudo "
+    if [[ ${BUFFER} == ${cmd}* ]]; then
+        CURSOR=$(( CURSOR-${#cmd} ))
+        BUFFER="${BUFFER#$cmd}"
+    else
+        BUFFER="${cmd}${BUFFER}"
+        CURSOR=$(( CURSOR+${#cmd} ))
+    fi
+    zle reset-prompt
+}
+zle -N sudo-command-line
+
+#k# prepend the current command with "sudo"
+bindkey "^os" sudo-command-line
+
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
