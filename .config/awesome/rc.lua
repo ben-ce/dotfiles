@@ -8,10 +8,11 @@ local beautiful = require("beautiful")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 local themes = {
-    "nord"           -- 1
+  "nord", -- 1
+  "tokyonight" -- 2
 }
 
-local chosen_theme = themes[1]
+local chosen_theme = themes[2]
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 

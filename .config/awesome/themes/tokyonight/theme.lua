@@ -7,34 +7,34 @@ local theme = {}
 -- Override elements in the custom theme table with the default ones
 gtable.crush(theme, default_theme)
 
--- Nord color scheme
-theme.color0  = "#2E3440"
-theme.color1  = "#3B4252"
-theme.color2  = "#434C5E"
-theme.color3  = "#4C566A"
-theme.color4  = "#D8DEE9"
-theme.color5  = "#E5E9F0"
-theme.color6  = "#ECEFF4"
-theme.color7  = "#8FBCBB"
-theme.color8  = "#88C0D0"
-theme.color9  = "#81A1C1"
-theme.color10 = "#5E81AC"
-theme.color11 = "#BF616A"
-theme.color12 = "#D08770"
-theme.color13 = "#EBCB8B"
-theme.color14 = "#A3BE8C"
-theme.color15 = "#B48EAD"
+-- Tokyo Night color scheme
+theme.color0 = "#414868"
+theme.color1 = "#565f89"
+theme.color2 = "#cfc9c2"
+theme.color3 = "#9aa5ce"
+theme.color4 = "#a9b1d6"
+theme.color5 = "#c0caf5"
+theme.color6 = "#bb9af7"
+theme.color7 = "#7aa2f7"
+theme.color8 = "#7dcfff"
+theme.color9 = "#2ac3de"
+theme.color10 = "#b4f9f8"
+theme.color11 = "#73daca"
+theme.color12 = "#9ece6a"
+theme.color13 = "#e0af68"
+theme.color14 = "#ff9e64"
+theme.color15 = "#f7768e"
+theme.background = "#24283b"
+theme.foreground = "#c0caf5"
 
-theme.red    = theme.color11
-theme.orange = theme.color12
-theme.green  = theme.color14
+theme.red    = theme.color15
+theme.orange = theme.color14
 theme.yellow = theme.color13
-theme.blue   = theme.color8
-theme.white  = theme.color4
+theme.green  = theme.color12
+theme.blue   = theme.color7
+theme.white  = theme.color5
+theme.gray   = theme.color1
 theme.black  = theme.color0
-theme.black2 = theme.color1
-theme.gray   = theme.color2
-theme.gray2  = theme.color3
 
 --
 theme.font_name            = "JetBrainsMono Nerd Font "
@@ -69,7 +69,7 @@ theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
 theme.taglist_fg_occupied = theme.green
 theme.taglist_bg_empty    = theme.bg_normal
-theme.taglist_fg_empty    = theme.gray2
+theme.taglist_fg_empty    = theme.gray
 theme.taglist_bg_urgent   = theme.bg_normal
 theme.taglist_fg_urgent   = theme.red
 
