@@ -12,7 +12,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
-
+lvim.format_on_save = false
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
