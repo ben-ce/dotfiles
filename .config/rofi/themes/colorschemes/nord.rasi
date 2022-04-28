@@ -1,47 +1,49 @@
 //----------------------
-// Colors
+// Nord Colors
 //----------------------
 
 * {
-    nord0:			 #2E3440;
-    nord1: 			 #3B4252;
-    nord2: 			 #434C5E;
-    nord3: 			 #4C566A;
-    nord4: 			 #D8DEE9;
-    nord5:  			 #E5E9F0;
-    nord6:  			 #ECEFF4;
-    nord7: 			 #8FBCBB;
-    nord8:   			 #88C0D0;
-    nord9:  			 #81A1C1;
-    nord10: 			 #5E81AC;
-    nord11: 			 #BF616A;
-    nord12: 			 #D08770;
-    nord13: 			 #EBCB8B;
-    nord14: 			 #A3BE8C;
-    nord15: 			 #B48EAD;
-    background:                  @nord1;
-    foreground:                  @nord6;
-    selected-normal-foreground:  @nord6;
+    color0:			 #2E3440;
+    color1: 			 #3B4252;
+    color2: 			 #434C5E;
+    color3: 			 #4C566A;
+    color4: 			 #D8DEE9;
+    color5:  			 #E5E9F0;
+    color6:  			 #ECEFF4;
+    color7: 			 #8FBCBB;
+    color8:   			 #88C0D0;
+    color9:  			 #81A1C1;
+    color10: 			 #5E81AC;
+    color11: 			 #BF616A;
+    color12: 			 #D08770;
+    color13: 			 #EBCB8B;
+    color14: 			 #A3BE8C;
+    color15: 			 #B48EAD;
+    background:                  @color1;
+    foreground:                  @color6;
+    selected-normal-foreground:  @color6;
     normal-foreground:           @foreground;
-    alternate-normal-background: @nord1;
-    selected-urgent-foreground:  @nord6;
+    alternate-normal-background: @color1;
+    selected-urgent-foreground:  @color6;
     urgent-foreground:           @foreground;
-    alternate-urgent-background: @nord1;
+    alternate-urgent-background: @color1;
     active-foreground:           @foreground;
     selected-active-foreground:  @foreground;
-    alternate-active-background: @nord1;
-    bordercolor:                 @nord8;
+    alternate-active-background: @color1;
+    bordercolor:                 @color8;
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
-    selected-normal-background:  @nord3;
-    border-color:                @nord8;
+    selected-normal-background:  @color3;
+    border-color:                @color8;
     spacing:                     2;
-    separatorcolor:              @nord1;
+    separatorcolor:              @color1;
     urgent-background:           @background;
-    selected-urgent-background:  @nord2;
+    selected-urgent-background:  @color2;
     alternate-urgent-foreground: @urgent-foreground;
     background-color:            @background;
     alternate-active-foreground: @active-foreground;
     active-background:           @background;
-    selected-active-background:  @nord2;
+    selected-active-background:  @color2;
 }
+
+/* vim:ft=css

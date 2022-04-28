@@ -1,4 +1,4 @@
-@import "colors.rasi"
+@theme "colorschemes/tokyonight"
 
 * {
   background-color: transparent;
@@ -25,7 +25,7 @@ inputbar {
   spacing:  4px;
   border:         1px;
   border-radius:  2px;
-  border-color:   @nord3;
+  border-color:   @color3;
 }
 
 
@@ -61,7 +61,7 @@ element {
 
 element selected {
   text-color: @background;
-  background-color: @nord8;
+  background-color: @color8;
 }
 
 element-icon {
@@ -72,3 +72,5 @@ element-icon {
 element-text {
   horizontal-align: 0.5;
 }
+
+/* vim:ft=css

@@ -3,8 +3,7 @@ configuration {
   show-icons: true;
   font: "Hack 10";
 }
-
-@import "colors.rasi"
+@theme "colorschemes/tokyonight"
 
 * {
   selected-background: #d8c45d;

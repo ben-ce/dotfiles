@@ -1,0 +1,49 @@
+//----------------------
+// Tokyo Night Colors
+//----------------------
+
+* {
+    color0 : #414868;
+    color1 : #565f89;
+    color2 : #cfc9c2;
+    color3 : #9aa5ce;
+    color4 : #a9b1d6;
+    color5 : #c0caf5;
+    color6 : #bb9af7;
+    color7 : #7aa2f7;
+    color8 : #7dcfff;
+    color9 : #2ac3de;
+    color10 : #b4f9f8;
+    color11 : #73daca;
+    color12 : #9ece6a;
+    color13 : #e0af68;
+    color14 : #ff9e64;
+    color15 : #f7768e;
+    background : #24283b;
+    foreground : #c0caf5;
+    selected-normal-foreground:  @foreground;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @background;
+    bordercolor:                 @color8;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @color13;
+    border-color:                @color8;
+    spacing:                     2;
+    separatorcolor:              @background;
+    urgent-background:           @background;
+    selected-urgent-background:  @color2;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @color2;
+}
+
+/* vim:ft=css
