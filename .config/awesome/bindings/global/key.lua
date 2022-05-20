@@ -155,10 +155,17 @@ awful.keyboard.append_global_keybindings{
    },
    awful.key{
       modifiers   = {mod.super, mod.ctrl},
-      key         = 'j',
+      key         = 'k',
       description = 'focus the next screen',
       group       = 'screen',
       on_press    = function() awful.screen.focus_relative(1) end,
+   },
+   awful.key{
+      modifiers   = {mod.super, mod.ctrl},
+      key         = 'j',
+      description = 'focus the preivous screen',
+      group       = 'screen',
+      on_press    = function() awful.screen.focus_relative(-1) end,
    },
    awful.key{
       modifiers   = {mod.super, mod.ctrl},
