@@ -107,4 +107,10 @@ theme.window_switcher_name_focus_color = theme.yellow -- The color of one title 
 theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width = 24 -- The width of one icon
 
+theme.widget_bg = theme.bg_normal
+theme.wibar_bg = theme.bg_normal
+theme.accent    = theme.white
+theme.wibar_height = dpi(35)
+theme.border_radius = 10
+
 return theme

@@ -9,6 +9,10 @@ local dpi = beautiful.xresources.apply_dpi
 local apps = require'config.apps'
 local mod = require'bindings.modkeys'
 local clickable_container = require("widgets.clickable-container")
+local animation = require("modules.animation")
+
+_M.button = require("widgets.button")
+_M.text = require("widgets.text")
 
 _M.awesomemenu = {
    {'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end},
@@ -31,7 +35,13 @@ _M.launcher = awful.widget.launcher{
 }
 
 _M.keyboardlayout = awful.widget.keyboardlayout()
-_M.textclock      = wibox.widget.textclock()
+
+function _M.create_keyboardlayout()
+  return _M.button.elevated.state({
+    child = _M.keyboardlayout,
+    normal_bg = beautiful.bg_normal,
+  })
+end
 
 -- Create a container for the systray to apply margins
 _M.tray = wibox.widget{
@@ -57,16 +67,64 @@ _M.tray:connect_signal(
   end
 )
 
+
+function _M.create_systray(s)
+	local mysystray = wibox.widget.systray()
+	mysystray.base_size = beautiful.systray_icon_size
+
+	local widget = wibox.widget({
+		widget = wibox.container.constraint,
+		strategy = "max",
+		width = dpi(0),
+		{
+			widget = wibox.container.margin,
+			margins = dpi(10),
+			mysystray,
+		},
+	})
+
+	local system_tray_animation = animation:new({
+		easing = animation.easing.linear,
+		duration = 0.125,
+		update = function(self, pos)
+			widget.width = pos
+		end,
+	})
+
+	local arrow = _M.button.text.state({
+		text_normal_bg = beautiful.accent,
+		normal_bg = beautiful.wibar_bg,
+		font = beautiful.icon_font .. "Round ",
+		size = 18,
+		text = "",
+		on_turn_on = function(self)
+			system_tray_animation:set(400)
+			self:set_text("")
+		end,
+		on_turn_off = function(self)
+			system_tray_animation:set(0)
+			self:set_text("")
+		end,
+	})
+
+	return wibox.widget({
+    screen = s,
+		layout = wibox.layout.fixed.horizontal,
+		arrow,
+		widget,
+	})
+end
+
 _M.tray_button = clickable_container(_M.tray)
 
 _M.volume = wibox.widget{
   {
   widget = require("widgets.pipewire")({icon = beautiful.widget_vol, font = beautiful.font, space = beautiful.widget_icon_gap})
   },
-      left = 6,
-      right = 6,
-      top = 6,
-      bottom = 6,
+      -- left = 6,
+      -- right = 6,
+      -- top = 6,
+      -- bottom = 6,
       widget = wibox.container.margin
 }
 _M.volume_button = clickable_container(_M.volume)
@@ -75,13 +133,27 @@ _M.battery = wibox.widget{
   {
   widget = require("widgets.battery")
   },
-      left = 6,
-      right = 6,
-      top = 6,
-      bottom = 6,
+      -- left = 6,
+      -- right = 6,
+      -- top = 6,
+      -- bottom = 6,
       widget = wibox.container.margin
 }
 _M.battery_button = clickable_container(_M.battery)
+
+function _M.create_battery()
+  return _M.button.elevated.state({
+    child = _M.battery,
+    normal_bg = beautiful.bg_normal,
+  })
+end
+
+function _M.create_volume()
+  return _M.button.elevated.state({
+    child = _M.volume,
+    normal_bg = beautiful.bg_normal,
+  })
+end
 
 function _M.create_promptbox() return awful.widget.prompt() end
 
@@ -203,36 +275,89 @@ function _M.create_tasklist(s)
         on_press  = function() awful.client.focus.byidx(1) end
       },
     },
-        layout   = {
+    layout   = {
+    spacing_widget = {
+        {
+            forced_width  = 5,
+            shape = gears.shape.circle,
+            widget        = wibox.widget.separator
+        },
+        valign = "center",
+        halign = "center",
+        widget = wibox.container.place,
+    },
+    spacing = 10,
+    layout  = wibox.layout.fixed.horizontal
+    },
+    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+    -- not a widget instance.
+    widget_template = {
+      {
+        wibox.widget.base.make_widget(),
+        forced_height = 5,
+        id            = "background_role",
+        widget        = wibox.container.background,
+      },
+      {
+        awful.widget.clienticon,
+        margins = 5,
+        widget  = wibox.container.margin
+      },
+      nil,
+      layout = wibox.layout.align.vertical,
+    }
+  }
+end
+
+function _M.create_tasklist2(s)
+  return awful.widget.tasklist {
+    screen   = s,
+    filter   = awful.widget.tasklist.filter.currenttags,
+    buttons  = tasklist_buttons,
+    style    = {
+        shape_border_width = 1,
+        shape_border_color = '#777777',
+        shape  = gears.shape.rounded_bar,
+    },
+    layout   = {
+        spacing = 10,
         spacing_widget = {
             {
-                forced_width  = 5,
-                shape = gears.shape.circle,
-                widget        = wibox.widget.separator
+                forced_width = 5,
+                shape        = gears.shape.circle,
+                widget       = wibox.widget.separator
             },
-            valign = "center",
-            halign = "center",
+            valign = 'center',
+            halign = 'center',
             widget = wibox.container.place,
         },
-        spacing = 10,
-        layout  = wibox.layout.fixed.horizontal
+        layout  = wibox.layout.flex.horizontal
     },
     -- Notice that there is *NO* wibox.wibox prefix, it is a template,
     -- not a widget instance.
     widget_template = {
         {
-            wibox.widget.base.make_widget(),
-            forced_height = 5,
-            id            = "background_role",
-            widget        = wibox.container.background,
+            {
+                {
+                    {
+                        id     = 'icon_role',
+                        widget = wibox.widget.imagebox,
+                    },
+                    margins = 2,
+                    widget  = wibox.container.margin,
+                },
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left  = 10,
+            right = 10,
+            widget = wibox.container.margin
         },
-        {
-            awful.widget.clienticon,
-            margins = 5,
-            widget  = wibox.container.margin
-        },
-        nil,
-        layout = wibox.layout.align.vertical,
+        id     = 'background_role',
+        widget = wibox.container.background,
     },
   }
 end
@@ -243,6 +368,7 @@ function _M.create_wibox(s)
       position = 'top',
       widget = {
          layout = wibox.layout.align.horizontal,
+         expand = 'none',
          -- left widgets
          {
             layout = wibox.layout.fixed.horizontal,
@@ -251,15 +377,15 @@ function _M.create_wibox(s)
             s.promptbox,
          },
          -- middle widgets
-         s.tasklist,
+         require("widgets.clock")(s),
          -- right widgets
          {
             layout = wibox.layout.fixed.horizontal,
-            _M.keyboardlayout,
-            _M.tray_button,
-            _M.volume_button,
-            _M.battery_button,
-            require("widgets.calendar").create(s),
+            -- _M.keyboardlayout,
+            s.kblayout,
+            s.systray,
+            s.volume,
+            s.battery,
             s.layoutbox,
          }
       }

@@ -44,3 +44,5 @@ require("signals")
 -- {{{ Autostart applications
 require("config.xdg_autostart")
 -- }}}
+
+require("ui")

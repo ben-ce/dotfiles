@@ -63,7 +63,7 @@ lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.terminal.shading_factor = nil
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+-- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.matchup = { enable = true }
 lvim.builtin.gitsigns.opts.signs = {
   add = { text = "▌" },
