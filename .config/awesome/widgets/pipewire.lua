@@ -7,6 +7,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 local beautiful = require("beautiful")
+local wbutton = require("widgets.button")
 
 local GET_SINK_VOL_CMD = "pactl get-sink-volume @DEFAULT_SINK@"
 local GET_SINK_MUTE_CMD = "pactl get-sink-mute @DEFAULT_SINK@"
@@ -15,7 +16,7 @@ local GET_SOURCE_VOL_CMD = "pactl get-source-volume @DEFAULT_SOURCE@"
 
 local UPDATE_CMD = string.format("bash -c \"%s && %s\"", GET_SINK_VOL_CMD, GET_SINK_MUTE_CMD)
 
-local volume_widget = {}
+local widget = {}
 
 local worker = function(user_args)
 
@@ -25,7 +26,7 @@ local worker = function(user_args)
   local font = beautiful.font
 	local timeout = 2;
 
-	volume_widget = wibox.widget{
+	local volume = wibox.widget{
 		layout = wibox.layout.fixed.horizontal,
 		spacing = args.space,
 		{
@@ -66,14 +67,14 @@ local worker = function(user_args)
 		-- end;
 	end;
 
-	watch(UPDATE_CMD, timeout, update_widget, volume_widget);
+	watch(UPDATE_CMD, timeout, update_widget, volume);
 
 	--- Adds mouse controls to the widget:
 	--  - left click - pavucontrol
 	--  - scroll up - volume up
 	--  - scroll down - volume down
 	--  - right click - start noisetorch
-	volume_widget:connect_signal("button::press", function(_, _, _, button)
+	volume:connect_signal("button::press", function(_, _, _, button)
 			if button == 3 then
 				awful.spawn("pavucontrol");
 				return
@@ -87,14 +88,19 @@ local worker = function(user_args)
 			elseif button == 1 then
 				awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false);
 			end;
-			awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume_widget, stdout, stderr) end)
+			awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume, stdout, stderr) end)
 		end
 	);
 
-	return volume_widget;
+	widget = wbutton.elevated.state({
+		child = volume,
+		normal_bg = beautiful.bg_normal,
+	})
+
+	return widget
 end;
 
-return setmetatable(volume_widget, {	__call = function(_, ...)
+return setmetatable(widget, {	__call = function(_, ...)
 		return worker(...);
 	end
 });

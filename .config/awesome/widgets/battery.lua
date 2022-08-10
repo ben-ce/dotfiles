@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local apps = require("config.apps")
 local upower = require('lgi').require('UPowerGlib')
+local wbutton = require("widgets.button")
 
 -- This uses UPowerGlib.Device (https://lazka.github.io/pgi-docs/UPowerGlib-1.0/classes/Device.html)
 -- Provides:
@@ -24,7 +25,7 @@ end)
 --
 
 
-local battery_widget = wibox.widget{
+local battery = wibox.widget{
 	layout = wibox.layout.fixed.horizontal,
   spacing = 4,
   {
@@ -44,7 +45,7 @@ local battery_widget = wibox.widget{
   }
 }
 
-battery_widget:connect_signal("button::press", function (_,_,_,button)
+battery:connect_signal("button::press", function (_,_,_,button)
   if button == 1 then
     awful.spawn(apps.power_manager);
     return
@@ -52,7 +53,7 @@ battery_widget:connect_signal("button::press", function (_,_,_,button)
 end)
 
 local battery_tooltip = awful.tooltip{
-  objects = {battery_widget},
+  objects = {battery},
   mode = "outside",
   align = "left",
   margin = 10,
@@ -70,14 +71,14 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
   if kind == 0 then
     bat_icon = ''
     bat_color = beautiful.green
-    battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
-    battery_widget.value.markup = string.format("%s", "N/A")
+    battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
+    battery.value.markup = string.format("%s", "N/A")
     battery_tooltip.text = string.format('%s', "Unknown device, likely running on AC Line Power.")
   elseif kind == 1 then
     bat_icon = ''
     bat_color = beautiful.blue
-    battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
-    battery_widget.value.markup = string.format("%s", "value")
+    battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
+    battery.value.markup = string.format("%s", "value")
     battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
   else
   	if value >= 0 and value <= 20 then
@@ -103,14 +104,18 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
       bat_color = beautiful.green
       time = time_to_full
       time_to_x = 'full'
-      battery_widget.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
+      battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
     else
-      battery_widget.icon.markup = string.format("<span foreground='%s'>%s</span>", bat_color, bat_icon)
+      battery.icon.markup = string.format("<span foreground='%s'>%s</span>", bat_color, bat_icon)
     end
-    battery_widget.value.markup = string.format("%d%%", value)
+    battery.value.markup = string.format("%d%%", value)
     battery_tooltip.text = string.format("State: %s \nPercentage: %3d%% \nTime to %s: %s", upower.DeviceState[state], percentage, time_to_x, upower_widget.to_clock(time))
   end
 end)
 
+local widget = wbutton.elevated.state({
+  child = battery,
+  normal_bg = beautiful.bg_normal,
+})
 
-return battery_widget
+return widget

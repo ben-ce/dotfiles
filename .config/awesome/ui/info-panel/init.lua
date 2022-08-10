@@ -31,6 +31,8 @@ return function(s)
 	--- Weather
 	s.weather = require("ui.info-panel.weather")
 
+  s.music = require("widgets.playerctl")
+
 	s.info_panel = awful.popup({
 		type = "normal",
 		screen = s,
@@ -65,6 +67,20 @@ return function(s)
 					{
 						{
 							s.weather,
+							margins = dpi(16),
+							widget = wibox.container.margin,
+						},
+						bg = beautiful.widget_bg,
+						shape = helpers.ui.rrect(beautiful.border_radius),
+						widget = wibox.container.background,
+					},
+          {
+						top = dpi(20),
+						widget = wibox.container.margin,
+					},
+					{
+						{
+							s.music,
 							margins = dpi(16),
 							widget = wibox.container.margin,
 						},

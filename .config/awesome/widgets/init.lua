@@ -43,30 +43,12 @@ function _M.create_keyboardlayout()
   })
 end
 
--- Create a container for the systray to apply margins
-_M.tray = wibox.widget{
-   {
-    widget = wibox.widget.systray
-   },
-      left = 6,
-      right = 6,
-      top = 6,
-      bottom = 6,
-      widget = wibox.container.margin
-}
-_M.tray:connect_signal(
-  'mouse::enter',
-  function ()
-    beautiful.bg_systray = beautiful.bg_focus
-  end
-)
-_M.tray:connect_signal(
-  'mouse::leave',
-  function ()
-    beautiful.bg_systray = beautiful.bg_normal
-  end
-)
-
+ --  ____            _
+ -- / ___| _   _ ___| |_ _ __ __ _ _   _
+ -- \___ \| | | / __| __| '__/ _` | | | |
+ --  ___) | |_| \__ \ |_| | | (_| | |_| |
+ -- |____/ \__, |___/\__|_|  \__,_|\__, |
+ --        |___/                   |___/
 
 function _M.create_systray(s)
 	local mysystray = wibox.widget.systray()
@@ -115,46 +97,6 @@ function _M.create_systray(s)
 	})
 end
 
-_M.tray_button = clickable_container(_M.tray)
-
-_M.volume = wibox.widget{
-  {
-  widget = require("widgets.pipewire")({icon = beautiful.widget_vol, font = beautiful.font, space = beautiful.widget_icon_gap})
-  },
-      -- left = 6,
-      -- right = 6,
-      -- top = 6,
-      -- bottom = 6,
-      widget = wibox.container.margin
-}
-_M.volume_button = clickable_container(_M.volume)
-
-_M.battery = wibox.widget{
-  {
-  widget = require("widgets.battery")
-  },
-      -- left = 6,
-      -- right = 6,
-      -- top = 6,
-      -- bottom = 6,
-      widget = wibox.container.margin
-}
-_M.battery_button = clickable_container(_M.battery)
-
-function _M.create_battery()
-  return _M.button.elevated.state({
-    child = _M.battery,
-    normal_bg = beautiful.bg_normal,
-  })
-end
-
-function _M.create_volume()
-  return _M.button.elevated.state({
-    child = _M.volume,
-    normal_bg = beautiful.bg_normal,
-  })
-end
-
 function _M.create_promptbox() return awful.widget.prompt() end
 
 function _M.create_layoutbox(s)
@@ -185,12 +127,21 @@ function _M.create_layoutbox(s)
    }
 end
 
+ --  _____           _ _     _
+ -- |_   _|_ _  __ _| (_)___| |_
+ --   | |/ _` |/ _` | | / __| __|
+ --   | | (_| | (_| | | \__ \ |_
+ --   |_|\__,_|\__, |_|_|___/\__|
+ --            |___/
 local taglist_padding = 10
 
 function _M.create_taglist(s)
    return awful.widget.taglist{
       screen = s,
       filter = awful.widget.taglist.filter.all,
+      style = {
+       shape = gears.shape.rounded_rect
+      },
       widget_template = {
         {
           {
@@ -381,11 +332,12 @@ function _M.create_wibox(s)
          -- right widgets
          {
             layout = wibox.layout.fixed.horizontal,
-            -- _M.keyboardlayout,
             s.kblayout,
             s.systray,
-            s.volume,
-            s.battery,
+            -- s.volume,
+            require("widgets.pipewire"),
+            -- s.battery,
+            require("widgets.battery"),
             s.layoutbox,
          }
       }

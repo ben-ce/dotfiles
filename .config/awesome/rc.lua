@@ -5,6 +5,9 @@ pcall(require, "luarocks.loader")
 -- Theme handling library
 local beautiful = require("beautiful")
 
+-- Standard awesome library
+local gears = require("gears")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 local themes = {
@@ -24,19 +27,6 @@ require("bindings")
 require("rules")
 -- }}}
 
-
--- require("themes.wallpaper")
-
-
--- A random wallpaper with images from multiple folders
--- bling.module.wallpaper.setup {
---     set_function = bling.module.wallpaper.setters.random,
---     screen = nil,
---     wallpaper = {"~/Pictures"},
---     change_timer = 7, -- prime numbers are better for timers
---     position = "fit",
--- }
-
 -- {{{ Signals and startup error handling
 require("signals")
 -- }}}
@@ -46,3 +36,16 @@ require("config.xdg_autostart")
 -- }}}
 
 require("ui")
+
+-- {{{ Enable for lower memory consumption
+collectgarbage("setpause", 110)
+collectgarbage("setstepmul", 1000)
+gears.timer({
+	timeout = 5,
+	autostart = true,
+	call_now = true,
+	callback = function()
+		collectgarbage("collect")
+	end,
+})
+-- }}}
