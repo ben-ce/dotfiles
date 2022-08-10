@@ -52,7 +52,7 @@ unsetopt BG_NICE
 setopt CORRECT
 setopt EXTENDED_HISTORY
 # setopt HASH_CMDS
-setopt MENUCOMPLETE
+# setopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 ### Set/unset  shell options
@@ -81,7 +81,8 @@ select-word-style bash
 ### Autoload completion
 autoload -U compinit
 compinit
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 
 ### Autoload completion suggestions
 autoload -U up-line-or-beginning-search
@@ -114,9 +115,9 @@ alias sudo='nocorrect sudo'
 alias vim='nocorrect ~/.local/bin/lvim'
 alias cat='bat'
 alias ssh='kitty +kitten ssh'
-alias ls='exa -h --icons'
-alias ll='exa -lhgb --icons'
-alias la='exa -alhgb --icons'
+alias ls='exa --git -h --icons'
+alias ll='exa --git -lhgb --icons'
+alias la='exa --git -alhgb --icons'
 
 ### Bind keys
 #############
@@ -153,7 +154,6 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-bindkey "^r" history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
 
 # run command line as user root via sudo:
@@ -211,6 +211,7 @@ source /usr/share/fzf/completion.zsh
 ##################
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 
