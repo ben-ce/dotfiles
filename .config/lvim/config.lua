@@ -14,6 +14,8 @@ lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
 lvim.format_on_save = false
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+vim.opt.wrap = true
+vim.opt.relativenumber = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -73,6 +75,25 @@ lvim.builtin.gitsigns.opts.signs = {
 -- lualine statusline theme setup
 lvim.builtin.lualine.options = {
   theme = "auto",
+  component_separators = { left = "", right = "" },
+  section_separators = { left = "", right = "" },
+}
+
+local components = require "lvim.core.lualine.components"
+lvim.builtin.lualine.sections = {
+  lualine_a = {
+    "mode",
+  },
+  lualine_x = {
+    components.diagnostics,
+    components.treesitter,
+    components.lsp,
+    components.filetype,
+    components.encoding,
+    components.location,
+  },
+  lualine_y = {
+  },
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -93,6 +114,14 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+
+-- Map H, L, Alt-Left, Alt-Right to buffer cycle
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+vim.api.nvim_set_keymap("n", "<A-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+lvim.keys.normal_mode["<A-Right>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
 
 -- generic LSP settings
 
@@ -325,11 +354,59 @@ lvim.plugins = {
   { "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
-      require "lsp_signature".setup()
+      require "lsp_signature".on_attach()
     end,
   },
   { "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
+    config = function()
+      require('symbols-outline').setup()
+    end
+  },
+  { "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({'*';},
+          {
+            RGB = true, -- #RGB hex codes
+            RRGGBB = true, -- #RRGGBB hex codes
+            RRGGBBAA = true, -- #RRGGBBAA hex codes
+            rgb_fn = true, -- CSS rgb() and rgba() functions
+            hsl_fn = true, -- CSS hsl() and hsla() functions
+            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          }
+      )
+    end,
+  },
+  { "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+  { "romgrk/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup{
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        throttle = true, -- Throttles plugin updates (may improve performance)
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+          -- For all filetypes
+          -- Note that setting an entry here replaces all other patterns for this entry.
+          -- By setting the 'default' entry below, you can control which nodes you want to
+          -- appear in the context window.
+          default = {
+            'class',
+            'function',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+            'method',
+          },
+        },
+      }
+    end
   },
 }
 
