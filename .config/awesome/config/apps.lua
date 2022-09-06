@@ -4,6 +4,7 @@ local _M = {
   browser = 'firefox',
   power_manager = 'xfce4-power-manager-settings',
   screenlocker = 'betterlockscreen -l dimblur',
+  screenshot = 'flameshot gui',
 }
 
 _M.editor_cmd = _M.terminal .. ' -e ' .. _M.editor

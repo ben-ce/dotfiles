@@ -97,7 +97,13 @@ awful.keyboard.append_global_keybindings{
   },
    awful.key({mod.alt}, "Tab", function()
       awesome.emit_signal("bling::window_switcher::turn_on")
-   end, {description = "Window Switcher", group = "bling"})
+   end, {description = "Window Switcher", group = "bling"}),
+   awful.key{
+      key         = 'Print',
+      description = 'take screenshot',
+      group       = 'launcher',
+      on_press    = function () awful.spawn(apps.screenshot) end,
+  }
 }
 
 -- tags related. keybindings
