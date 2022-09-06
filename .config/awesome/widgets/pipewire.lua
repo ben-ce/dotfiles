@@ -28,7 +28,7 @@ local worker = function(user_args)
 
 	local volume = wibox.widget{
 		layout = wibox.layout.fixed.horizontal,
-		spacing = args.space,
+		spacing = 4,
 		{
       id = 'icon',
     	align = "center",
@@ -75,20 +75,20 @@ local worker = function(user_args)
 	--  - scroll down - volume down
 	--  - right click - start noisetorch
 	volume:connect_signal("button::press", function(_, _, _, button)
-			if button == 3 then
-				awful.spawn("pavucontrol");
-				return
-				-- using amixer instead of pactl to limit volume to 100%
-			elseif button == 4 then
-				awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%", false);
-				-- awful.spawn("amixer set Master 5%+", false);
-			elseif button == 5 then
-				awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%", false);
-				-- awful.spawn("amixer set Master 5%-", false);
-			elseif button == 1 then
-				awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false);
-			end;
-			awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume, stdout, stderr) end)
+    if button == 3 then
+      awful.spawn("pavucontrol");
+      return
+      -- using amixer instead of pactl to limit volume to 100%
+    elseif button == 4 then
+      awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%", false);
+      -- awful.spawn("amixer set Master 5%+", false);
+    elseif button == 5 then
+      awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%", false);
+      -- awful.spawn("amixer set Master 5%-", false);
+    elseif button == 1 then
+      awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false);
+    end;
+    awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume, stdout, stderr) end)
 		end
 	);
 
