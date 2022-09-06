@@ -37,7 +37,7 @@ theme.gray   = theme.color1
 theme.black  = theme.color0
 
 --
-theme.font_name            = "JetBrainsMono Nerd Font "
+theme.font_name            = "MesloLGS Nerd Font "
 theme.font                 = theme.font_name .. "12"
 theme.icon_font_name       = "Ionicons "
 theme.icon_font            = theme.icon_font_name .. "24"
@@ -55,6 +55,8 @@ theme.fg_normal   = theme.foreground
 theme.fg_focus    = theme.fg_normal
 theme.fg_urgent   = theme.color1
 theme.fg_minimize = theme.fg_normal
+
+theme.groups_bg   = theme.bg_normal
 
 theme.useless_gap   = dpi(10)
 theme.border_width  = dpi(0)
@@ -112,5 +114,6 @@ theme.wibar_bg = theme.bg_normal
 theme.accent    = theme.white
 theme.wibar_height = dpi(35)
 theme.border_radius = 10
+theme.notification_margin = dpi(5)
 
 return theme
