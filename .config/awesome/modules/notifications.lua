@@ -25,15 +25,15 @@ naughty.config.defaults.fg = beautiful.fg_focus
 naughty.config.defaults.bg = beautiful.bg_normal
 
 ruled.notification.connect_signal("request::rules", function()
-    ruled.notification.append_rule {
-        rule       = { urgency = "critical" },
-        properties = { bg = beautiful.red, fg = beautiful.black, timeout = 0 }
-    }
+  ruled.notification.append_rule {
+    rule       = { urgency = "critical" },
+    properties = { bg = beautiful.red, fg = beautiful.black, timeout = 0 }
+  }
 
-    ruled.notification.append_rule {
-        rule       = { urgency = "normal" },
-        properties = { bg      = beautiful.bg_normal, fg = beautiful.fg_normal}
-    }
+  ruled.notification.append_rule {
+    rule       = { urgency = "normal" },
+    properties = { bg      = beautiful.bg_normal, fg = beautiful.fg_normal}
+  }
 end)
 
 -- Error handling
