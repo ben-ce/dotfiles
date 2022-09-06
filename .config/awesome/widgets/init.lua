@@ -334,9 +334,12 @@ function _M.create_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             s.kblayout,
             s.systray,
-            -- s.volume,
             require("widgets.pipewire"),
-            -- s.battery,
+            require("widgets.brightness"){
+              type = "icon_and_text",
+              program = "light",
+              percentage = true,
+            },
             require("widgets.battery"),
             s.layoutbox,
          }
