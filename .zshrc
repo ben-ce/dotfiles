@@ -98,6 +98,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HOSTNAME="`hostname`"
 EDITOR=nvim
+MANPAGER="sh -c 'col -b | bat -l man -p'"
 
 ### Set alias
 #############
@@ -113,7 +114,7 @@ alias cd='z'
 alias sudo='nocorrect sudo'
 
 alias vim='nocorrect ~/.local/bin/lvim'
-alias cat='bat'
+alias cat='bat --theme=base16'
 alias ssh='kitty +kitten ssh'
 alias ls='exa --git -h --icons'
 alias ll='exa --git -lhgb --icons'
@@ -171,8 +172,13 @@ function sudo-command-line () {
 }
 zle -N sudo-command-line
 
-#k# prepend the current command with "sudo"
-bindkey "^os" sudo-command-line
+## prepend the current command with "sudo"
+#Ctrl+o s
+bindkey "^Os" sudo-command-line
+#Ctrl+a s
+bindkey "^As" sudo-command-line
+#Esc Esc
+bindkey "\e\e" sudo-command-line
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -186,9 +192,6 @@ echoti rmkx
 zle -N zle-line-init
 zle -N zle-line-finish
 fi
-
-### Source plugins with sheldon plugin manager
-eval "$(sheldon source)"
 
 ### set fzf-tab options
 # disable sort when completing `git checkout`
@@ -207,6 +210,9 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+### Source plugins with sheldon plugin manager
+eval "$(sheldon source)"
+
 ### Source plugins
 ##################
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
@@ -214,6 +220,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
+WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
 
 unsetopt ALL_EXPORT
 
@@ -221,6 +229,3 @@ unsetopt ALL_EXPORT
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
-
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
