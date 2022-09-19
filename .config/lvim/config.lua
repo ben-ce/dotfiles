@@ -64,6 +64,10 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.terminal.shading_factor = nil
+lvim.builtin.bufferline.options.always_show_bufferline = true
+lvim.builtin.nvimtree.setup.view.number = true
+lvim.builtin.nvimtree.setup.view.relativenumber = true
+lvim.builtin.nvimtree.setup.open_on_setup_file = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 -- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.matchup = { enable = true }
@@ -364,16 +368,16 @@ lvim.plugins = {
   },
   { "norcalli/nvim-colorizer.lua",
     config = function()
-      require("colorizer").setup({'*';},
-          {
-            RGB = true, -- #RGB hex codes
-            RRGGBB = true, -- #RRGGBB hex codes
-            RRGGBBAA = true, -- #RRGGBBAA hex codes
-            rgb_fn = true, -- CSS rgb() and rgba() functions
-            hsl_fn = true, -- CSS hsl() and hsla() functions
-            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          }
+      require("colorizer").setup({ '*'; },
+        {
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          RRGGBBAA = true, -- #RRGGBBAA hex codes
+          rgb_fn = true, -- CSS rgb() and rgba() functions
+          hsl_fn = true, -- CSS hsl() and hsla() functions
+          css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        }
       )
     end,
   },
@@ -405,6 +409,13 @@ lvim.plugins = {
             'method',
           },
         },
+      }
+    end
+  },
+  { "gen740/SmoothCursor.nvim",
+    config = function()
+      require('smoothcursor').setup {
+        speed = 100,
       }
     end
   },
