@@ -103,8 +103,6 @@ MANPAGER="sh -c 'col -b | bat -l man -p'"
 ### Set alias
 #############
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 
 # Enable zoxid directory command
 eval "$(zoxide init zsh)"
