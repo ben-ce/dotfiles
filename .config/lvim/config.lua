@@ -419,6 +419,12 @@ lvim.plugins = {
       }
     end
   },
+  { "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  }
+
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
