@@ -9,7 +9,6 @@ local dpi = xresources.apply_dpi
 local playerctl = require("modules.bling").signal.playerctl.lib()
 
 local art = wibox.widget {
-    image = gears.filesystem.get_configuration_dir() .. "images/no_music.png",
     resize = true,
     widget = wibox.widget.imagebox
 }
