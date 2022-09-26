@@ -133,7 +133,7 @@ end
  --   | | (_| | (_| | | \__ \ |_
  --   |_|\__,_|\__, |_|_|___/\__|
  --            |___/
-local taglist_padding = 10
+local taglist_padding = 8
 
 function _M.create_taglist(s)
    return awful.widget.taglist{
@@ -145,15 +145,19 @@ function _M.create_taglist(s)
       widget_template = {
         {
           {
-            id = 'text_role',
-            widget = wibox.widget.textbox
+            {
+              id = 'text_role',
+              widget = wibox.widget.textbox
+            },
+            left = dpi(taglist_padding),
+            right = dpi(taglist_padding),
+            widget = wibox.container.margin
           },
-          left = dpi(taglist_padding),
-          right = dpi(taglist_padding),
-          widget = wibox.container.margin
+          id = 'background_role',
+          widget = wibox.container.background
         },
-        id = 'background_role',
-        widget = wibox.container.background
+        margins = dpi(3),
+        widget = wibox.container.margin
       },
       buttons = {
          awful.button{
@@ -198,121 +202,6 @@ function _M.create_taglist(s)
    }
 end
 
-function _M.create_tasklist(s)
-   return awful.widget.tasklist{
-    screen = s,
-    filter = awful.widget.tasklist.filter.currenttags,
-    buttons = {
-      awful.button{
-        modifiers = {},
-        button    = 1,
-        on_press  = function(c)
-          c:activate{context = 'tasklist', action = 'toggle_minimization'}
-        end,
-      },
-      awful.button{
-        modifiers = {},
-        button    = 3,
-        on_press  = function() awful.menu.client_list{theme = {width = 250}}   end,
-      },
-      awful.button{
-        modifiers = {},
-        button    = 4,
-        on_press  = function() awful.client.focus.byidx(-1) end
-      },
-      awful.button{
-        modifiers = {},
-        button    = 5,
-        on_press  = function() awful.client.focus.byidx(1) end
-      },
-    },
-    layout   = {
-    spacing_widget = {
-        {
-            forced_width  = 5,
-            shape = gears.shape.circle,
-            widget        = wibox.widget.separator
-        },
-        valign = "center",
-        halign = "center",
-        widget = wibox.container.place,
-    },
-    spacing = 10,
-    layout  = wibox.layout.fixed.horizontal
-    },
-    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
-    -- not a widget instance.
-    widget_template = {
-      {
-        wibox.widget.base.make_widget(),
-        forced_height = 5,
-        id            = "background_role",
-        widget        = wibox.container.background,
-      },
-      {
-        awful.widget.clienticon,
-        margins = 5,
-        widget  = wibox.container.margin
-      },
-      nil,
-      layout = wibox.layout.align.vertical,
-    }
-  }
-end
-
-function _M.create_tasklist2(s)
-  return awful.widget.tasklist {
-    screen   = s,
-    filter   = awful.widget.tasklist.filter.currenttags,
-    buttons  = tasklist_buttons,
-    style    = {
-        shape_border_width = 1,
-        shape_border_color = '#777777',
-        shape  = gears.shape.rounded_bar,
-    },
-    layout   = {
-        spacing = 10,
-        spacing_widget = {
-            {
-                forced_width = 5,
-                shape        = gears.shape.circle,
-                widget       = wibox.widget.separator
-            },
-            valign = 'center',
-            halign = 'center',
-            widget = wibox.container.place,
-        },
-        layout  = wibox.layout.flex.horizontal
-    },
-    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
-    -- not a widget instance.
-    widget_template = {
-        {
-            {
-                {
-                    {
-                        id     = 'icon_role',
-                        widget = wibox.widget.imagebox,
-                    },
-                    margins = 2,
-                    widget  = wibox.container.margin,
-                },
-                {
-                    id     = 'text_role',
-                    widget = wibox.widget.textbox,
-                },
-                layout = wibox.layout.fixed.horizontal,
-            },
-            left  = 10,
-            right = 10,
-            widget = wibox.container.margin
-        },
-        id     = 'background_role',
-        widget = wibox.container.background,
-    },
-  }
-end
-
 function _M.create_wibox(s)
    return awful.wibar{
       screen = s,
@@ -325,6 +214,7 @@ function _M.create_wibox(s)
             layout = wibox.layout.fixed.horizontal,
             _M.launcher,
             s.taglist,
+            require("widgets.task")(s),
             s.promptbox,
          },
          -- middle widgets
