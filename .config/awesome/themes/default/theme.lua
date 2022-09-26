@@ -5,6 +5,7 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
+local gears = require("gears")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
@@ -42,6 +43,7 @@ theme.border_marked = "#91231c"
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.tasklist_spacing = dpi(0)
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -125,6 +127,21 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+theme.font_name            = "MesloLGS Nerd Font "
+theme.font                 = theme.font_name .. "12"
+theme.icon_font_name       = "Ionicons "
+theme.icon_font            = theme.icon_font_name .. "24"
+theme.title_font           = theme.font
+theme.taglist_font        = "Iosevka 24"
+theme.transparent          = "#00000000"
+theme.systray_icon_spacing = dpi(8)
+
+local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
+theme.wallpaper       = '~/Pictures/wallpaper/Monterey.png'
+theme.wallpaper_dir   = '~/Pictures/wallpaper/macos/'
+theme.menu_icon       = icondir .. 'arch.png'
+theme.widget_icon_gap = 2
 
 return theme
 

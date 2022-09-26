@@ -1,7 +1,6 @@
 local dpi = require("beautiful").xresources.apply_dpi
 local gtable = require("gears.table")
 local default_theme = require("themes.default.theme")
-local gears = require("gears")
 
 local theme = {}
 -- Override elements in the custom theme table with the default ones
@@ -35,15 +34,7 @@ theme.blue   = theme.color7
 theme.white  = theme.color5
 theme.gray   = theme.color1
 theme.black  = theme.color0
-
---
-theme.font_name            = "MesloLGS Nerd Font "
-theme.font                 = theme.font_name .. "12"
-theme.icon_font_name       = "Ionicons "
-theme.icon_font            = theme.icon_font_name .. "24"
-theme.title_font           = theme.font
-theme.transparent          = "#00000000"
-theme.systray_icon_spacing = dpi(8)
+theme.accent    = theme.white
 
 theme.bg_normal   = theme.background
 theme.bg_focus    = theme.black
@@ -65,7 +56,6 @@ theme.border_marked = theme.color15
 theme.border_focus  = theme.color7
 
 -- theme.taglist_spacing = dpi(5)
-theme.taglist_font        = "Iosevka 24"
 theme.taglist_bg_focus    = theme.bg_focus
 theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
@@ -81,13 +71,6 @@ theme.taglist_squares_unsel = nil
 theme.hotkeys_modifiers_fg = theme.white
 theme.hotkeys_border_width = 3
 theme.hotkeys_border_color = theme.gray
-
-local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
-theme.wallpaper       = '~/Pictures/wallpaper/Monterey.png'
-theme.wallpaper_dir   = '~/Pictures/wallpaper/macos/'
-theme.menu_icon       = icondir .. 'arch.png'
-theme.widget_vol      = icondir .. 'volume/mirage/volume.png'
-theme.widget_icon_gap = 2
 
 theme.window_switcher_widget_bg = theme.bg_normal -- The bg color of the widget
 theme.window_switcher_widget_border_width = 0 -- The border width of the widget
@@ -111,7 +94,6 @@ theme.window_switcher_icon_width = 24 -- The width of one icon
 
 theme.widget_bg = theme.bg_normal
 theme.wibar_bg = theme.bg_normal
-theme.accent    = theme.white
 theme.wibar_height = dpi(35)
 theme.border_radius = 10
 theme.notification_margin = dpi(5)
