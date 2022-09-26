@@ -18,6 +18,6 @@ _M.layouts = {
    -- awful.layout.suit.corner.nw,
 }
 
-_M.tags = { "", "", "", "", "", "", "", ""}
+_M.tags = { "", "", "", "", "" }
 
 return _M
