@@ -92,7 +92,6 @@ zle -N down-line-or-beginning-search
 
 ### Set variables
 #################
-PATH="/usr/local/bin:/usr/local/sbin/:$PATH"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
