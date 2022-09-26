@@ -20,61 +20,61 @@ local widget = {}
 
 local worker = function(user_args)
 
-	local args = user_args or {}
+  local args = user_args or {}
 
-	local icon = args.icon;
+  local icon = args.icon;
   local font = beautiful.font
-	local timeout = 2;
+  local timeout = 2;
 
-	local volume = wibox.widget{
-		layout = wibox.layout.fixed.horizontal,
-		spacing = 4,
-		{
+  local volume = wibox.widget{
+    layout = wibox.layout.fixed.horizontal,
+    spacing = 4,
+    {
       id = 'icon',
-    	align = "center",
-    	valign = "center",
+      align = "center",
+      valign = "center",
       resize = true,
       font = "Iosevka 24",
-    	widget = wibox.widget.textbox,
+      widget = wibox.widget.textbox,
       text = '墳'
-		},
-		{
-			id = "volume",
-			font = font,
-			widget = wibox.widget.textbox
-		},
+    },
+    {
+      id = "volume",
+      font = font,
+      widget = wibox.widget.textbox
+    },
 
-		update_volume = function(self, volume, is_mute)
+    update_volume = function(self, volume, is_mute)
       local font_color = beautiful.fg_normal
-			local volume_text = string.format("%s", volume);
-			if is_mute then
-			  volume_text = string.format("%s", "mute")
+      local volume_text = string.format("%s", volume);
+      if is_mute then
+        volume_text = string.format("%s", "mute")
         font_color = beautiful.fg_urgent
-			end
-			local volume_markup = string.format("<span font='%s' foreground='%s'>%s</span>", font, font_color, volume_text);
+      end
+      local volume_markup = string.format("<span font='%s' foreground='%s'>%s</span>", font, font_color, volume_text);
 
-			if self.volume:get_markup() ~= volume_markup then
-				self.volume:set_markup(volume_markup);
-			end
-		end
-	}
+      if self.volume:get_markup() ~= volume_markup then
+        self.volume:set_markup(volume_markup);
+      end
+    end
+  }
 
-	local update_widget = function(widget, stdout, _, _, _)
-		local vol_left, vol_right = string.match(stdout, "/ *(%S+)");
-		-- if album ~= nil and title ~= nil and artist ~= nil then
+  local update_widget = function(widget, stdout, _, _, _)
+    local vol_left, vol_right = string.match(stdout, "/ *(%S+)");
+    -- if album ~= nil and title ~= nil and artist ~= nil then
     local is_mute = string.match(stdout, "Mute: yes") or nil
-		widget:update_volume(vol_left, is_mute);
-		-- end;
-	end;
+    widget:update_volume(vol_left, is_mute);
+    -- end;
+  end;
 
-	watch(UPDATE_CMD, timeout, update_widget, volume);
+  watch(UPDATE_CMD, timeout, update_widget, volume);
 
-	--- Adds mouse controls to the widget:
-	--  - left click - pavucontrol
-	--  - scroll up - volume up
-	--  - scroll down - volume down
-	--  - right click - start noisetorch
-	volume:connect_signal("button::press", function(_, _, _, button)
+  --- Adds mouse controls to the widget:
+  --  - left click - pavucontrol
+  --  - scroll up - volume up
+  --  - scroll down - volume down
+  --  - right click - start noisetorch
+  volume:connect_signal("button::press", function(_, _, _, button)
     if button == 3 then
       awful.spawn("pavucontrol");
       return
@@ -89,18 +89,18 @@ local worker = function(user_args)
       awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false);
     end;
     awful.spawn.easy_async(UPDATE_CMD, function(stdout, stderr, _, _) update_widget(volume, stdout, stderr) end)
-		end
-	);
+  end
+  );
 
-	widget = wbutton.elevated.state({
-		child = volume,
-		normal_bg = beautiful.bg_normal,
-	})
+  widget = wbutton.elevated.state({
+    child = volume,
+    normal_bg = beautiful.bg_normal,
+  })
 
-	return widget
+  return widget
 end;
 
 return setmetatable(widget, {	__call = function(_, ...)
-		return worker(...);
-	end
+  return worker(...);
+end
 });

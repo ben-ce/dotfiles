@@ -26,7 +26,7 @@ end)
 
 
 local battery = wibox.widget{
-	layout = wibox.layout.fixed.horizontal,
+  layout = wibox.layout.fixed.horizontal,
   spacing = 4,
   {
     id = 'icon',
@@ -62,9 +62,9 @@ local battery_tooltip = awful.tooltip{
 
 
 awesome.connect_signal("signal::battery", function(percentage, state, time_to_empty, time_to_full, kind)
-	local value = percentage
-	local bat_icon = ""
-	local bat_color = beautiful.white
+  local value = percentage
+  local bat_icon = ""
+  local bat_color = beautiful.white
   local time = time_to_empty
   local time_to_x = 'empty'
 
@@ -81,25 +81,25 @@ awesome.connect_signal("signal::battery", function(percentage, state, time_to_em
     battery.value.markup = string.format("%s", "value")
     battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
   else
-  	if value >= 0 and value <= 20 then
+    if value >= 0 and value <= 20 then
       bat_icon = ""
-  		bat_color = beautiful.red
+      bat_color = beautiful.red
     elseif value > 20 and value <= 40 then
       bat_icon = ""
-  		bat_color = beautiful.orange
-  	elseif value > 40 and value <= 60 then
+      bat_color = beautiful.orange
+    elseif value > 40 and value <= 60 then
       bat_icon = ""
-  		bat_color = beautiful.yellow
-  	elseif value > 60 and value <= 85 then
+      bat_color = beautiful.yellow
+    elseif value > 60 and value <= 85 then
       bat_icon = ""
-  		bat_color = beautiful.white
-  	elseif value > 85 and value <= 100 then
+      bat_color = beautiful.white
+    elseif value > 85 and value <= 100 then
       bat_icon = ""
-  	  bat_color = beautiful.white
-  	end
+      bat_color = beautiful.white
+    end
 
-  	-- if charging
-  	if state == 1 then
+    -- if charging
+    if state == 1 then
       bat_icon = ''
       bat_color = beautiful.green
       time = time_to_full
