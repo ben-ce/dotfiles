@@ -58,17 +58,4 @@ ruled.client.connect_signal('request::rules', function()
     rule_any   = {type = {'normal', 'dialog'}},
     properties = {titlebars_enabled = false},
   }
-
-  -- Set Firefox to always map on the tag named '2' on screen 1.
-  -- ruled.client.append_rule {
-  --    rule       = {class = 'Firefox'},
-  --    properties = {screen = 1, tag = '2'}
-  -- }
-  ruled.client.append_rule{
-    id = 'teams',
-    rule_any = {
-      class = {'microsoft teams - preview'}
-    },
-    properties = {tag = screen[1].tags[7]}
-  }
 end)
