@@ -3,7 +3,7 @@ local _M = {
   editor = os.getenv('EDITOR') or 'vim',
   browser = 'firefox',
   power_manager = 'xfce4-power-manager-settings',
-  screenlocker = 'betterlockscreen -l dimblur',
+  screenlocker = 'betterlockscreen -l blur',
   screenshot = 'flameshot gui',
 }
 
