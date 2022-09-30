@@ -30,11 +30,10 @@
     active-foreground:           @foreground;
     selected-active-foreground:  @foreground;
     alternate-active-background: @background;
-    bordercolor:                 @color8;
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     selected-normal-background:  @color13;
-    border-color:                @color8;
+    border-color:                @color0;
     spacing:                     2;
     separatorcolor:              @background;
     urgent-background:           @background;

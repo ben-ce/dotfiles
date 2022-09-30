@@ -30,7 +30,6 @@
     active-foreground:           @foreground;
     selected-active-foreground:  @foreground;
     alternate-active-background: @color1;
-    bordercolor:                 @color8;
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     selected-normal-background:  @color3;
