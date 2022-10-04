@@ -49,11 +49,12 @@ theme.fg_minimize = theme.fg_normal
 
 theme.groups_bg   = theme.bg_normal
 
-theme.useless_gap   = dpi(10)
-theme.border_width  = dpi(0)
 theme.border_normal = theme.color7
 theme.border_marked = theme.color15
 theme.border_focus  = theme.color7
+
+theme.widget_bg = theme.bg_normal
+theme.wibar_bg = theme.bg_normal
 
 -- theme.taglist_spacing = dpi(5)
 theme.taglist_bg_focus    = theme.bg_focus
@@ -91,11 +92,5 @@ theme.window_switcher_name_normal_color = theme.fg_normal -- The color of one ti
 theme.window_switcher_name_focus_color = theme.yellow -- The color of one title if the client is focused
 theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width = 24 -- The width of one icon
-
-theme.widget_bg = theme.bg_normal
-theme.wibar_bg = theme.bg_normal
-theme.wibar_height = dpi(35)
-theme.border_radius = 10
-theme.notification_margin = dpi(5)
 
 return theme

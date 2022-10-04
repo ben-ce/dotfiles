@@ -12,21 +12,8 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "sans 8"
-
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
-
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
-
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
+theme.useless_gap   = dpi(10)
+theme.border_width  = dpi(0)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
@@ -141,7 +128,12 @@ local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
 theme.wallpaper       = '~/Pictures/wallpaper/Monterey.png'
 theme.wallpaper_dir   = '~/Pictures/wallpaper/macos/'
 theme.menu_icon       = icondir .. 'arch.png'
+theme.profile_icon    = icondir .. 'activities-arch.svg'
 theme.widget_icon_gap = 2
+
+theme.wibar_height = dpi(35)
+theme.border_radius = 10
+theme.notification_margin = dpi(5)
 
 return theme
 
