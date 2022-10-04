@@ -63,15 +63,19 @@ local function worker(user_args)
         volume_icon = string.format("%s", '\u{fc5d}')
         volume_text = string.format("%s", "mute")
         font_color = beautiful.gray
+      elseif volume then
+        -- awful.spawn(string.format('bash -c \"echo %s >> aw_vol.log"',volume_text))
+        -- if volume_text == not nil then
+          local vol_value = volume_text:gsub('%%','')
+          if tonumber(vol_value) >= 50 then
+            volume_icon = string.format("%s", '\u{f028}')
+          elseif tonumber(vol_value) >= 25 then
+            volume_icon = string.format("%s", '\u{f027}')
+          else
+            volume_icon = string.format("%s", '\u{f026}')
+          end
       else
-        local vol_value = volume_text:gsub('%%','')
-        if tonumber(vol_value) >= 50 then
-          volume_icon = string.format("%s", '\u{f028}')
-        elseif tonumber(vol_value) >= 25 then
-          volume_icon = string.format("%s", '\u{f027}')
-        else
-          volume_icon = string.format("%s", '\u{f026}')
-        end
+        volume_icon = '\u{f026}'
       end
       local volume_icon_markup = string.format("<span font='%s' foreground='%s'>%s</span>", self.icon.font, font_color, volume_icon)
       local volume_markup = string.format("<span font='%s' foreground='%s'>%s</span>", font, font_color, volume_text)
