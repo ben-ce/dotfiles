@@ -98,6 +98,7 @@ awful.keyboard.append_global_keybindings{
   awful.key({mod.alt}, "Tab", function()
     awesome.emit_signal("bling::window_switcher::turn_on")
   end, {description = "Window Switcher", group = "bling"}),
+
   awful.key{
     key         = 'Print',
     description = 'take screenshot',
@@ -249,16 +250,16 @@ awful.keyboard.append_global_keybindings{
     modifiers   = {mod.super, mod.ctrl},
     key         = 'l',
     description = 'decrease the number of columns',
-group       = 'layout',
+    group       = 'layout',
     on_press    = function() awful.tag.incnmaster(-1, nil, true) end,
   },
   awful.key{
-  modifiers   = {mod.super},
+    modifiers   = {mod.super},
     key         = 'space',
     description = 'select next',
     group       = 'layout',
     on_press    = function() awful.layout.inc(1) end,
-},
+  },
   awful.key{
     modifiers   = {mod.super, mod.shift},
     key         = 'space',
@@ -268,6 +269,7 @@ group       = 'layout',
   },
 }
 
+-- tag related keybindings
 awful.keyboard.append_global_keybindings{
   awful.key{
     modifiers   = {mod.super},
@@ -275,7 +277,7 @@ awful.keyboard.append_global_keybindings{
     description = 'only view tag',
     group       = 'tag',
     on_press    = function(index)
-  local screen = awful.screen.focused()
+      local screen = awful.screen.focused()
       local tag = screen.tags[index]
       if tag then
         tag:view_only(tag)
@@ -294,19 +296,19 @@ awful.keyboard.append_global_keybindings{
         tag:viewtoggle(tag)
       end
     end
-},
+  },
   awful.key{
     modifiers   = {mod.super, mod.shift},
-keygroup    = 'numrow',
+    keygroup    = 'numrow',
     description = 'move focused client to tag',
-group       = 'tag',
+    group       = 'tag',
     on_press    = function(index)
       if client.focus then
         local tag = client.focus.screen.tags[index]
         if tag then
           client.focus:move_to_tag(tag)
-end
-end
+        end
+      end
     end
   },
   awful.key {
@@ -317,9 +319,9 @@ end
     on_press    = function(index)
       if client.focus then
         local tag = client.focus.screen.tags[index]
-if tag then
+        if tag then
           client.focus:toggle_tag(tag)
-end
+        end
       end
     end,
   },
@@ -333,6 +335,64 @@ end
       if tag then
         tag.layout = tag.layouts[index] or tag.layout
       end
-end
+    end
+  },
+}
+
+-- function row related keybindings
+awful.keyboard.append_global_keybindings{
+  --- Brightness Control
+  -- awful.key({}, "XF86MonBrightnessUp", function()
+  --   awful.spawn("light -A 5", false)
+  --   -- awesome.emit_signal("widget::brightness")
+  --   -- awesome.emit_signal("module::brightness_osd:show", true)
+  -- end, { description = "increase brightness", group = "hotkeys" }),
+  -- awful.key({}, "XF86MonBrightnessDown", function()
+  --   awful.spawn("light -U 5", false)
+  --   -- awesome.emit_signal("widget::brightness")
+  --   -- awesome.emit_signal("module::brightness_osd:show", true)
+  -- end, { description = "decrease brightness", group = "hotkeys" }),
+
+  --- Volume control
+  awful.key{
+    key         = 'XF86AudioRaiseVolume',
+    description = 'increase volume',
+    group       = 'hotkeys',
+    on_press    = function ()
+      awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ +5%')
+      -- awesome.emit_signal("widget::volume")
+      -- awesome.emit_signal("module::volume_osd:show", true)
+    end
+  },
+  awful.key{
+    key         = 'XF86AudioLowerVolume',
+    description = 'decrease volume',
+    group       = 'hotkeys',
+    on_press    = function ()
+      awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%')
+      -- awesome.emit_signal("widget::volume")
+      -- awesome.emit_signal("module::volume_osd:show", true)
+    end
+  },
+  awful.key{
+    key         = 'XF86AudioMute',
+    description = 'mute volume',
+    group       = 'hotkeys',
+    on_press    = function ()
+      awful.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')
+      -- awesome.emit_signal("widget::volume")
+      -- awesome.emit_signal("module::volume_osd:show", true)
+    end
+  },
+  awful.key{
+    key         = 'XF86AudioMicMute',
+    description = 'mute microphone',
+    group       = 'hotkeys',
+    on_press    = function ()
+      awful.spawn('pactl set-source-mute @DEFAULT_SOURCE@ toggle')
+      awesome.emit_signal("mic_mute::toggle")
+      -- awesome.emit_signal("widget::volume")
+      -- awesome.emit_signal("module::volume_osd:show", true)
+    end
   },
 }

@@ -48,4 +48,9 @@ widget:buttons(gears.table.join(awful.button({}, 1, nil, function()
 	update_widget()
 end)))
 
+--- signal to use when using the mute hotkey
+awesome.connect_signal("mic_mute::toggle", function ()
+  update_widget()
+end)
+
 return widget
