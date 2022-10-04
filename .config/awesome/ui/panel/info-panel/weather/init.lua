@@ -6,7 +6,7 @@ local dpi = beautiful.xresources.apply_dpi
 local filesystem = gears.filesystem
 local json = require("modules.json")
 local user_vars = require("user_variables")
-local icon_dir = filesystem.get_configuration_dir() .. "ui/info-panel/weather/icons/"
+local icon_dir = filesystem.get_configuration_dir() .. "ui/panel/info-panel/weather/icons/"
 
 --- Weather Widget
 --- ~~~~~~~~~~~~~~

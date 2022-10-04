@@ -57,6 +57,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
   s.tasklist   = widgets.tasklist(s)
   s.clock      = widgets.clock(s)
   s.systray    = widgets.systray(s)
+  s.controlcenter = widgets.controlcenter(s)
   s.volume     = widgets.volume
   s.battery    = widgets.battery
   s.brightness = widgets.brightness

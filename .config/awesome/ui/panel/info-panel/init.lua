@@ -25,24 +25,24 @@ return function(s)
   })
 
   --- Calendar
-  s.calendar = require("ui.info-panel.calendar")()
+  s.calendar = require("ui.panel.info-panel.calendar")()
 
   --- Weather
-  s.weather = require("ui.info-panel.weather")
-
-  s.music = require("widgets.playerctl")
+  s.weather = require("ui.panel.info-panel.weather")
 
   s.info_panel = awful.popup({
     type = "normal",
     screen = s,
     minimum_width = dpi(350),
     maximum_width = dpi(350),
-    bg = beautiful.black,
+    border_width = dpi(5),
+    border_color = beautiful.bg_focus,
+    bg = beautiful.bg_normal,
     ontop = true,
     visible = false,
     placement = function(w)
       awful.placement.top(w, {
-        margins = { top = beautiful.wibar_height + dpi(3), left = dpi(5), right = dpi(5) },
+        margins = { top = beautiful.wibar_height + dpi(5), left = dpi(5), right = dpi(5) },
       })
     end,
     widget = {
@@ -77,17 +77,6 @@ return function(s)
             top = dpi(20),
             widget = wibox.container.margin,
           },
-          {
-            {
-              s.music,
-              margins = dpi(16),
-              widget = wibox.container.margin,
-            },
-            bg = beautiful.widget_bg,
-            shape = helpers.ui.rrect(beautiful.border_radius),
-            widget = wibox.container.background,
-          },
-
           layout = wibox.layout.fixed.vertical,
         },
         top = dpi(10),
@@ -96,8 +85,7 @@ return function(s)
         right = dpi(25),
         widget = wibox.container.margin,
       },
-      bg = beautiful.black,
-      shape = helpers.ui.rrect(beautiful.border_radius),
+      bg = beautiful.bg_normal,
       widget = wibox.container.background,
     },
   })
@@ -108,4 +96,5 @@ return function(s)
       s.info_panel.visible = not s.info_panel.visible
     end
   end)
+  helpers.click_to_hide.popup(s.info_panel, nil, true)
 end

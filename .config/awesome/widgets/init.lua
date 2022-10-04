@@ -19,6 +19,7 @@ _M.brightness = require("widgets.brightness"){
   program = "light",
   percentage = true,
 }
+_M.controlcenter = require("widgets.controlcenter")
 
 _M.awesomemenu = {
   {'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end},
@@ -105,6 +106,7 @@ function _M.create_wibox(s)
         layout = wibox.layout.fixed.horizontal,
         s.kblayout,
         s.systray,
+        s.controlcenter,
         s.volume,
         s.brightness,
         s.battery,
