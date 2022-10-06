@@ -114,8 +114,9 @@ theme.font_name            = "MesloLGS Nerd Font "
 theme.font                 = theme.font_name .. "12"
 theme.icon_font_name       = "Ionicons "
 theme.icon_font            = theme.icon_font_name .. "24"
+theme.alt_font_name        = "Iosevka "
+theme.taglist_font         = theme.alt_font_name .. "24"
 theme.title_font           = theme.font
-theme.taglist_font        = "Iosevka 24"
 theme.transparent          = "#00000000"
 theme.systray_icon_spacing = dpi(8)
 

@@ -13,3 +13,6 @@
 [submodule ".config/awesome/modules/color"]
 	path = .config/awesome/modules/color
 	url = https://github.com/andOrlando/color
+[submodule ".config/awesome/.config/awesome/modules/rubato"]
+	path = .config/awesome/.config/awesome/modules/rubato
+	url = https://github.com/andOrlando/rubato
