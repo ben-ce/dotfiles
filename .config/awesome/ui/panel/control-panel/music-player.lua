@@ -5,7 +5,7 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local wibox = require("wibox")
 local helpers = require("helpers")
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 local playerctl_daemon = require("signals.playerctl")
 
 ---- Music Player

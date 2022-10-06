@@ -3,7 +3,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local apps = require("config.apps")
 local upower = require('lgi').require('UPowerGlib')
-local wbutton = require("widgets.button")
+local wbutton = require("ui.widgets.button")
 
 -- This uses UPowerGlib.Device (https://lazka.github.io/pgi-docs/UPowerGlib-1.0/classes/Device.html)
 -- Provides:

@@ -15,7 +15,7 @@ local spawn = require("awful.spawn")
 local gfs = require("gears.filesystem")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
-local wbutton = require("widgets.button")
+local wbutton = require("ui.widgets.button")
 
 local ICON_DIR = gfs.get_configuration_dir() .. "icons/"
 local get_brightness_cmd

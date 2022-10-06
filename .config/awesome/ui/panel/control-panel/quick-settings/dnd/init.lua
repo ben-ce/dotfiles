@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_dir = config_dir .. "ui/panel/control-panel/quick-settings/dnd/"
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 --- Do not Disturb Widget
 --- ~~~~~~~~~~~~~~~~~~~~~

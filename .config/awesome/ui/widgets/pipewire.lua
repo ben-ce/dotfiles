@@ -13,7 +13,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 local beautiful = require("beautiful")
-local wbutton = require("widgets.button")
+local wbutton = require("ui.widgets.button")
 
 local get_volume_cmd
 local inc_volume_cmd

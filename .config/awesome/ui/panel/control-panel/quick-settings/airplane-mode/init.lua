@@ -5,7 +5,7 @@ local dpi = beautiful.xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_dir = config_dir .. "ui/panel/control-panel/quick-settings/airplane-mode/"
 local widget_icon_dir = widget_dir .. "icons/"
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 --- Airplane-Mode Widget
 --- ~~~~~~~~~~~~~~~~~~~~

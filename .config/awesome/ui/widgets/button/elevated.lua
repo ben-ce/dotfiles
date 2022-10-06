@@ -3,7 +3,7 @@
 -- @copyright 2021-2022 Kasper24
 -------------------------------------------
 
-local wcontainer = require("widgets.container")
+local wcontainer = require("ui.widgets.container")
 local beautiful = require("beautiful")
 local animation = require("modules.animation")
 local helpers = require("helpers")

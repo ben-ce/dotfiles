@@ -2,7 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 --- Blue-Light Widget
 --- ~~~~~~~~~~~~~~~~~

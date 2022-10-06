@@ -6,7 +6,7 @@ local dpi = xresources.apply_dpi
 local wibox = require("wibox")
 local helpers = require("helpers")
 local gears = require("gears")
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 --- User Profile Widget
 --- ~~~~~~~~~~~~~~~~~~~

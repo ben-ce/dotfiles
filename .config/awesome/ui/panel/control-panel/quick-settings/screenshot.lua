@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gears = require("gears")
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 local apps = require("config.apps")
 
 --- Screenshot Widget

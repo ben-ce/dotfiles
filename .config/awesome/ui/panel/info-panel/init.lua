@@ -37,7 +37,7 @@ return function(s)
     maximum_width = dpi(350),
     border_width = dpi(5),
     border_color = beautiful.bg_focus,
-    bg = beautiful.bg_normal,
+    -- bg = beautiful.bg_normal,
     ontop = true,
     visible = false,
     placement = function(w)
@@ -85,7 +85,7 @@ return function(s)
         right = dpi(25),
         widget = wibox.container.margin,
       },
-      bg = beautiful.bg_normal,
+      -- bg = beautiful.bg_normal,
       widget = wibox.container.background,
     },
   })

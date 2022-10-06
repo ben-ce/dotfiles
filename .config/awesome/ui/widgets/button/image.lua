@@ -5,7 +5,7 @@
 
 local gtable = require("gears.table")
 local wibox = require("wibox")
-local ewidget = require("widgets.button.elevated")
+local ewidget = require("ui.widgets.button.elevated")
 local animation = require("modules.animation")
 local setmetatable = setmetatable
 

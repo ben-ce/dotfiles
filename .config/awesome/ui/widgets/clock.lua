@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local helpers = require("helpers")
-local wbutton = require("widgets.button")
+local wbutton = require("ui.widgets.button")
 
 --- Clock Widget
 --- ~~~~~~~~~~~~

@@ -4,8 +4,8 @@
 -------------------------------------------
 
 local gtable = require("gears.table")
-local twidget = require("widgets.text")
-local ewidget = require("widgets.button.elevated")
+local twidget = require("ui.widgets.text")
+local ewidget = require("ui.widgets.button.elevated")
 local beautiful = require("beautiful")
 local animation = require("modules.animation")
 local helpers = require("helpers")

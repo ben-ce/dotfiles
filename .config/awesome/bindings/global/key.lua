@@ -5,7 +5,7 @@ local menubar = require("menubar")
 
 local apps = require("config.apps")
 local mod = require("bindings.modkeys")
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 menubar.utils.terminal = apps.terminal
 

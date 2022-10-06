@@ -1,45 +1,24 @@
 local _M = {}
 
 local awful = require("awful")
-local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
-local apps = require("config.apps")
 
-_M.button     = require("widgets.button")
-_M.text       = require("widgets.text")
-_M.taglist    = require("widgets.tag")
-_M.tasklist   = require("widgets.task")
-_M.clock      = require("widgets.clock")
-_M.systray    = require("widgets.systray")
-_M.volume     = require("widgets.pipewire")
-_M.battery    = require("widgets.battery")
-_M.brightness = require("widgets.brightness"){
+_M.button     = require("ui.widgets.button")
+_M.text       = require("ui.widgets.text")
+_M.launcher   = require("ui.widgets.launcher")
+_M.taglist    = require("ui.widgets.tag")
+_M.tasklist   = require("ui.widgets.task")
+_M.clock      = require("ui.widgets.clock")
+_M.systray    = require("ui.widgets.systray")
+_M.volume     = require("ui.widgets.pipewire")
+_M.battery    = require("ui.widgets.battery")
+_M.brightness = require("ui.widgets.brightness"){
   type = "icon_and_text",
   program = "light",
   percentage = true,
 }
-_M.controlcenter = require("widgets.controlcenter")
-
-_M.awesomemenu = {
-  {'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end},
-  {'manual', apps.manual_cmd},
-  {'edit config', apps.editor_cmd .. ' ' .. awesome.conffile},
-  {'restart', awesome.restart},
-  {'quit', function() awesome.quit() end},
-}
-
-_M.mainmenu = awful.menu{
-  items = {
-    {'awesome', _M.awesomemenu, beautiful.awesome_icon},
-    {'open terminal', apps.terminal}
-  }
-}
-
-_M.launcher = awful.widget.launcher{
-  image = beautiful.menu_icon,
-  menu = _M.mainmenu
-}
+_M.controlcenter = require("ui.widgets.controlcenter")
 
 _M.keyboardlayout = awful.widget.keyboardlayout()
 
@@ -49,7 +28,6 @@ function _M.create_keyboardlayout()
     normal_bg = beautiful.bg_normal,
   })
 end
-
 
 function _M.create_promptbox() return awful.widget.prompt() end
 
@@ -91,7 +69,7 @@ function _M.create_wibox(s)
       -- left widgets
       {
         layout = wibox.layout.fixed.horizontal,
-        _M.launcher,
+        s.launcher,
         s.taglist,
         s.promptbox,
         s.tasklist,
