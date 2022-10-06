@@ -128,8 +128,7 @@ return function(s)
   s.stats = require("ui.panel.control-panel.stats")
   s.user_profile = require("ui.panel.control-panel.user-profile")
   s.quick_settings = require("ui.panel.control-panel.quick-settings")
-  -- s.music_player = require("ui.panels.control-panel.music-player")
-  s.playerctl = require("ui.widgets.playerctl")
+  s.music = require("ui.panel.control-panel.music")
 
   s.control_panel = awful.popup({
     type = "normal",
@@ -163,12 +162,11 @@ return function(s)
                 {
                   s.user_profile,
                   s.quick_settings,
+                  s.music,
                   layout = wibox.layout.fixed.vertical,
                 },
                 {
-                  -- s.music_player,
                   s.stats,
-                  s.playerctl,
                   s.awesomewm,
                   layout = wibox.layout.fixed.vertical,
                 },
@@ -180,6 +178,7 @@ return function(s)
             widget = wibox.container.margin,
           },
           bg = beautiful.wibar_bg,
+          shape = gears.shape.rounded_rect,
           widget = wibox.container.background,
         },
         layout = wibox.layout.align.vertical,
