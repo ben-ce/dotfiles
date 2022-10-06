@@ -1,6 +1,7 @@
 local dpi = require("beautiful").xresources.apply_dpi
 local gtable = require("gears.table")
 local default_theme = require("themes.default.theme")
+local theme_assets = require("beautiful.theme_assets")
 
 local theme = {}
 -- Override elements in the custom theme table with the default ones
@@ -92,5 +93,10 @@ theme.window_switcher_name_normal_color = theme.fg_normal -- The color of one ti
 theme.window_switcher_name_focus_color = theme.yellow -- The color of one title if the client is focused
 theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width = 24 -- The width of one icon
+
+-- Generate Awesome icon:
+theme.awesome_icon = theme_assets.awesome_icon(
+    theme.menu_height*2, theme.bg_focus, theme.fg_focus
+)
 
 return theme

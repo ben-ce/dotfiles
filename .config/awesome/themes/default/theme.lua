@@ -106,11 +106,6 @@ theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
-
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
@@ -127,8 +122,10 @@ theme.systray_icon_spacing = dpi(8)
 local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
 theme.wallpaper       = '~/Pictures/wallpaper/Monterey.png'
 theme.wallpaper_dir   = '~/Pictures/wallpaper/macos/'
-theme.menu_icon       = icondir .. 'arch.png'
 theme.profile_icon    = icondir .. 'activities-arch.svg'
+theme.menu_icon       = theme.profile_icon
+theme.music           = icondir .. 'music.png'
+theme.hamburger_menu_icon       = icondir .. 'hamburger_menu.svg'
 theme.widget_icon_gap = 2
 
 theme.wibar_height = dpi(35)

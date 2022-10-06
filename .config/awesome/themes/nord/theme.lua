@@ -93,4 +93,9 @@ theme.window_switcher_name_focus_color = theme.yellow -- The color of one title 
 theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width = 24 -- The width of one icon
 
+-- Generate Awesome icon:
+theme.awesome_icon = theme_assets.awesome_icon(
+    theme.menu_height*2, theme.bg_focus, theme.fg_focus
+)
+
 return theme
