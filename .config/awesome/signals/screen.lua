@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 
 local vars = require("config.vars")
-local widgets = require("widgets")
+local widgets = require("ui.widgets")
 
 -- Simple single wallpaper
 -- screen.connect_signal('request::wallpaper', function(s)
@@ -53,6 +53,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
   awful.tag(vars.tags, s, awful.layout.layouts[1])
   s.promptbox  = widgets.create_promptbox()
   s.layoutbox  = widgets.create_layoutbox(s)
+  s.launcher   = widgets.launcher
   s.taglist    = widgets.taglist(s)
   s.tasklist   = widgets.tasklist(s)
   s.clock      = widgets.clock(s)
