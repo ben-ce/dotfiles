@@ -6,7 +6,7 @@ local dpi = xresources.apply_dpi
 local wibox = require("wibox")
 local helpers = require("helpers")
 local widgets = require("widgets")
-local playerctl_daemon = require("signal.playerctl")
+local playerctl_daemon = require("signals.playerctl")
 
 ---- Music Player
 ---- ~~~~~~~~~~~~
@@ -68,7 +68,7 @@ local function volume_control()
 		shape = gears.shape.rounded_bar,
 		bar_shape = gears.shape.rounded_bar,
 		color = beautiful.accent,
-		background_color = beautiful.grey,
+		background_color = beautiful.gray,
 		border_width = 0,
 		widget = wibox.widget.progressbar,
 	})
@@ -183,7 +183,7 @@ local music_widget = wibox.widget({
 			layout = wibox.layout.align.horizontal,
 		},
 		forced_height = dpi(200),
-		bg = beautiful.one_bg3,
+		bg = beautiful.bg_focus,
 		shape = helpers.ui.rrect(beautiful.border_radius),
 		widget = wibox.container.background,
 	},
@@ -202,7 +202,7 @@ playerctl_daemon:connect_signal("metadata", function(_, title, artist, album_pat
 		artist = "Nothing Playing"
 	end
 	if album_path == "" then
-		album_path = gears.filesystem.get_configuration_dir() .. "theme/assets/no_music.png"
+		album_path = gears.filesystem.get_configuration_dir() .. "icons/music.png"
 	end
 
 	music_art:set_image(gears.surface.load_uncached(album_path))

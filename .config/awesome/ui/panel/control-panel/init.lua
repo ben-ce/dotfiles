@@ -11,187 +11,189 @@ local icons = require("icons")
 --- ~~~~~~~~~~~~~~~~~~~~~
 
 return function(s)
-	--- Header
-	local function header()
-		local dashboard_text = wibox.widget({
-			markup = helpers.ui.colorize_text("Dashboard -", beautiful.accent),
-			-- font = beautiful.font_name .. "Black 14",
+  --- Header
+  local function header()
+    local dashboard_text = wibox.widget({
+      markup = helpers.ui.colorize_text("Dashboard -", beautiful.accent),
+      -- font = beautiful.font_name .. "Black 14",
       font = beautiful.font,
-			valign = "center",
-			widget = wibox.widget.textbox,
-		})
-
-		local function search_box()
-			local search_icon = wibox.widget({
-				-- font = "icomoon bold 12",
-				font = beautiful.taglist_font,
-				align = "center",
-				valign = "center",
-				widget = wibox.widget.textbox(),
-			})
-
-			local reset_search_icon = function()
-				search_icon.markup = helpers.ui.colorize_text("\u{f002}", beautiful.accent)
-			end
-			reset_search_icon()
-
-			local search_text = wibox.widget({
-				-- markup = helpers.ui.colorize_text("Search", beautiful.color8),
-				align = "center",
-				valign = "center",
-				font = beautiful.font,
-				widget = wibox.widget.textbox(),
-			})
-
-			local search = wibox.widget({
-				{
-					{
-						search_icon,
-						{
-							search_text,
-							bottom = dpi(2),
-							widget = wibox.container.margin,
-						},
-						layout = wibox.layout.fixed.horizontal,
-					},
-					left = dpi(15),
-					widget = wibox.container.margin,
-				},
-				forced_height = dpi(35),
-				forced_width = dpi(420),
-				shape = gears.shape.rounded_bar,
-				bg = beautiful.bg_normal,
-				widget = wibox.container.background(),
-			})
-
-			local function generate_prompt_icon(icon, color)
-				return "<span foreground='" .. color .. "'>" .. icon .. "</span> "
-			end
-
-			local function activate_prompt(action)
-				search_icon.visible = false
-				local prompt
-				if action == "run" then
-					prompt = generate_prompt_icon("\u{f120}", beautiful.accent)
-				elseif action == "web_search" then
-					prompt = generate_prompt_icon("\u{fa9e}", beautiful.accent)
-				end
-				helpers.misc.prompt(action, search_text, prompt, function()
-					search_icon.visible = true
-				end)
-			end
-
-			search:buttons(gears.table.join(
-				awful.button({}, 1, function()
-					activate_prompt("run")
-				end),
-				awful.button({}, 3, function()
-					activate_prompt("web_search")
-				end)
-			))
-
-			return search
-		end
-
-		local widget = wibox.widget({
-			{
-				dashboard_text,
-				nil,
-				search_box(),
-				layout = wibox.layout.align.horizontal,
-			},
-			margins = dpi(10),
-			widget = wibox.container.margin,
-		})
-
-		return widget
-	end
-
-	s.awesomewm = wibox.widget({
-		{
-        {
-            image = gears.color.recolor_image(icons.awesome_logo, beautiful.accent),
-            resize = true,
-            halign = "center",
-            valign = "center",
-            widget = wibox.widget.imagebox,
-        },
-        strategy = "exact",
-        height = dpi(40),
-        widget = wibox.container.constraint,
-	},
-	margins = dpi(10),
-	widget = wibox.container.margin,
+      valign = "center",
+      widget = wibox.widget.textbox,
     })
 
-	--- Widgets
-  s.stats = require("ui.panel.control-panel.stats")
-	s.user_profile = require("ui.panel.control-panel.user-profile")
-	s.quick_settings = require("ui.panel.control-panel.quick-settings")
-	-- s.music_player = require("ui.panels.control-panel.music-player")
+    local function search_box()
+      local search_icon = wibox.widget({
+        -- font = "icomoon bold 12",
+        font = beautiful.taglist_font,
+        align = "center",
+        valign = "center",
+        widget = wibox.widget.textbox(),
+      })
 
-	s.control_panel = awful.popup({
-		type = "normal",
-		screen = s,
-		minimum_height = dpi(700),
-		maximum_height = dpi(700),
-		minimum_width = dpi(700),
-		maximum_width = dpi(700),
+      local reset_search_icon = function()
+        search_icon.markup = helpers.ui.colorize_text("\u{f002}", beautiful.accent)
+      end
+      reset_search_icon()
+
+      local search_text = wibox.widget({
+        -- markup = helpers.ui.colorize_text("Search", beautiful.color8),
+        align = "center",
+        valign = "center",
+        font = beautiful.font,
+        widget = wibox.widget.textbox(),
+      })
+
+      local search = wibox.widget({
+        {
+          {
+            search_icon,
+            {
+              search_text,
+              bottom = dpi(2),
+              widget = wibox.container.margin,
+            },
+            layout = wibox.layout.fixed.horizontal,
+          },
+          left = dpi(15),
+          widget = wibox.container.margin,
+        },
+        forced_height = dpi(35),
+        forced_width = dpi(420),
+        shape = gears.shape.rounded_bar,
+        bg = beautiful.bg_normal,
+        widget = wibox.container.background(),
+      })
+
+      local function generate_prompt_icon(icon, color)
+        return "<span foreground='" .. color .. "'>" .. icon .. "</span> "
+      end
+
+      local function activate_prompt(action)
+        search_icon.visible = false
+        local prompt
+        if action == "run" then
+          prompt = generate_prompt_icon("\u{f120}", beautiful.accent)
+        elseif action == "web_search" then
+          prompt = generate_prompt_icon("\u{fa9e}", beautiful.accent)
+        end
+        helpers.misc.prompt(action, search_text, prompt, function()
+          search_icon.visible = true
+        end)
+      end
+
+      search:buttons(gears.table.join(
+        awful.button({}, 1, function()
+          activate_prompt("run")
+        end),
+        awful.button({}, 3, function()
+          activate_prompt("web_search")
+        end)
+      ))
+
+      return search
+    end
+
+    local widget = wibox.widget({
+      {
+        dashboard_text,
+        nil,
+        search_box(),
+        layout = wibox.layout.align.horizontal,
+      },
+      margins = dpi(10),
+      widget = wibox.container.margin,
+    })
+
+    return widget
+  end
+
+  s.awesomewm = wibox.widget({
+    {
+      {
+        image = gears.color.recolor_image(icons.awesome_logo, beautiful.accent),
+        resize = true,
+        halign = "center",
+        valign = "center",
+        widget = wibox.widget.imagebox,
+      },
+      strategy = "exact",
+      height = dpi(40),
+      widget = wibox.container.constraint,
+    },
+    margins = dpi(10),
+    widget = wibox.container.margin,
+  })
+
+  --- Widgets
+  s.stats = require("ui.panel.control-panel.stats")
+  s.user_profile = require("ui.panel.control-panel.user-profile")
+  s.quick_settings = require("ui.panel.control-panel.quick-settings")
+  -- s.music_player = require("ui.panels.control-panel.music-player")
+  s.playerctl = require("widgets.playerctl")
+
+  s.control_panel = awful.popup({
+    type = "normal",
+    screen = s,
+    minimum_height = dpi(700),
+    maximum_height = dpi(700),
+    minimum_width = dpi(700),
+    maximum_width = dpi(700),
     border_width = dpi(5),
     border_color = beautiful.bg_focus,
-		bg = beautiful.bg_normal,
-		ontop = true,
-		visible = false,
-		placement = function(w)
-			awful.placement.top_right(w, {
-				margins = { top = beautiful.wibar_height + dpi(5),bottom =  dpi(5), left = dpi(5), right = dpi(5) },
-			})
-		end,
-		widget = {
-			{
-				{
-					header(),
-					margins = { top = dpi(10), bottom = dpi(10), right = dpi(20), left = dpi(20) },
-					widget = wibox.container.margin,
-				},
-				{
-					{
-						{
-							nil,
-							{
-								{
-									s.user_profile,
-									s.quick_settings,
-									layout = wibox.layout.fixed.vertical,
-								},
-								{
-									-- s.music_player,
+    bg = beautiful.bg_normal,
+    ontop = true,
+    visible = false,
+    placement = function(w)
+      awful.placement.top_right(w, {
+        margins = { top = beautiful.wibar_height + dpi(5),bottom =  dpi(5), left = dpi(5), right = dpi(5) },
+      })
+    end,
+    widget = {
+      {
+        {
+          header(),
+          margins = { top = dpi(10), bottom = dpi(10), right = dpi(20), left = dpi(20) },
+          widget = wibox.container.margin,
+        },
+        {
+          {
+            {
+              nil,
+              {
+                {
+                  s.user_profile,
+                  s.quick_settings,
+                  layout = wibox.layout.fixed.vertical,
+                },
+                {
+                  -- s.music_player,
                   s.stats,
-									s.awesomewm,
-									layout = wibox.layout.fixed.vertical,
-								},
-								layout = wibox.layout.align.horizontal,
-							},
-							layout = wibox.layout.align.vertical,
-						},
-						margins = dpi(10),
-						widget = wibox.container.margin,
-					},
-					bg = beautiful.wibar_bg,
-					widget = wibox.container.background,
-				},
-				layout = wibox.layout.align.vertical,
-			},
-			bg = beautiful.widget_bg,
-			widget = wibox.container.background,
-		},
-	})
+                  s.playerctl,
+                  s.awesomewm,
+                  layout = wibox.layout.fixed.vertical,
+                },
+                layout = wibox.layout.align.horizontal,
+              },
+              layout = wibox.layout.align.vertical,
+            },
+            margins = dpi(10),
+            widget = wibox.container.margin,
+          },
+          bg = beautiful.wibar_bg,
+          widget = wibox.container.background,
+        },
+        layout = wibox.layout.align.vertical,
+      },
+      bg = beautiful.widget_bg,
+      widget = wibox.container.background,
+    },
+  })
 
-	--- Toggle container visibility
-	awesome.connect_signal("control_panel::toggle", function(scr)
-		if scr == s then
-			s.control_panel.visible = not s.control_panel.visible
-		end
-	end)
+  --- Toggle container visibility
+  awesome.connect_signal("control_panel::toggle", function(scr)
+    if scr == s then
+      s.control_panel.visible = not s.control_panel.visible
+    end
+  end)
   helpers.click_to_hide.popup(s.control_panel, nil, true)
 end
