@@ -199,10 +199,7 @@ lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
 -- local cb = require 'diffview.config'.diffview_callback
 
 lvim.plugins = {
-  { "rmehri01/onenord.nvim" },
   { "folke/tokyonight.nvim" },
-  { "andersevenrud/nordic.nvim" },
-  { "EdenEast/nightfox.nvim" },
   { "RRethy/vim-illuminate" },
   { "sindrets/diffview.nvim",
     event = "BufRead",
