@@ -22,7 +22,10 @@ local album_art = wibox.widget{
   clip_shape = helpers.ui.rrect(beautiful.border_radius),
   forced_height = dpi(85),
   forced_width = dpi(85),
-  image = beautiful.music
+  image = beautiful.music,
+  valign = "bottom",
+  halign = "center",
+  resize = true,
 }
 
 
@@ -134,26 +137,19 @@ local prev_button = wibox.widget{
   valign = "center"
 }
 
--- `progressbar` - no.
-local progressbar = wibox.widget{
-  widget = wibox.widget.slider,
-  value = 50,
-  maximum = 100,
+-- `progressbar`
+local progressbar = wibox.widget {
+  forced_height = dpi(3),
   forced_width = dpi(220),
-  shape = gears.shape.rounded_bar,
-  bar_shape = gears.shape.rounded_bar,
-  bar_color = beautiful.gray,
-  bar_margins = {top=dpi(17), bottom=dpi(17), left=dpi(5), right=dpi(5)},
-  bar_active_color = beautiful.accent,
-  handle_width = dpi(11),
-  handle_shape = gears.shape.circle,
-  handle_color = beautiful.accent,
-  handle_margins = dpi(0),
+  margins = dpi(5),
+  bar_shape = helpers.ui.rrect(beautiful.border_radius),
+  shape = helpers.ui.rrect(beautiful.border_radius),
+  background_color = beautiful.bg_normal .. 55,
+  color = beautiful.fg_normal,
+  value = 25,
+  max_value = 100,
+  widget = wibox.widget.progressbar
 }
-
-
-
-
 
 -- update widgets
 -- ~~~~~~~~~~~~~~
@@ -197,14 +193,14 @@ playerctl:connect_signal("metadata", function(_, title, artist, album_path, _, _
   end
 
   album_art:set_image(gears.surface.load_uncached(album_path))
-  song_name:set_markup(helpers.ui.colorize_text(title, beautiful.fg_normal))
-  song_artist:set_markup(helpers.ui.colorize_text(artist, beautiful.fg_normal))
+  song_name:set_markup_silently(helpers.ui.colorize_text(title, beautiful.fg_normal))
+  song_artist:set_markup_silently(helpers.ui.colorize_text(artist, beautiful.fg_normal))
   music_display:get_children_by_id("music_text_role")[1].markup = helpers.ui.colorize_text(player_name, beautiful.bg_normal)
 
 
 end)
 
-playerctl:connect_signal("position", function(_, current_pos, total_pos)
+playerctl:connect_signal("position", function(_, current_pos, total_pos, _)
   progressbar.value = (current_pos / total_pos) * 100
 
 end)
