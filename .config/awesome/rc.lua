@@ -12,7 +12,8 @@ local gears = require("gears")
 -- Themes define colours, icons, font and wallpapers.
 local themes = {
   "nord", -- 1
-  "tokyonight" -- 2
+  "tokyonight", -- 2
+  "catppuccin-frappe", -- 3
 }
 
 local chosen_theme = themes[2]
