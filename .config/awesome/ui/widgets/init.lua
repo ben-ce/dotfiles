@@ -19,6 +19,7 @@ _M.brightness = require("ui.widgets.brightness"){
   percentage = true,
 }
 _M.controlcenter = require("ui.widgets.controlcenter")
+_M.layoutbox = require("ui.widgets.layoutbox")
 
 _M.keyboardlayout = awful.widget.keyboardlayout()
 
@@ -27,36 +28,6 @@ function _M.create_keyboardlayout()
     child = _M.keyboardlayout,
     normal_bg = beautiful.bg_normal,
   })
-end
-
-function _M.create_promptbox() return awful.widget.prompt() end
-
-function _M.create_layoutbox(s)
-  return awful.widget.layoutbox{
-    screen = s,
-    buttons = {
-      awful.button{
-        modifiers = {},
-        button    = 1,
-        on_press  = function() awful.layout.inc(1) end,
-      },
-      awful.button{
-        modifiers = {},
-        button    = 3,
-        on_press  = function() awful.layout.inc(-1) end,
-      },
-      awful.button{
-        modifiers = {},
-        button    = 4,
-        on_press  = function() awful.layout.inc(-1) end,
-      },
-      awful.button{
-        modifiers = {},
-        button    = 5,
-        on_press  = function() awful.layout.inc(1) end,
-      },
-    }
-  }
 end
 
 function _M.create_wibox(s)
@@ -71,7 +42,6 @@ function _M.create_wibox(s)
         layout = wibox.layout.fixed.horizontal,
         s.launcher,
         s.taglist,
-        s.promptbox,
         s.tasklist,
       },
       -- middle widgets
