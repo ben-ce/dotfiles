@@ -206,6 +206,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 ### fzf bindings and completion
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c0caf5,bg:#24283b,hl:#7dcfff --color=fg+:#c0caf5,bg+:#24283b,hl+:#73daca --color=info:#a9b1d6,prompt:#f7768e,pointer:#bb9af7 --color=marker:#9ece6a,spinner:#f7768e,header:#73daca'
 
 ### Source plugins with sheldon plugin manager
 eval "$(sheldon source)"
