@@ -125,10 +125,11 @@ return function(s)
   })
 
   --- Widgets
-  s.stats = require("ui.panel.control-panel.stats")
+  -- s.stats = require("ui.panel.control-panel.stats")
   s.user_profile = require("ui.panel.control-panel.user-profile")
   s.quick_settings = require("ui.panel.control-panel.quick-settings")
   s.music = require("ui.panel.control-panel.music")
+  s.charts = require("ui.panel.control-panel.charts")
 
   s.control_panel = awful.popup({
     type = "normal",
@@ -166,7 +167,8 @@ return function(s)
                   layout = wibox.layout.fixed.vertical,
                 },
                 {
-                  s.stats,
+                  -- s.stats,
+                  s.charts,
                   s.awesomewm,
                   layout = wibox.layout.fixed.vertical,
                 },
