@@ -302,10 +302,15 @@ local mainbox =  wibox.widget{
     shape = helpers.ui.rrect(beautiful.border_radius),
     forced_height = dpi(210),
     forced_width = dpi(350),
-    bg = beautiful.bg_focus
+    bg = gears.color({ type = "linear",
+      from = { 0, 0 },
+      to = { 350, 0 },
+      stops = { { 0, beautiful.color3 },
+        { 1, beautiful.bg_focus },
+      },
+    })
   },
   margins = dpi(10),
-  color = "#FF000000",
   widget = wibox.container.margin,
 }
 
