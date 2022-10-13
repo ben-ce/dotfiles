@@ -176,7 +176,7 @@ playerctl:connect_signal("metadata", function(_, title, artist, album_path, _, _
     artist = "Unknown"
   end
   if album_path == "" then
-    album_path = beautiful.images.album_art
+    album_path = beautiful.music
   end
   if player_name == "" then
     player_name = "None"
