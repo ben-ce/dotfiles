@@ -37,6 +37,7 @@ return function(s)
   local arrow = wbutton.text.state({
     text_normal_bg = beautiful.accent,
     normal_bg = beautiful.wibar_bg,
+    press_bg = beautiful.wibar_bg,
     font = beautiful.icon_font .. "Round ",
     size = 18,
     text = "",
