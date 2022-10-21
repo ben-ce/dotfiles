@@ -70,7 +70,7 @@ theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
 theme.taglist_fg_occupied = theme.green
 theme.taglist_bg_empty    = theme.bg_normal
-theme.taglist_fg_empty    = theme.overlay0
+theme.taglist_fg_empty    = theme.gray
 theme.taglist_bg_urgent   = theme.bg_normal
 theme.taglist_fg_urgent   = theme.red
 
