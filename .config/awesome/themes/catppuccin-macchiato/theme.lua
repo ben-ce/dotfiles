@@ -6,54 +6,60 @@ local theme = {}
 -- Override elements in the custom theme table with the default ones
 gtable.crush(theme, default_theme)
 
--- Catppuccin Frappe color scheme
-theme.color0 = "#51576D"
-theme.color1 = "#626880"
-theme.color2 = "#F2D5CF"
-theme.color3 = "#737994"
-theme.color4 = "#A5ADCE"
-theme.color5 = "#B5BFE2"
-theme.color6 = "#CA9EE6"
-theme.color7 = "#8CAAEE"
-theme.color8 = "#85c1dc"
-theme.color9 = "#99d1db"
-theme.color10 = "#81c8be"
-theme.color11 = "#81c8be"
-theme.color12 = "#A6D189"
-theme.color13 = "#E5C890"
-theme.color14 = "#ef9f76"
-theme.color15 = "#E78284"
-theme.background = "#303446"
-theme.foreground = "#C6D0F5"
+-- Catppuccin Macchiato color scheme
+theme.rosewater = "#F4DBD6"
+theme.flamingo  = "#F0C6C6"
+theme.pink      = "#F5BDE6"
+theme.mauve     = "#C6A0F6"
+theme.red       = "#ED8796"
+theme.maroon    = "#EE99A0"
+theme.peach     = "#F5A97F"
+theme.yellow    = "#EED49F"
+theme.green     = "#A6DA95"
+theme.teal      = "#8BD5CA"
+theme.sky       = "#91D7E3"
+theme.sapphire  = "#7DC4E4"
+theme.blue      = "#8AADF4"
+theme.lavender  = "#B7BDF8"
 
-theme.red    = theme.color15
-theme.orange = theme.color14
-theme.yellow = theme.color13
-theme.green  = theme.color12
-theme.blue   = theme.color7
-theme.white  = theme.color5
-theme.gray   = theme.color1
-theme.black  = theme.color0
-theme.accent    = theme.white
+theme.text      = "#CAD3F5"
+theme.subtext1  = "#B8C0E0"
+theme.subtext0  = "#A5ADCB"
+theme.overlay2  = "#939AB7"
+theme.overlay1  = "#8087A2"
+theme.overlay0  = "#6E738D"
+theme.surface2  = "#5B6078"
+theme.surface1  = "#494D64"
+theme.surface0  = "#363A4F"
 
-theme.bg_normal   = theme.background
-theme.bg_focus    = theme.black
+theme.base      = "#24273A"
+theme.mantle    = "#1E2030"
+theme.crust     = "#181926"
+
+theme.orange    = theme.peach
+theme.white     = theme.text
+theme.gray      = theme.surface1
+theme.black     = theme.surface0
+theme.accent    = theme.text
+
+theme.bg_normal   = theme.base
+theme.bg_focus    = theme.surface0
 theme.bg_urgent   = theme.bg_normal
 theme.bg_minimize = theme.bg_normal
 theme.bg_systray  = theme.bg_normal
 
-theme.fg_normal   = theme.foreground
+theme.fg_normal   = theme.text
 theme.fg_focus    = theme.fg_normal
-theme.fg_urgent   = theme.color1
+theme.fg_urgent   = theme.subtext0
 theme.fg_minimize = theme.fg_normal
 
 theme.groups_bg   = theme.bg_normal
 
-theme.border_normal = theme.color7
-theme.border_marked = theme.color15
-theme.border_focus  = theme.color7
+theme.border_normal = theme.teal
+theme.border_marked = theme.red
+theme.border_focus  = theme.lavender
 
-theme.widget_bg = theme.black
+theme.widget_bg = theme.bg_focus
 theme.wibar_bg = theme.bg_normal
 
 -- theme.taglist_spacing = dpi(5)
@@ -62,11 +68,11 @@ theme.taglist_fg_focus    = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
 theme.taglist_fg_occupied = theme.green
 theme.taglist_bg_empty    = theme.bg_normal
-theme.taglist_fg_empty    = theme.gray
+theme.taglist_fg_empty    = theme.overlay0
 theme.taglist_bg_urgent   = theme.bg_normal
 theme.taglist_fg_urgent   = theme.red
 
-theme.hotkeys_modifiers_fg = theme.white
+theme.hotkeys_modifiers_fg = theme.text
 theme.hotkeys_border_color = theme.gray
 
 theme.window_switcher_widget_bg = theme.bg_normal -- The bg color of the widget

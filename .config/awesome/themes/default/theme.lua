@@ -14,9 +14,6 @@ local theme = {}
 
 theme.useless_gap   = dpi(10)
 theme.border_width  = dpi(0)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -32,14 +29,33 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 theme.tasklist_spacing = dpi(0)
 
+theme.hotkeys_border_width = 3
+
+theme.window_switcher_widget_border_width = 0 -- The border width of the widget
+theme.window_switcher_widget_border_radius = 10 -- The border radius of the widget
+theme.window_switcher_clients_spacing = 20 -- The space between each client item
+theme.window_switcher_client_icon_horizontal_spacing = 5 -- The space between client icon and text
+theme.window_switcher_client_width = 150 -- The width of one client widget
+theme.window_switcher_client_height = 250 -- The height of one client widget
+theme.window_switcher_client_margins = 10 -- The margin between the content and the border of the widget
+theme.window_switcher_thumbnail_margins = 10 -- The margin between one client thumbnail and the rest of the widget
+theme.thumbnail_scale = false -- If set to true, the thumbnails fit policy will be set to "fit" instead of "auto"
+theme.window_switcher_name_margins = 10 -- The margin of one clients title to the rest of the widget
+theme.window_switcher_name_valign = "center" -- How to vertically align one clients title
+theme.window_switcher_name_forced_width = 200 -- The width of one title
+theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
+theme.window_switcher_icon_width = 24 -- The width of one icon
+
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+-- local taglist_square_size = dpi(4)
+-- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+--     taglist_square_size, theme.fg_normal
+-- )
+-- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+--     taglist_square_size, theme.fg_normal
+-- )
+theme.taglist_squares_sel   = nil
+theme.taglist_squares_unsel = nil
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -119,6 +135,7 @@ theme.taglist_font         = theme.alt_font_name .. "24"
 theme.title_font           = theme.font
 theme.transparent          = "#00000000"
 theme.systray_icon_spacing = dpi(8)
+theme.window_switcher_name_font = theme.font -- The font of all titles
 
 local icondir         = gears.filesystem.get_configuration_dir() .. "icons/"
 theme.wallpaper       = '~/Pictures/wallpaper/Monterey.png'
