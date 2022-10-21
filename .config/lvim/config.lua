@@ -11,11 +11,16 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "tokyonight"
 lvim.format_on_save = false
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+
+-- Colorschemes
+lvim.colorscheme = "tokyonight-storm"
+-- lvim.colorscheme = "onedark"
+-- lvim.colorscheme = "catppuccin"
+-- vim.g.catppuccin_flavour = "frappe"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -60,7 +65,6 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.terminal.shading_factor = nil
@@ -68,7 +72,14 @@ lvim.builtin.bufferline.options.always_show_bufferline = true
 lvim.builtin.nvimtree.setup.view.number = true
 lvim.builtin.nvimtree.setup.view.relativenumber = true
 lvim.builtin.nvimtree.setup.open_on_setup_file = true
+lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
+lvim.builtin.nvimtree.setup.hijack_directories = {
+  enable = true,
+  auto_open = true,
+}
+
 -- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.matchup = { enable = true }
 lvim.builtin.gitsigns.opts.signs = {
@@ -199,8 +210,25 @@ lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
 -- local cb = require 'diffview.config'.diffview_callback
 
 lvim.plugins = {
-  { "folke/tokyonight.nvim" },
-  { "RRethy/vim-illuminate" },
+  -- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
+  -- { "folke/tokyonight.nvim" },
+  -- { "RRethy/vim-illuminate" },
+  -- { "lukas-reineke/indent-blankline.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("indent_blankline").setup {
+  --       -- for example, context is off by default, use this to turn it on
+  --       char = "▏",
+  --       filetype_exclude = { "help", "terminal", "dashboard" },
+  --       buftype_exclude = { "terminal" },
+  --       blankline_indent = false,
+  --       space_char_blankline = " ",
+  --       show_current_context = true,
+  --       show_current_context_start = false,
+  --       show_first_indent_level = false,
+  --     }
+  --   end,
+  -- },
   { "sindrets/diffview.nvim",
     event = "BufRead",
   },
@@ -330,22 +358,6 @@ lvim.plugins = {
     end,
   },
 
-  { "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    config = function()
-      require("indent_blankline").setup {
-        -- for example, context is off by default, use this to turn it on
-        char = "▏",
-        filetype_exclude = { "help", "terminal", "dashboard" },
-        buftype_exclude = { "terminal" },
-        blankline_indent = false,
-        space_char_blankline = " ",
-        show_current_context = true,
-        show_current_context_start = false,
-        show_first_indent_level = false,
-      }
-    end,
-  },
   -- {"andymass/vim-matchup",
   --   event = "CursorMoved",
   --   config = function()
@@ -420,8 +432,8 @@ lvim.plugins = {
     config = function()
       require("better_escape").setup()
     end,
-  }
-
+  },
+  { "catppuccin/nvim" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
