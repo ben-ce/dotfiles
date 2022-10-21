@@ -7,7 +7,7 @@ local wbutton = require("ui.widgets.button")
 --- ~~~~~~~~~~~~
 
 return function(s)
-  local accent_color = beautiful.foreground
+  local accent_color = beautiful.accent
   local clock = wibox.widget({
     widget = wibox.widget.textclock,
     format = " %Y %b %d  %H:%M",

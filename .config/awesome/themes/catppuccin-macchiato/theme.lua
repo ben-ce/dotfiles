@@ -41,6 +41,8 @@ theme.white     = theme.text
 theme.gray      = theme.surface1
 theme.black     = theme.surface0
 theme.accent    = theme.text
+theme.color3    = theme.overlay1
+theme.color4    = theme.overlay2
 
 theme.bg_normal   = theme.base
 theme.bg_focus    = theme.surface0

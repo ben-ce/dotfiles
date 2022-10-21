@@ -10,7 +10,7 @@ local gfs = require("gears.filesystem")
 local ICON_DIR = gfs.get_configuration_dir() .. "icons/"
 
 return function(s)
-  local accent_color = beautiful.foreground
+  local accent_color = beautiful.fg_normal
   local path_to_icon = ICON_DIR .. 'sideBar-controlCentre-white.svg'
   local control = wibox.widget({
     widget = wibox.widget.imagebox,
