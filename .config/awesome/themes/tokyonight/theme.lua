@@ -79,4 +79,19 @@ theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height*2, theme.bg_focus, theme.fg_focus
 )
 
+--- Accent colors
+function theme.random_accent_color()
+	local accents = {
+		theme.color9,
+		theme.color10,
+		theme.color11,
+		theme.color12,
+		theme.color13,
+		theme.color14,
+	}
+
+	local i = math.random(1, #accents)
+	return accents[i]
+end
+
 return theme
