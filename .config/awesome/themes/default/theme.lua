@@ -62,6 +62,7 @@ theme.taglist_squares_unsel = nil
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_spacing = dpi(10)
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -148,7 +149,6 @@ theme.widget_icon_gap = 2
 
 theme.wibar_height = dpi(35)
 theme.border_radius = 10
-theme.notification_margin = dpi(5)
 
 return theme
 

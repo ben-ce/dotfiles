@@ -33,10 +33,6 @@ require("rules")
 require("signals")
 -- }}}
 
--- {{{ Modules
-require('modules.notifications')
--- }}}
-
 -- {{{ Autostart applications
 require("config.xdg_autostart")
 -- }}}
