@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gears = require("gears")
-local widgets = require("ui.widgets")
+local wbutton = require("ui.widgets.button")
 local apps = require("config.apps")
 
 --- Screenshot Widget
@@ -12,7 +12,7 @@ local apps = require("config.apps")
 local screenshot = {}
 
 local function button(icon, command)
-	return widgets.button.text.normal({
+	return wbutton.text.normal({
 		forced_width = dpi(60),
 		forced_height = dpi(60),
 		normal_bg = beautiful.bg_normal,

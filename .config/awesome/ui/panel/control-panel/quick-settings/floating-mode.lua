@@ -2,7 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local widgets = require("ui.widgets")
+local wbutton = require("ui.widgets.button")
 
 --- Floating-Mode Widget
 --- ~~~~~~~~~~~~~~~~~~~~
@@ -10,7 +10,7 @@ local widgets = require("ui.widgets")
 local floating_mode_state = false
 
 local function button(icon)
-	return widgets.button.text.state({
+	return wbutton.text.state({
 		forced_width = dpi(60),
 		forced_height = dpi(60),
 		normal_bg = beautiful.one_bg3,

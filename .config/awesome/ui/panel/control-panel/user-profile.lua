@@ -6,7 +6,7 @@ local dpi = xresources.apply_dpi
 local wibox = require("wibox")
 local helpers = require("helpers")
 local gears = require("gears")
-local widgets = require("ui.widgets")
+local wbutton = require("ui.widgets.button")
 
 --- User Profile Widget
 --- ~~~~~~~~~~~~~~~~~~~
@@ -173,7 +173,7 @@ local function widget()
       nil,
       nil,
       {
-        widgets.button.text.normal({
+        wbutton.text.normal({
           forced_width = dpi(50),
           forced_height = dpi(50),
           font = beautiful.icon_font_name,
@@ -186,7 +186,7 @@ local function widget()
             awesome.emit_signal("control_panel::toggle", focused)
           end,
         }),
-        widgets.button.text.normal({
+        wbutton.text.normal({
           forced_width = dpi(50),
           forced_height = dpi(50),
           font = beautiful.icon_font_name,

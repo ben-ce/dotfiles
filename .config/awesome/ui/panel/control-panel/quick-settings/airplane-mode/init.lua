@@ -5,7 +5,7 @@ local dpi = beautiful.xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 local widget_dir = config_dir .. "ui/panel/control-panel/quick-settings/airplane-mode/"
 local widget_icon_dir = widget_dir .. "icons/"
-local widgets = require("ui.widgets")
+local wbutton = require("ui.widgets.button")
 
 --- Airplane-Mode Widget
 --- ~~~~~~~~~~~~~~~~~~~~
@@ -13,7 +13,7 @@ local widgets = require("ui.widgets")
 local airplane_mode_state = false
 
 local function button(icon)
-  return widgets.button.text.state({
+  return wbutton.text.state({
     forced_width = dpi(60),
     forced_height = dpi(60),
     normal_bg = beautiful.black,
