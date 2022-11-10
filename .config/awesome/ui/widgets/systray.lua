@@ -5,8 +5,8 @@
 -- |____/ \__, |___/\__|_|  \__,_|\__, |
 --        |___/                   |___/
 
-local beautiful = require'beautiful'
-local wibox = require'wibox'
+local beautiful = require("beautiful")
+local wibox = require("wibox")
 local dpi = beautiful.xresources.apply_dpi
 local animation = require("modules.animation")
 local wbutton = require("ui.widgets.button")

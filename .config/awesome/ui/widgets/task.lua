@@ -5,11 +5,11 @@
 --   |_|\__,_|___/_|\_\_|_|___/\__|
 --                                 
 
-local awful = require "awful"
-local wibox = require "wibox"
-local beautiful = require "beautiful"
+local awful = require("awful")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local gears = require'gears'
+local gears = require("gears")
 
 return function(s)
   local widget_spacing = dpi(0)
@@ -34,15 +34,12 @@ return function(s)
       {
         {
           {
-            {
-              { id = "icon_role", widget = wibox.widget.imagebox, },
-              margins = dpi(5),
-              widget  = wibox.container.margin,
-            },
-            { id = "text_role", widget = wibox.widget.textbox, },
-            layout = wibox.layout.fixed.horizontal,
+            { id = "icon_role", widget = wibox.widget.imagebox, },
+            margins = dpi(5),
+            widget  = wibox.container.margin,
           },
-          widget = wibox.container.margin
+          { id = "text_role", widget = wibox.widget.textbox, },
+          layout = wibox.layout.fixed.horizontal,
         },
         id = "background_role",
         forced_width = task_width,
