@@ -1,6 +1,8 @@
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local playerctl = require("modules.bling").signal.playerctl.lib()
+local playerctl = require("modules.bling").signal.playerctl.lib({
+  ignore = "firefox",
+})
 
 -- buttons
 local prev_button = naughty.action {name = "previous"}
