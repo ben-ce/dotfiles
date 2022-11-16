@@ -5,10 +5,11 @@
 }
 
 window {
-  location:     center;
-  width:        400;
-  border:       3px;
-  y-offset:     -160;
+  location:      center;
+  width:         400;
+  border:        4px;
+  border-radius: 15px;
+  /* y-offset:      -100; */
   background-color:   @background;
 }
 
