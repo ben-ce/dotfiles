@@ -21,6 +21,7 @@ _M.brightness = require("ui.widgets.brightness"){
 }
 _M.controlcenter = require("ui.widgets.controlcenter")
 _M.layoutbox = require("ui.widgets.layoutbox")
+_M.notification_button = require("ui.widgets.notification_button")
 
 _M.keyboardlayout = awful.widget.keyboardlayout()
 
@@ -57,6 +58,7 @@ function _M.create_wibox(s)
         s.kblayout,
         s.systray,
         s.controlcenter,
+        s.notification_button,
         s.volume,
         s.brightness,
         s.battery,
