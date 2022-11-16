@@ -30,7 +30,7 @@ return function()
 
 	local charging_icon = wibox.widget({
 		markup = helpers.ui.colorize_text("", beautiful.white),
-		font = beautiful.icon_font_name .. "Round 14",
+		font = beautiful.icon_font_name .. " 14",
 		align = "center",
 		valign = "center",
 		widget = wibox.widget.textbox,
@@ -121,8 +121,16 @@ return function()
 
     if kind == 0 then
       battery_tooltip.text = string.format('%s', "Unknown device, likely running on AC Line Power.")
+      charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.white))
+      battery_bar.visible = false
+      battery_decoration.visible = false
+      battery_percentage_text.visible = false
     elseif kind == 1 then
       battery_tooltip.text = string.format('%s', "Running on AC Line Power.")
+      charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.white))
+      battery_bar.visible = false
+      battery_decoration.visible = false
+      battery_percentage_text.visible = false
     else
       if charging_icon.visible then
         battery_bar.color = charging_color
