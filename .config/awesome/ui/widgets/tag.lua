@@ -12,7 +12,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local mod = require("bindings.modkeys")
 
-local taglist_padding = 8
+local taglist_padding = 10
 
 return function(s)
   return awful.widget.taglist{
@@ -35,7 +35,7 @@ return function(s)
         id = 'background_role',
         widget = wibox.container.background
       },
-      margins = dpi(3),
+      margins = dpi(2),
       widget = wibox.container.margin
     },
     buttons = {

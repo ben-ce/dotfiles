@@ -2,6 +2,7 @@ local _M = {}
 
 local awful = require("awful")
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 local wibox = require("wibox")
 
 _M.button     = require("ui.widgets.button")
@@ -27,6 +28,7 @@ function _M.create_keyboardlayout()
   return _M.button.elevated.state({
     child = _M.keyboardlayout,
     normal_bg = beautiful.bg_normal,
+    margins = dpi(2),
   })
 end
 

@@ -1,5 +1,6 @@
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 local helpers = require("helpers")
 local wbutton = require("ui.widgets.button")
 
@@ -27,6 +28,7 @@ return function(s)
     on_release = function()
       awesome.emit_signal("info_panel::toggle", s)
     end,
+    margins = dpi(2),
   })
 
   return widget

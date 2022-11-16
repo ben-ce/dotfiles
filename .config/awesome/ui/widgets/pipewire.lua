@@ -13,6 +13,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 local wbutton = require("ui.widgets.button")
 
 local get_volume_cmd
@@ -143,12 +144,13 @@ local function worker(user_args)
   widget = wbutton.elevated.state({
     child = volume.widget,
     normal_bg = beautiful.bg_normal,
+    margins = dpi(2),
   })
   return widget
 end
 
 return setmetatable(widget, {
   __call = function(_, ...)
-  return worker(...)
+    return worker(...)
   end
 })

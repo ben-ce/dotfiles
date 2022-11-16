@@ -147,7 +147,7 @@ theme.music           = icondir .. 'music.png'
 theme.hamburger_menu_icon       = icondir .. 'hamburger_menu.svg'
 theme.widget_icon_gap = 2
 
-theme.wibar_height = dpi(35)
+theme.wibar_height = dpi(40)
 theme.border_radius = 10
 
 return theme

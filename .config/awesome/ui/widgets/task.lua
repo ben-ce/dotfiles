@@ -45,7 +45,7 @@ return function(s)
         forced_width = task_width,
         widget = wibox.container.background,
       },
-      margins = dpi(3),
+      margins = dpi(2),
       widget = wibox.container.margin,
     },
   }

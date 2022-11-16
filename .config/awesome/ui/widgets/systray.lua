@@ -49,6 +49,7 @@ return function(s)
       system_tray_animation:set(0)
       self:set_text("")
     end,
+    margins = dpi(2),
   })
 
   return wibox.widget({

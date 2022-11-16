@@ -1,6 +1,4 @@
--------------------------------------------------
--- Brightness Widget for Awesome Window Manager
--- Shows the brightness level of the laptop display
+------------------------------------------------- Brightness Widget for Awesome Window Manager Shows the brightness level of the laptop display
 -- More details could be found here:
 -- https://github.com/streetturtle/awesome-wm-widgets/tree/master/brightness-widget
 
@@ -15,6 +13,7 @@ local spawn = require("awful.spawn")
 local gfs = require("gears.filesystem")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 local wbutton = require("ui.widgets.button")
 
 local ICON_DIR = gfs.get_configuration_dir() .. "icons/"
@@ -191,6 +190,7 @@ local function worker(user_args)
   widget = wbutton.elevated.state({
     child = brightness.widget,
     normal_bg = beautiful.bg_normal,
+    margins = dpi(2),
   })
   return widget
 end
