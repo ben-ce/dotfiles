@@ -32,6 +32,7 @@ return function(s)
   local widget = wbutton.elevated.state({
     child = layoutbox,
     normal_bg = beautiful.bg_normal,
+    margins = dpi(2),
     paddings = dpi(5),
   })
   return widget
