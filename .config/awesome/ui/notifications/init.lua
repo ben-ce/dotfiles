@@ -11,6 +11,7 @@ local wbutton = require("ui.widgets.button")
 local animation = require("modules.animation")
 
 require(... .. ".playerctl")
+require(... .. ".battery")
 
 -- ruled notification
 ruled.notification.connect_signal("request::rules", function()
@@ -24,7 +25,7 @@ ruled.notification.connect_signal("request::rules", function()
   }
   ruled.notification.append_rule {
     rule       = { urgency = "critical" },
-    properties = { implicit_timeout = 0 }
+    properties = { bg = beautiful.red, implicit_timeout = 0 }
   }
 end)
 
@@ -43,6 +44,37 @@ naughty.connect_signal("request::display", function(n)
   --- random accent color
 	local accent_colors = beautiful.random_accent_color()
 
+	--- table of icons
+	local app_icons = {
+		["firefox"] = { icon = "" },
+		["skype"] = { icon = "" },
+		["music"] = { icon = "" },
+		["screenshot tool"] = { icon = "" },
+	}
+
+	local app_icon = nil
+	local tolow = string.lower
+
+	if app_icons[tolow(n.app_name)] then
+		app_icon = app_icons[tolow(n.app_name)].icon
+	else
+		app_icon = ""
+	end
+
+	local app_icon_n = wibox.widget({
+		{
+			font = beautiful.icon_font_name .. "Round 10",
+			markup = "<span foreground='" .. beautiful.bg_normal .. "'>" .. app_icon .. "</span>",
+			align = "center",
+			valign = "center",
+			widget = wibox.widget.textbox,
+		},
+		bg = beautiful.fg_normal,
+		widget = wibox.container.background,
+		shape = gears.shape.circle,
+		forced_height = dpi(20),
+		forced_width = dpi(20),
+	})
   -- action widget
   local action_widget = {
     {
@@ -83,7 +115,7 @@ naughty.connect_signal("request::display", function(n)
     normal_bg = beautiful.black,
     normal_shape = gears.shape.circle,
     on_normal_bg = beautiful.accent,
-    text_normal_bg = accent_colors,
+    text_normal_bg = beautiful.red,
     text_on_normal_bg = beautiful.black,
     animate_size = false,
     on_release = function()
@@ -94,17 +126,39 @@ naughty.connect_signal("request::display", function(n)
   -- image
   local image_n = wibox.widget {
     {
-      image = n.icon,
-      resize = true,
-      clip_shape = gears.shape.rounded_rect,
-      halign = "center",
-      valign = "center",
-      widget = wibox.widget.imagebox,
+      {
+        {
+          image = n.icon,
+          resize = true,
+          clip_shape = gears.shape.circle,
+          halign = "center",
+          valign = "center",
+          widget = wibox.widget.imagebox,
+        },
+        border_width = dpi(2),
+        border_color = beautiful.accent,
+        shape = gears.shape.circle,
+        widget = wibox.container.background,
+      },
+      strategy = "exact",
+      height = dpi(52),
+      width = dpi(52),
+      widget = wibox.container.constraint,
     },
-    strategy = "exact",
-    height = dpi(72),
-    width = dpi(72),
-    widget = wibox.container.constraint,
+    {
+      nil,
+      nil,
+      {
+        nil,
+        nil,
+        app_icon_n,
+        layout = wibox.layout.align.horizontal,
+        expand = "none",
+      },
+      layout = wibox.layout.align.vertical,
+      expand = "none",
+    },
+    layout = wibox.layout.stack,
   }
 
   -- title
@@ -145,7 +199,7 @@ naughty.connect_signal("request::display", function(n)
   }
 
   local time_n = wibox.widget{
-      markup      = helpers.ui.colorize_text("now", colors.foreground .. "BF"),
+      markup      = helpers.ui.colorize_text(os.date("%H:%M"), colors.foreground .. "BF"),
       font        = beautiful.font_name .. " 10",
       align       = "right",
       valign      = "center",

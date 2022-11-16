@@ -62,7 +62,7 @@ theme.taglist_squares_unsel = nil
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_spacing = dpi(10)
+theme.notification_spacing = theme.useless_gap * 2
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
