@@ -16,7 +16,6 @@ return function(s)
   local function header()
     local dashboard_text = wibox.widget({
       markup = helpers.ui.colorize_text("Dashboard -", beautiful.accent),
-      -- font = beautiful.font_name .. "Black 14",
       font = beautiful.font,
       valign = "center",
       widget = wibox.widget.textbox,
@@ -61,7 +60,7 @@ return function(s)
         forced_height = dpi(35),
         forced_width = dpi(420),
         shape = gears.shape.rounded_bar,
-        bg = beautiful.bg_normal,
+        bg = beautiful.bg_focus,
         widget = wibox.container.background(),
       })
 
@@ -153,7 +152,7 @@ return function(s)
       })
     end,
     widget = {
-      {
+      -- {
         {
           header(),
           margins = { top = dpi(10), bottom = dpi(10), right = dpi(20), left = dpi(20) },
@@ -189,9 +188,9 @@ return function(s)
         },
         layout = wibox.layout.align.vertical,
       },
-      bg = beautiful.widget_bg,
-      widget = wibox.container.background,
-    },
+    --   bg = beautiful.widget_bg,
+    --   widget = wibox.container.background,
+    -- },
   })
 
   -- -- sliding animation
