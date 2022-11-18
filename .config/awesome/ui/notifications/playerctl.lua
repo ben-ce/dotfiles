@@ -31,6 +31,7 @@ playerctl:connect_signal("metadata", function (_, title, artist, album_path, alb
         next_button,
       },
       image = album_path,
+      category = "music",
     }
   end
 end)

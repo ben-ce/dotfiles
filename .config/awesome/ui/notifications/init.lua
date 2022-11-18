@@ -13,6 +13,20 @@ local animation = require("modules.animation")
 require(... .. ".playerctl")
 require(... .. ".battery")
 
+local function play_sound(n)
+    if n.category == "device.added" or n.category == "network.connected" then
+        awful.spawn("canberra-gtk-play -i service-login", false)
+    elseif n.category == "device.removed" or n.category == "network.disconnected" then
+        awful.spawn("canberra-gtk-play -i service-logout", false)
+    elseif n.category == "device.error" or n.category == "im.error" or n.category == "network.error" or n.category == "transfer.error" then
+        awful.spawn("canberra-gtk-play -i dialog-warning", false)
+    elseif n.category == "email.arrived" then
+        awful.spawn("canberra-gtk-play -i message", false)
+    else
+        awful.spawn("canberra-gtk-play -i bell", false)
+    end
+end
+
 -- ruled notification
 ruled.notification.connect_signal("request::rules", function()
   ruled.notification.append_rule {
@@ -274,6 +288,9 @@ naughty.connect_signal("request::display", function(n)
     }
   }
   widget.buttons = {}
+  if n.category ~= "music" then
+    play_sound(n)
+  end
 end)
 
 -- error handling
