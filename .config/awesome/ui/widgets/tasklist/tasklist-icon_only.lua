@@ -11,15 +11,13 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local gears = require("gears")
 
-return function(s)
-  local widget_spacing = dpi(0)
-  local task_width = dpi(192)
+local function tasklist(s)
   local task = awful.widget.tasklist {
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     style = {
-      shape = gears.shape.rounded_rect,
-      bg_focus = beautiful.bg_focus,
+      shape = gears.shape.circle,
+      bg_focus = beautiful.gray,
       bg_normal = beautiful.bg_focus .. "4d",
       bg_minimize = beautiful.bg_normal,
       fg_minimize = beautiful.gray
@@ -27,27 +25,34 @@ return function(s)
     buttons = {
       awful.button({ }, 1, function(c) c:activate {context = "tasklist", action = "toggle_minimization"} end)
     },
-    layout = { spacing = widget_spacing, layout = wibox.layout.flex.horizontal },
     -- Notice that there is *NO* wibox.wibox prefix, it is a template,
     -- not a widget instance.
     widget_template = {
       {
         {
-          {
-            { id = "icon_role", widget = wibox.widget.imagebox, },
+            awful.widget.clienticon,
             margins = dpi(5),
             widget  = wibox.container.margin,
-          },
-          { id = "text_role", widget = wibox.widget.textbox, },
-          layout = wibox.layout.fixed.horizontal,
         },
         id = "background_role",
-        forced_width = task_width,
         widget = wibox.container.background,
       },
-      margins = dpi(2),
+      margins = dpi(3),
       widget = wibox.container.margin,
     },
   }
   return task
+end
+
+return function(s)
+  return wibox.widget{
+    {
+      tasklist(s),
+      widget = wibox.container.background,
+      bg = beautiful.widget_bg,
+      shape = gears.shape.rounded_rect,
+    },
+    margins = dpi(2),
+    widget = wibox.container.margin,
+  }
 end

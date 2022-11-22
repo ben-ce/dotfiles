@@ -28,6 +28,7 @@ theme.border_width  = dpi(0)
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 theme.tasklist_spacing = dpi(0)
+-- theme.tasklist_icon_size = dpi(48)
 
 theme.hotkeys_border_width = 3
 
@@ -149,6 +150,19 @@ theme.widget_icon_gap = 2
 
 theme.wibar_height = dpi(40)
 theme.border_radius = 10
+
+theme.taglist_styles = {
+  'simple', -- 1
+  'animated', -- 2
+  'circle-animated' -- 3
+}
+theme.chosen_taglist = theme.taglist_styles[3]
+
+theme.tasklist_styles = {
+  'icon_only',
+  'icon_and_text',
+}
+theme.chosen_tasklist = theme.tasklist_styles[1]
 
 return theme
 

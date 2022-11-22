@@ -278,7 +278,6 @@ return function(s)
       {
         {
           slidey_thing,
-          -- create_taglist_widgets(s, slidey_thing),
           awful.widget.taglist{
             screen = s,
             filter = awful.widget.taglist.filter.all,
@@ -337,15 +336,15 @@ return function(s)
         },
         left = dpi(10),
         right = dpi(10),
-        layout = wibox.container.margin,
+        widget = wibox.container.margin,
       },
       bg = beautiful.widget_bg,
       shape = gears.shape.rounded_rect,
       shape_clip = true,
-      layout = wibox.container.background,
+      widget = wibox.container.background,
     },
     margins = dpi(2),
-    layout = wibox.container.margin,
+    widget = wibox.container.margin,
   })
 
   return taglist
