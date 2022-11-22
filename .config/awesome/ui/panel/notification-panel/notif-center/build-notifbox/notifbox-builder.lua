@@ -23,8 +23,8 @@ end
 
 notifbox_box = function(notif, icon, title, message, app, bgcolor)
 	local time_of_pop = return_date_time("%H:%M:%S")
-	local exact_time = return_date_time("%I:%M %p")
-	local exact_date_time = return_date_time("%b %d, %I:%M %p")
+	local exact_time = return_date_time("%H:%M")
+	local exact_date_time = return_date_time("%b %d, %H:%M")
 
 	local notifbox_timepop = wibox.widget({
 		id = "time_pop",
