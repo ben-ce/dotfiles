@@ -116,9 +116,9 @@ local function create_taglist_widgets(s, slidey_thing)
     end)
 
     urgent_timed:subscribe(function(pos)
-      d.ur = (u_rgb.r - a_rgb.r - d.ar) * pos
-      d.ug = (u_rgb.g - a_rgb.g - d.ag) * pos
-      d.ub = (u_rgb.b - a_rgb.b - d.ab) * pos
+      d.ur = (u_rgb.r - a_rgb.r) * pos
+      d.ug = (u_rgb.g - a_rgb.g) * pos
+      d.ub = (u_rgb.b - a_rgb.b) * pos
       update_rgb(ia_rgb)
     end)
 
