@@ -257,7 +257,7 @@ naughty.connect_signal("request::display", function(n)
             {
               layout = wibox.layout.fixed.horizontal,
               spacing = dpi(10),
-              image_n,
+              {image_n, layout = wibox.layout.fixed.vertical},
               {
                 layout = wibox.layout.align.vertical,
                 expand = "none",
