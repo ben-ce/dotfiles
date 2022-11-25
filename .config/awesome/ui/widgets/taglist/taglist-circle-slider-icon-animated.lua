@@ -55,9 +55,6 @@ local function create_taglist_widgets(s, slidey_thing)
       cr:set_source_rgb(ia_rgb.r / 255, ia_rgb.g / 255, ia_rgb.b / 255)
       draw_circle(cr, height)
     end
-    w.buttons = awful.button({}, 1, function()
-      t:view_only()
-    end)
 
     --difference in color
     local d = { ar = 0, ag = 0, ab = 0, ur = 0, ug = 0, ub = 0, dim = 0 }
@@ -182,6 +179,8 @@ local function create_slidey_thing(s)
     layout = wibox.widget.base.make_widget,
   })
 
+  local index = 1
+
   -- Bouncy easing if I so please
   local timed = rubato.timed({
     duration = 0.85,
@@ -291,45 +290,16 @@ return function(s)
               widget = wibox.container.margin
             },
             buttons = {
-              awful.button{
-                modifiers = {},
-                button    = 1,
-                on_press  = function(t) t:view_only() end,
-              },
-              awful.button{
-                modifiers = {mod.super},
-                button    = 1,
-                on_press  = function(t)
-                  if client.focus then
-                    client.focus:move_to_tag(t)
-                  end
-                end,
-              },
-              awful.button{
-                modifiers = {},
-                button    = 3,
-                on_press  = awful.tag.viewtoggle,
-              },
-              awful.button{
-                modifiers = {mod.super},
-                button    = 3,
-                on_press  = function(t)
-                  if client.focus then
-                    client.focus:toggle_tag(t)
-                  end
-                end
-              },
-              awful.button{
-                modifiers = {},
-                button    = 4,
-                on_press  = function(t) awful.tag.viewprev(t.screen) end,
-              },
-              awful.button{
-                modifiers = {},
-                button    = 5,
-                on_press  = function(t) awful.tag.viewnext(t.screen) end,
-              },
-            }
+              awful.button({}, 1, function (t)
+                t:view_only()
+              end),
+              awful.button({}, 4, function (t)
+                awful.tag.viewprev(t.screen)
+              end),
+              awful.button({}, 5, function (t)
+                awful.tag.viewnext(t.screen)
+              end)
+            },
           },
           -- above_taglist,
           layout = wibox.layout.stack,
