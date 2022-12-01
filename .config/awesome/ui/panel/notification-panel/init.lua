@@ -10,11 +10,11 @@ local rubato = require("modules.rubato")
 --- Notification Panel
 --- ~~~~~~~~~~~~~~~~~~
 local notif_header = wibox.widget {
-    markup = helpers.ui.colorize_text('Notifications', beautiful.fg_normal),
-    font = beautiful.font_name .. "Bold 14",
-    align = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
+  markup = helpers.ui.colorize_text('Notifications', beautiful.fg_normal),
+  font = beautiful.font_name .. "Bold 14",
+  align = 'center',
+  valign = 'center',
+  widget = wibox.widget.textbox
 }
 
 return function(s)
@@ -108,7 +108,7 @@ return function(s)
   local screen_backup = 1
 
   s.notification_panel.toggle = function(screen)
-  -- set screen to default, if none were found
+    -- set screen to default, if none were found
     if not screen then
       screen = s
     end
@@ -122,7 +122,7 @@ return function(s)
       else
         slide_end:again()
         slide.target = s.geometry.y - s.geometry.height
-    end
+      end
     elseif not s.notification_panel.visible then
       slide.target = s.geometry.y + (beautiful.wibar_height + beautiful.useless_gap * 2)
       s.notification_panel.visible = true
