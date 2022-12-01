@@ -56,27 +56,20 @@ local function worker(user_args)
       widget = wibox.widget.textbox
     },
 
-    update_volume = function(self, volume, is_mute)
+    update_volume = function(self, value, is_mute)
       local font_color = beautiful.fg_normal
       local volume_icon
-      local volume_text = string.format("%s", volume)
+      local volume_text = string.format("%s", value)
       if is_mute then
         volume_icon = string.format("%s", '\u{fc5d}')
         volume_text = string.format("%s", "mute")
         font_color = beautiful.gray
-      elseif volume then
-        -- awful.spawn(string.format('bash -c \"echo %s >> aw_vol.log"',volume_text))
-        -- if volume_text == not nil then
-          local vol_value = volume_text:gsub('%%','')
-          if tonumber(vol_value) >= 50 then
-            volume_icon = string.format("%s", '\u{f028}')
-          elseif tonumber(vol_value) >= 25 then
-            volume_icon = string.format("%s", '\u{f027}')
-          else
-            volume_icon = string.format("%s", '\u{f026}')
-          end
+      elseif value >= 50 then
+        volume_icon = string.format("%s", '\u{f028}')
+      elseif value >= 25 then
+        volume_icon = string.format("%s", '\u{f027}')
       else
-        volume_icon = '\u{f026}'
+        volume_icon = string.format("%s", '\u{f026}')
       end
       local volume_icon_markup = string.format("<span font='%s' foreground='%s'>%s</span>", self.icon.font, font_color, volume_icon)
       local volume_markup = string.format("<span font='%s' foreground='%s'>%s</span>", font, font_color, volume_text)
@@ -90,36 +83,16 @@ local function worker(user_args)
     end
   }
 
-  local update_widget = function(volume, stdout, _, _, _)
-    local vol_left, vol_right = string.match(stdout, "/ *(%S+)")
-    -- if album ~= nil and title ~= nil and artist ~= nil then
-    local is_mute = string.match(stdout, "Mute: yes") or nil
-    volume:update_volume(vol_left, is_mute)
-    -- end
-  end
-
   function volume:mute()
-    awful.spawn.easy_async(mute_volume_cmd, function ()
-      awful.spawn.easy_async(get_volume_cmd, function(stdout, stderr, _, _)
-        update_widget(volume.widget, stdout, stderr)
-      end)
-    end)
+    awful.spawn.easy_async(mute_volume_cmd, function () end)
   end
 
   function volume:inc()
-    awful.spawn.easy_async(inc_volume_cmd, function ()
-      awful.spawn.easy_async(get_volume_cmd, function(stdout, stderr, _, _)
-        update_widget(volume.widget, stdout, stderr)
-      end)
-    end)
+    awful.spawn.easy_async(inc_volume_cmd, function () end)
   end
 
   function volume:dec()
-    awful.spawn.easy_async(dec_volume_cmd, function ()
-      awful.spawn.easy_async(get_volume_cmd, function(stdout, stderr, _, _)
-        update_widget(volume.widget, stdout, stderr)
-      end)
-    end)
+    awful.spawn.easy_async(dec_volume_cmd, function () end)
   end
 
   function volume:open()
@@ -139,7 +112,9 @@ local function worker(user_args)
       awful.button({}, 5, function() volume:dec() end)
     )
   )
-  watch(get_volume_cmd, timeout, update_widget, volume.widget)
+  awesome.connect_signal("signals::volume", function(value, muted)
+    volume.widget:update_volume(value, muted)
+  end)
 
   widget = wbutton.elevated.state({
     child = volume.widget,
