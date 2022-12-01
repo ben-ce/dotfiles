@@ -153,8 +153,9 @@ theme.border_radius = 10
 
 theme.taglist_styles = {
   'simple', -- 1
-  'animated', -- 2
-  'circle-animated' -- 3
+  'circle-animated', -- 2
+  'circle-slider-animated', -- 3
+  'circle-slider-icon-animated', -- 4
 }
 theme.chosen_taglist = theme.taglist_styles[3]
 
