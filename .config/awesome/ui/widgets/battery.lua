@@ -66,7 +66,7 @@ return function()
 		widget = wibox.container.rotate(),
 	})
 
-	local battery = wibox.widget({
+	local battery_icon = wibox.widget({
 		charging_icon,
 		{
 			battery_bar,
@@ -90,16 +90,9 @@ return function()
 	local battery_widget = wibox.widget({
 		layout = wibox.layout.fixed.horizontal,
 		spacing = dpi(5),
-    battery,
+    battery_icon,
 		battery_percentage_text,
 	})
-  local battery_tooltip = awful.tooltip{
-    objects = {battery},
-    mode = "outside",
-    align = "left",
-    margin = 10,
-    preferred_positions = {"right", "left", "top", "bottom"}
-  }
 
 	local widget = wbutton.elevated.state({
 		child = battery_widget,
@@ -109,6 +102,14 @@ return function()
 		end,
     margins = dpi(2),
 	})
+  local battery_tooltip = awful.tooltip{
+    objects = {widget},
+    mode = "outside",
+    align = "left",
+    margin = 10,
+    preferred_positions = {"right", "left", "top", "bottom"},
+    delay_show = 0.5
+  }
 
 	local last_value = 100
 	awesome.connect_signal("signal::battery", function(value, state, time_to_empty, time_to_full, kind)
