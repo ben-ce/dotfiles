@@ -51,17 +51,17 @@ end)
 
 screen.connect_signal('request::desktop_decoration', function(s)
   awful.tag(vars.tags, s, awful.layout.layouts[1])
-  s.layoutbox  = widgets.layoutbox(s)
-  s.launcher   = widgets.launcher
-  s.taglist    = widgets.taglist(s)
-  s.tasklist   = widgets.tasklist(s)
-  s.clock      = widgets.clock(s)
-  s.systray    = widgets.systray(s)
-  s.controlcenter = widgets.controlcenter(s)
+  s.layoutbox           = widgets.layoutbox(s)
+  s.launcher            = widgets.launcher
+  s.taglist             = widgets.taglist(s)
+  s.tasklist            = widgets.tasklist(s)
+  s.clock               = widgets.clock(s)
+  s.systray             = widgets.systray(s)
+  s.controlcenter       = widgets.controlcenter(s)
   s.notification_button = widgets.notification_button(s)
-  s.volume     = widgets.volume
-  s.battery    = widgets.battery()
-  s.brightness = widgets.brightness
-  s.kblayout   = widgets.create_keyboardlayout()
-  s.wibox      = widgets.create_wibox(s)
+  s.volume              = widgets.volume
+  s.battery             = widgets.battery()
+  s.brightness          = widgets.brightness
+  s.kblayout            = widgets.create_keyboardlayout()
+  s.wibox               = widgets.create_wibox(s)
 end)
