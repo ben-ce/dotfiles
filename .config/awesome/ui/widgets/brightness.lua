@@ -119,22 +119,11 @@ local function worker(user_args)
   else
     show_warning(type .. " type is not supported by the widget")
     return
-
-  end
-
-  local update_widget = function(brightness, stdout, _, _, _)
-    local brightness_level = tonumber(string.format("%.0f", stdout))
-    current_level = brightness_level
-    brightness:set_value(brightness_level)
   end
 
   function brightness:set(value)
     current_level = value
-    spawn.easy_async(string.format(set_brightness_cmd, value), function()
-      spawn.easy_async(get_brightness_cmd, function(out)
-        update_widget(brightness.widget, out)
-      end)
-    end)
+    spawn.easy_async(string.format(set_brightness_cmd, value), function() end)
   end
   local old_level = 0
   function brightness:toggle()
@@ -153,18 +142,10 @@ local function worker(user_args)
     brightness:set(current_level)
   end
   function brightness:inc()
-    spawn.easy_async(inc_brightness_cmd, function()
-      spawn.easy_async(get_brightness_cmd, function(out)
-        update_widget(brightness.widget, out)
-      end)
-    end)
+    spawn.easy_async(inc_brightness_cmd, function() end)
   end
   function brightness:dec()
-    spawn.easy_async(dec_brightness_cmd, function()
-      spawn.easy_async(get_brightness_cmd, function(out)
-        update_widget(brightness.widget, out)
-      end)
-    end)
+    spawn.easy_async(dec_brightness_cmd, function() end)
   end
 
   brightness.widget:buttons(
@@ -176,7 +157,9 @@ local function worker(user_args)
     )
   )
 
-  watch(get_brightness_cmd, timeout, update_widget, brightness.widget)
+  awesome.connect_signal("signals::brightness", function(value)
+    brightness.widget:set_value(value)
+  end)
 
   if tooltip then
     awful.tooltip {

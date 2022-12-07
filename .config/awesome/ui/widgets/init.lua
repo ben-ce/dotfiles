@@ -16,7 +16,7 @@ _M.volume     = require("ui.widgets.pipewire")
 _M.battery    = require("ui.widgets.battery")
 _M.brightness = require("ui.widgets.brightness"){
   type = "icon_and_text",
-  program = "light",
+  program = "brightnessctl",
   percentage = true,
 }
 _M.controlcenter = require("ui.widgets.controlcenter")
