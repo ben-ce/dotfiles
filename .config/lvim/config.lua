@@ -26,6 +26,19 @@ lvim.colorscheme = "tokyonight-storm"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- Map H, L, Alt-Left, Alt-Right to buffer cycle
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+vim.api.nvim_set_keymap("n", "<A-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+lvim.keys.normal_mode["<A-Right>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
+
+-- Map n, N to center cursor with zz
+vim.api.nvim_set_keymap("n", "n", "nzz", { silent = true })
+vim.api.nvim_set_keymap("n", "N", "Nzz", { silent = true })
+
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -129,14 +142,6 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
-
--- Map H, L, Alt-Left, Alt-Right to buffer cycle
-lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-vim.api.nvim_set_keymap("n", "<A-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<A-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-lvim.keys.normal_mode["<A-Right>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
 
 -- generic LSP settings
 -- -- make sure server will always be installed even if the server is in skipped_servers list
