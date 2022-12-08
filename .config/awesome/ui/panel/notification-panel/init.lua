@@ -21,7 +21,6 @@ return function(s)
   s.notification_panel = awful.popup({
     type = "normal",
     screen = s,
-    -- useless_gap * 4 + dpi(50) + dpi(4) = gaps around clients + tint height + tint padding
     border_width = dpi(5),
     border_color = beautiful.bg_focus,
     -- minimum_height = s.geometry.height - (beautiful.wibar_height + beautiful.useless_gap * 4 + dpi(50) + dpi(4) + dpi(5) * 2),
