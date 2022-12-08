@@ -60,6 +60,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
   s.controlcenter       = widgets.controlcenter(s)
   s.notification_button = widgets.notification_button(s)
   s.volume              = widgets.volume
+  s.volume_osd          = widgets.osd(s)
   s.battery             = widgets.battery()
   s.brightness          = widgets.brightness
   s.kblayout            = widgets.create_keyboardlayout()

@@ -165,6 +165,11 @@ theme.tasklist_styles = {
 }
 theme.chosen_tasklist = theme.tasklist_styles[1]
 
+theme.osd_styles = {
+  'progressbar',
+}
+theme.chosen_osd_style = theme.osd_styles[1]
+
 return theme
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

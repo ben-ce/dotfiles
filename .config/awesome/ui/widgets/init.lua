@@ -22,6 +22,7 @@ _M.brightness = require("ui.widgets.brightness"){
 _M.controlcenter = require("ui.widgets.controlcenter")
 _M.layoutbox = require("ui.widgets.layoutbox")
 _M.notification_button = require("ui.widgets.notification_button")
+_M.osd = require("ui.widgets.osd")
 
 _M.keyboardlayout = awful.widget.keyboardlayout()
 
