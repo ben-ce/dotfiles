@@ -157,13 +157,13 @@ theme.taglist_styles = {
   'circle-slider-animated', -- 3
   'circle-slider-icon-animated', -- 4
 }
-theme.chosen_taglist = theme.taglist_styles[3]
+theme.chosen_taglist_style = theme.taglist_styles[3]
 
 theme.tasklist_styles = {
   'icon_only',
   'icon_and_text',
 }
-theme.chosen_tasklist = theme.tasklist_styles[1]
+theme.chosen_tasklist_style = theme.tasklist_styles[1]
 
 theme.osd_styles = {
   'progressbar',
