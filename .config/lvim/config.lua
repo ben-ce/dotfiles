@@ -11,7 +11,8 @@ an executable
 -- general
 lvim.log.level = "info"
 lvim.format_on_save.enabled = false
-vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+vim.opt.fillchars:append('diff:╱')
+vim.opt.diffopt:append("vertical")
 vim.opt.wrap = true
 vim.opt.relativenumber = true
 
