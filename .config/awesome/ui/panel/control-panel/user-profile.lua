@@ -180,7 +180,7 @@ local function widget()
           text_normal_bg = beautiful.accent,
           normal_bg = beautiful.gray,
           text = "\u{f023}",
-          size = 24,
+          size = 18,
           on_release = function()
             lock_screen_show()
             awesome.emit_signal("control_panel::toggle", focused)
@@ -193,7 +193,7 @@ local function widget()
           text_normal_bg = beautiful.red,
           normal_bg = beautiful.gray,
           text = "\u{f011}",
-          size = 24,
+          size = 18,
           on_release = function()
             awesome.emit_signal("module::exit_screen:show")
             awesome.emit_signal("control_panel::toggle", focused)

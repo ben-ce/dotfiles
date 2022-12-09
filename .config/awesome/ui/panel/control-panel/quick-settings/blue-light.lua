@@ -19,7 +19,7 @@ local function button(icon)
     text_normal_bg = beautiful.accent,
     text_on_normal_bg = beautiful.black,
     font = beautiful.icon_font_name,
-    size = 24,
+    size = 18,
     text = icon,
   })
 end

@@ -21,7 +21,7 @@ local function button(icon, command)
 		text_normal_bg = beautiful.accent,
 		text_on_normal_bg = beautiful.bg_normal,
 		font = beautiful.icon_font .. "Round ",
-		size = 17,
+    size = 18,
 		text = icon,
 		on_release = function()
 			awesome.emit_signal("control_panel::toggle", awful.screen.focused())

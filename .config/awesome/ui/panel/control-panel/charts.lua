@@ -35,7 +35,7 @@ local function mkchart(header, icon)
                 {
                   {
                     markup = icon,
-                    font = beautiful.icon_font_name .. ' 34',
+                    font = beautiful.alt_font_name .. '34',
                     widget = wibox.widget.textbox,
                   },
                   direction = 'west',
