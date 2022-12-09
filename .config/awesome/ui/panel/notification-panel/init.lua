@@ -21,7 +21,7 @@ return function(s)
   s.notification_panel = awful.popup({
     type = "normal",
     screen = s,
-    border_width = dpi(5),
+    border_width = dpi(3),
     border_color = beautiful.bg_focus,
     -- minimum_height = s.geometry.height - (beautiful.wibar_height + beautiful.useless_gap * 4 + dpi(50) + dpi(4) + dpi(5) * 2),
     minimum_height = dpi(700),
@@ -29,7 +29,7 @@ return function(s)
     -- maximum_height = s.geometry.height - (beautiful.wibar_height + beautiful.useless_gap * 4 + dpi(50) + dpi(4) + dpi(5) * 2),
     minimum_width = dpi(350),
     maximum_width = dpi(350),
-    bg = beautiful.transparent,
+    bg = beautiful.bg_normal,
     ontop = true,
     visible = false,
     placement = function(w)
@@ -38,50 +38,45 @@ return function(s)
       })
     end,
     widget = {
+      -- { ----------- TOP GROUP -----------
+      -- helpers.ui.vertical_pad(dpi(30)),
       {
-        -- { ----------- TOP GROUP -----------
-        -- helpers.ui.vertical_pad(dpi(30)),
+        nil,
         {
-          nil,
-          {
-            notif_header,
-            margins = dpi(20),
-            widget = wibox.container.margin,
-          },
-          {
-            require("ui.panel.notification-panel.notif-center.clear-all"),
-            margins = dpi(20),
-            widget = wibox.container.margin,
-          },
-          expand = 'none',
-          layout = wibox.layout.align.horizontal,
-        },
-        {
-          require("ui.panel.notification-panel.notif-center")(s),
+          notif_header,
           margins = dpi(20),
           widget = wibox.container.margin,
         },
-        layout = wibox.layout.fixed.vertical,
-        -- },
-        -- { ----------- MIDDLE GROUP -----------
-        --   {
-        --     {
-        --       require("ui.panel.notification-panel.github-activity"),
-        --       margins = dpi(20),
-        --       widget = wibox.container.margin,
-        --     },
-        --     helpers.ui.vertical_pad(dpi(30)),
-        --     layout = wibox.layout.fixed.vertical,
-        --   },
-        --   shape = helpers.ui.prrect(beautiful.border_radius * 2, true, false, false, false),
-        --   bg = beautiful.widget_bg,
-        --   widget = wibox.container.background,
-        -- },
-        -- layout = wibox.layout.flex.vertical,
+        {
+          require("ui.panel.notification-panel.notif-center.clear-all"),
+          margins = dpi(20),
+          widget = wibox.container.margin,
+        },
+        expand = 'none',
+        layout = wibox.layout.align.horizontal,
       },
-      -- shape = helpers.ui.prrect(beautiful.border_radius * 2, true, false, false, false),
-      bg = beautiful.wibar_bg,
-      widget = wibox.container.background,
+      {
+        require("ui.panel.notification-panel.notif-center")(s),
+        margins = dpi(20),
+        widget = wibox.container.margin,
+      },
+      layout = wibox.layout.fixed.vertical,
+      -- },
+      -- { ----------- MIDDLE GROUP -----------
+      --   {
+      --     {
+      --       require("ui.panel.notification-panel.github-activity"),
+      --       margins = dpi(20),
+      --       widget = wibox.container.margin,
+      --     },
+      --     helpers.ui.vertical_pad(dpi(30)),
+      --     layout = wibox.layout.fixed.vertical,
+      --   },
+      --   shape = helpers.ui.prrect(beautiful.border_radius * 2, true, false, false, false),
+      --   bg = beautiful.widget_bg,
+      --   widget = wibox.container.background,
+      -- },
+      -- layout = wibox.layout.flex.vertical,
     },
   })
 

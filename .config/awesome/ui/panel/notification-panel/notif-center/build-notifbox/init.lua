@@ -35,7 +35,7 @@ local notifbox_add = function(n, notif_icon, notifbox_color)
 end
 
 naughty.connect_signal("request::display", function(n)
-	local notifbox_color = beautiful.transparent
+	local notifbox_color = beautiful.bg_focus .. "66"
 	if n.urgency == "critical" then
 		notifbox_color = n.bg .. "66"
 	end

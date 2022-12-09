@@ -141,7 +141,7 @@ return function(s)
     maximum_height = dpi(700),
     minimum_width = dpi(700),
     maximum_width = dpi(700),
-    border_width = dpi(5),
+    border_width = dpi(3),
     border_color = beautiful.bg_focus,
     bg = beautiful.bg_normal,
     ontop = true,
@@ -152,45 +152,41 @@ return function(s)
       })
     end,
     widget = {
-      -- {
-        {
-          header(),
-          margins = { top = dpi(10), bottom = dpi(10), right = dpi(20), left = dpi(20) },
-          widget = wibox.container.margin,
-        },
+      {
+        header(),
+        margins = { top = dpi(10), bottom = dpi(10), right = dpi(20), left = dpi(20) },
+        widget = wibox.container.margin,
+      },
+      {
         {
           {
+            nil,
             {
-              nil,
               {
-                {
-                  s.user_profile,
-                  s.quick_settings,
-                  s.music,
-                  layout = wibox.layout.fixed.vertical,
-                },
-                {
-                  -- s.stats,
-                  s.charts,
-                  s.awesomewm,
-                  layout = wibox.layout.fixed.vertical,
-                },
-                layout = wibox.layout.align.horizontal,
+                s.user_profile,
+                s.quick_settings,
+                s.music,
+                layout = wibox.layout.fixed.vertical,
               },
-              layout = wibox.layout.align.vertical,
+              {
+                -- s.stats,
+                s.charts,
+                s.awesomewm,
+                layout = wibox.layout.fixed.vertical,
+              },
+              layout = wibox.layout.align.horizontal,
             },
-            margins = dpi(10),
-            widget = wibox.container.margin,
+            layout = wibox.layout.align.vertical,
           },
-          bg = beautiful.wibar_bg,
-          shape = gears.shape.rounded_rect,
-          widget = wibox.container.background,
+          margins = dpi(10),
+          widget = wibox.container.margin,
         },
-        layout = wibox.layout.align.vertical,
+        bg = beautiful.wibar_bg,
+        shape = gears.shape.rounded_rect,
+        widget = wibox.container.background,
       },
-    --   bg = beautiful.widget_bg,
-    --   widget = wibox.container.background,
-    -- },
+      layout = wibox.layout.align.vertical,
+    },
   })
 
   -- -- sliding animation

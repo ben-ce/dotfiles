@@ -40,9 +40,9 @@ return function(s)
     -- end,
     minimum_width = dpi(350),
     maximum_width = dpi(350),
-    border_width = dpi(5),
+    border_width = dpi(3),
     border_color = beautiful.bg_focus,
-    -- bg = beautiful.bg_normal,
+    bg = beautiful.bg_normal,
     ontop = true,
     visible = false,
     placement = function(w)
@@ -52,43 +52,40 @@ return function(s)
     end,
     widget = {
       {
+        date_time,
         {
-          date_time,
           {
-            {
-              s.calendar,
-              margins = { top = dpi(8), left = dpi(16), bottom = dpi(16), right = dpi(16) },
-              widget = wibox.container.margin,
-            },
-            bg = beautiful.widget_bg,
-            shape = helpers.ui.rrect(beautiful.border_radius),
-            widget = wibox.container.background,
-          },
-          {
-            top = dpi(20),
+            s.calendar,
+            margins = { top = dpi(8), left = dpi(16), bottom = dpi(16), right = dpi(16) },
             widget = wibox.container.margin,
           },
-          {
-            {
-              s.weather,
-              margins = dpi(16),
-              widget = wibox.container.margin,
-            },
-            bg = beautiful.widget_bg,
-            shape = helpers.ui.rrect(beautiful.border_radius),
-            widget = wibox.container.background,
-          },
-          {
-            top = dpi(20),
-            widget = wibox.container.margin,
-          },
-          layout = wibox.layout.fixed.vertical,
+          bg = beautiful.widget_bg,
+          shape = helpers.ui.rrect(beautiful.border_radius),
+          widget = wibox.container.background,
         },
-        margins = {top = dpi(10), bottom = dpi(10), left = dpi(25), right = dpi(25)},
-        shape = helpers.ui.rrect(beautiful.border_radius),
-        widget = wibox.container.margin,
+        {
+          top = dpi(20),
+          widget = wibox.container.margin,
+        },
+        {
+          {
+            s.weather,
+            margins = dpi(16),
+            widget = wibox.container.margin,
+          },
+          bg = beautiful.widget_bg,
+          shape = helpers.ui.rrect(beautiful.border_radius),
+          widget = wibox.container.background,
+        },
+        {
+          top = dpi(20),
+          widget = wibox.container.margin,
+        },
+        layout = wibox.layout.fixed.vertical,
       },
-      widget = wibox.container.background,
+      margins = {top = dpi(10), bottom = dpi(10), left = dpi(25), right = dpi(25)},
+      shape = helpers.ui.rrect(beautiful.border_radius),
+      widget = wibox.container.margin,
     },
   })
 
