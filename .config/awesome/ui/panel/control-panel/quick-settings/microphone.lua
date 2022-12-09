@@ -22,35 +22,24 @@ local function button(icon)
   })
 end
 
-local widget = button("\u{f131}")
+local widget = button("")
 
-local update_widget = function()
-  awful.spawn.easy_async_with_shell(
-    [[
-    pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}'
-    ]],
-    function(stdout)
-      if stdout:match("no") then
-        widget:turn_off()
-      else
-        widget:turn_on()
-      end
-    end
-  )
+local update_widget = function(is_muted)
+  if not is_muted then
+    widget:turn_off()
+  else
+    widget:turn_on()
+  end
 end
-
---- run once every startup/reload
-update_widget()
 
 --- buttons
 widget:buttons(gears.table.join(awful.button({}, 1, nil, function()
   awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle", false)
-  update_widget()
 end)))
 
 --- signal to use when using the mute hotkey
-awesome.connect_signal("mic_mute::toggle", function ()
-  update_widget()
+awesome.connect_signal("signals::microphone", function (is_muted)
+  update_widget(is_muted)
 end)
 
 return widget

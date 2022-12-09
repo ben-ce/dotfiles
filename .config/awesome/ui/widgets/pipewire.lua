@@ -59,7 +59,7 @@ local function worker(user_args)
     update_volume = function(self, value, is_mute)
       local font_color = beautiful.fg_normal
       local volume_icon
-      local volume_text = string.format("%s", value)
+      local volume_text = string.format("%d", value) .. "%"
       if is_mute then
         volume_icon = string.format("%s", '\u{fc5d}')
         volume_text = string.format("%s", "mute")

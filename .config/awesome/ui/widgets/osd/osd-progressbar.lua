@@ -49,6 +49,7 @@ local textIcon = wibox.widget {
     widget = wibox.widget.textbox,
   },
   forced_height = dpi(165),
+  forced_width = dpi(165),
   top = dpi(14),
   widget = wibox.container.margin
 }
@@ -69,9 +70,6 @@ return function(s)
     ontop   = true,
     visible = false,
     screen = s,
-    -- screen  = awful.screen.focused{},
-    -- screen = mouse.screen,
-    -- placement = awful.placement.centered,
     placement = function(w)
       awful.placement.centered(w)
     end
@@ -158,9 +156,10 @@ return function(s)
   local vol_off = helpers.ui.colorize_text("",beautiful.fg_normal)
   local vol_muted = helpers.ui.colorize_text( "", beautiful.red)
   local bri_icon = helpers.ui.colorize_text("", beautiful.fg_normal)
+  local mic_icon = helpers.ui.colorize_text("", beautiful.fg_normal)
+  local mic_muted = helpers.ui.colorize_text("", beautiful.red)
 
-  -- volume
-  -- signal::volume is the conexion for awesome
+  -- volume signal
   local volume_popup_isActived = true
   awesome.connect_signal("signals::volume", function(value, muted, scr)
     if muted then
@@ -178,6 +177,7 @@ return function(s)
     end
 
     progressbar.bar.value = value
+    progressbar.bar.visible = true
 
     if volume_popup_isActived then
       volume_popup_isActived = false
@@ -188,12 +188,33 @@ return function(s)
     end
   end)
 
+  -- brightness signal
   local brightness_popup_isActived = true
   awesome.connect_signal("signals::brightness", function(value, scr)
     textIcon.icon.markup = bri_icon
     progressbar.bar.value = value
+    progressbar.bar.visible = true
     if brightness_popup_isActived then
       brightness_popup_isActived = false
+    else
+      if scr == s then
+        toggle_pop(scr)
+      end
+    end
+  end)
+
+  -- microphone signal
+  local mic_popup_isActived = true
+  awesome.connect_signal("signals::microphone", function(muted, scr)
+    if muted then
+      textIcon.icon.markup = mic_muted
+    else
+      textIcon.icon.markup = mic_icon
+    end
+    progressbar.bar.value = nil
+    progressbar.bar.visible = false
+    if mic_popup_isActived then
+      mic_popup_isActived = false
     else
       if scr == s then
         toggle_pop(scr)

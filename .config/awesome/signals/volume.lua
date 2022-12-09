@@ -5,6 +5,7 @@ local awful = require("awful")
 
 local volume_old = -1
 local muted_old = -1
+local mic_muted_old = -1
 local function emit_volume_info()
   -- Get volume info of the currently active sink
   local get_volume_cmd = "pactl get-sink-volume @DEFAULT_SINK@ && pactl get-sink-mute @DEFAULT_SINK@"
@@ -28,8 +29,21 @@ local function emit_volume_info()
   end)
 end
 
+local function emit_mic_info()
+  local get_mic_status_cmd = "pactl get-source-mute @DEFAULT_SOURCE@"
+  awful.spawn.easy_async_with_shell(get_mic_status_cmd, function(stdout, stderr)
+    local mic_is_mute = string.match(stdout, "Mute: yes") or nil
+    local mic_muted_int = mic_is_mute and 1 or 0
+    if mic_muted_int ~= mic_muted_old then
+      awesome.emit_signal("signals::microphone", mic_is_mute, awful.screen.focused{})
+      mic_muted_old = mic_muted_int
+    end
+  end)
+end
+
 -- Run once to initialize widgets
 emit_volume_info()
+emit_mic_info()
 
 -- Sleeps until pactl detects an event (volume up/down/toggle mute)
 local volume_script = [[
@@ -43,6 +57,7 @@ awful.spawn.easy_async({"pkill", "--full", "--uid", os.getenv("USER"), "^pactl s
   awful.spawn.with_line_callback(volume_script, {
     stdout = function(line)
       emit_volume_info()
+      emit_mic_info()
     end
   })
 end)
