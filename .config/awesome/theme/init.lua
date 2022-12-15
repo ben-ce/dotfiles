@@ -174,7 +174,7 @@ theme.chosen_tasklist_style = theme.tasklist_styles[1]
 
 theme.osd_styles = {
   'progressbar',
-  'arc',
+  'arcchart',
 }
 theme.chosen_osd_style = theme.osd_styles[1]
 
