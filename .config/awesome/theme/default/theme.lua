@@ -10,7 +10,13 @@ local gears = require("gears")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
-local theme = {}
+local themes = {
+  "nord", -- 1
+  "tokyonight", -- 2
+  "catppuccin-frappe", -- 3
+  "catppuccin-macchiato", -- 4
+}
+local theme = require("themes.colorschemes." .. themes[2])
 
 theme.useless_gap   = dpi(10)
 theme.border_width  = dpi(0)
@@ -151,6 +157,11 @@ theme.widget_icon_gap = 2
 theme.wibar_height = dpi(40)
 theme.border_radius = 10
 
+-- Generate Awesome icon:
+theme.awesome_icon = theme_assets.awesome_icon(
+    theme.menu_height*2, theme.bg_focus, theme.fg_focus
+)
+
 theme.taglist_styles = {
   'simple', -- 1
   'circle-animated', -- 2
@@ -167,9 +178,9 @@ theme.chosen_tasklist_style = theme.tasklist_styles[1]
 
 theme.osd_styles = {
   'progressbar',
+  'arc',
 }
 theme.chosen_osd_style = theme.osd_styles[1]
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+-- require("beautiful").init(theme)

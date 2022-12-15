@@ -1,41 +1,32 @@
-local gtable = require("gears.table")
-local default_theme = require("themes.default.theme")
-local theme_assets = require("beautiful.theme_assets")
-
 local theme = {}
--- Override elements in the custom theme table with the default ones
-gtable.crush(theme, default_theme)
 
--- Tokyo Night color scheme
-theme.color0 = "#414868"
-theme.color1 = "#565f89"
-theme.color2 = "#cfc9c2"
-theme.color3 = "#9aa5ce"
-theme.color4 = "#a9b1d6"
-theme.color5 = "#c0caf5"
-theme.color6 = "#bb9af7"
-theme.color7 = "#7aa2f7"
-theme.color8 = "#7dcfff"
-theme.color9 = "#2ac3de"
-theme.color10 = "#b4f9f8"
-theme.color11 = "#73daca"
-theme.color12 = "#9ece6a"
-theme.color13 = "#e0af68"
-theme.color14 = "#ff9e64"
-theme.color15 = "#f7768e"
-theme.background = "#24283b"
-theme.foreground = "#c0caf5"
+-- Nord color scheme
+theme.color0  = "#2E3440"
+theme.color1  = "#3B4252"
+theme.color2  = "#434C5E"
+theme.color3  = "#4C566A"
+theme.color4  = "#D8DEE9"
+theme.color5  = "#E5E9F0"
+theme.color6  = "#ECEFF4"
+theme.color7  = "#8FBCBB"
+theme.color8  = "#88C0D0"
+theme.color9  = "#81A1C1"
+theme.color10 = "#5E81AC"
+theme.color11 = "#BF616A"
+theme.color12 = "#D08770"
+theme.color13 = "#EBCB8B"
+theme.color14 = "#A3BE8C"
+theme.color15 = "#B48EAD"
+theme.background = theme.color0
+theme.foreground = theme.color4
 
-theme.red    = theme.color15
-theme.orange = theme.color14
+theme.red    = theme.color11
+theme.orange = theme.color12
 theme.yellow = theme.color13
-theme.green  = theme.color12
-theme.teal   = theme.color11
-theme.sky    = theme.color10
-theme.sapphire = theme.color8
-theme.blue   = theme.color7
-theme.white  = theme.color5
-theme.gray   = theme.color1
+theme.green  = theme.color14
+theme.blue   = theme.color8
+theme.white  = theme.color4
+theme.gray   = theme.color2
 theme.black  = theme.color0
 theme.accent    = theme.white
 
@@ -56,7 +47,7 @@ theme.border_normal = theme.color7
 theme.border_marked = theme.color15
 theme.border_focus  = theme.color7
 
-theme.widget_bg = theme.bg_focus
+theme.widget_bg = theme.bg_normal
 theme.wibar_bg = theme.bg_normal
 
 -- theme.taglist_spacing = dpi(5)
@@ -76,25 +67,5 @@ theme.window_switcher_widget_bg = theme.bg_normal -- The bg color of the widget
 theme.window_switcher_widget_border_color = theme.border_normal -- The border color of the widget
 theme.window_switcher_name_normal_color = theme.fg_normal -- The color of one title if the client is unfocused
 theme.window_switcher_name_focus_color = theme.yellow -- The color of one title if the client is focused
-
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height*2, theme.bg_focus, theme.fg_focus
-)
-
---- Accent colors
-function theme.random_accent_color()
-	local accents = {
-		theme.color9,
-		theme.color10,
-		theme.color11,
-		theme.color12,
-		theme.color13,
-		theme.color14,
-	}
-
-	local i = math.random(1, #accents)
-	return accents[i]
-end
 
 return theme
