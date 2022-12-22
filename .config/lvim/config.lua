@@ -1,20 +1,29 @@
---[[
-lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
-]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
-lvim.log.level = "info"
-lvim.format_on_save.enabled = false
-vim.opt.fillchars:append('diff:╱')
+vim.opt.fillchars = vim.opt.fillchars
+	+ {
+		fold = " ",
+		eob = " ", -- suppress ~ at EndOfBuffer
+		diff = "╱", -- alternatives = ⣿ ░ ─
+		foldsep = "│",
+		foldopen = "",
+		foldclose = "",
+	}
+
 vim.opt.diffopt:append("vertical")
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+lvim.log.level = "info"
+
+-- fold options
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldlevel = 2
+vim.wo.foldcolumn = "1"
+vim.wo.foldtext =
+	[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+vim.wo.foldnestmax = 3
+vim.wo.foldminlines = 1
+lvim.format_on_save.enabled = true
 
 -- Colorschemes
 lvim.colorscheme = "tokyonight-storm"
