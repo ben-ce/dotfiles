@@ -98,87 +98,86 @@ lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
 lvim.builtin.nvimtree.setup.hijack_directories = {
-  enable = true,
-  auto_open = true,
+	enable = true,
+	auto_open = true,
 }
 
 -- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.matchup = { enable = true }
 lvim.builtin.gitsigns.opts.signs = {
-  add = { text = "▌" },
-  change = { text = "▌" },
+	add = { text = "▌" },
+	change = { text = "▌" },
 }
 
 -- lualine statusline theme setup
 lvim.builtin.lualine.options = {
-  theme = "auto",
-  component_separators = { left = "", right = "" },
-  section_separators = { left = "", right = "" },
+	theme = "auto",
+	component_separators = { left = "", right = "" },
+	section_separators = { left = "", right = "" },
 }
 
-local components = require "lvim.core.lualine.components"
+local components = require("lvim.core.lualine.components")
 lvim.builtin.lualine.sections = {
-  lualine_a = {
-    "mode",
-  },
-  lualine_x = {
-    components.diagnostics,
-    components.treesitter,
-    components.lsp,
-    components.filetype,
-    components.encoding,
-    components.location,
-  },
-  lualine_y = {
-  },
+	lualine_a = {
+		"mode",
+	},
+	lualine_b = {
+		components.filename,
+		components.branch,
+	},
+	lualine_x = {
+		"searchcount",
+		components.diagnostics,
+		components.treesitter,
+		components.lsp,
+		components.filetype,
+		components.encoding,
+		components.spaces,
+		"filesize",
+	},
+	lualine_y = {
+		components.location,
+	},
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+	"bash",
+	"c",
+	"javascript",
+	"json",
+	"lua",
+	"python",
+	"typescript",
+	"tsx",
+	"css",
+	"rust",
+	"java",
+	"yaml",
+	"toml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
 
--- generic LSP settings
--- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
--- -- change UI setting of `LspInstallInfo`
--- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---     uninstall_server = "d",
---     toggle_server_expand = "o",
--- }
+-- Automatically install missing parsers when entering buffer
+lvim.builtin.treesitter.auto_install = true
 
--- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+-- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
--- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
--- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
+-- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
+
+-- --- disable automatic installation of servers
+-- lvim.lsp.installer.setup.automatic_installation = false
+
+-- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
--- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
--- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
--- vim.tbl_map(function(server)
+-- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 --   return server ~= "emmet_ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
@@ -192,37 +191,22 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
+-- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
 -- local formatters = require "lvim.lsp.null-ls.formatters"
 -- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
+--   { command = "stylua" },
 --   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--     extra_args = { "--print-width", "100" },
 --     filetypes = { "typescript", "typescriptreact" },
 --   },
 -- }
-
--- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
---     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--severity", "warning" },
---   },
---   {
---     command = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
+--     args = { "--severity", "warning" },
 --   },
 -- }
 
@@ -237,123 +221,179 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- local cb = require 'diffview.config'.diffview_callback
 
 lvim.plugins = {
-  -- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
-  -- { "folke/tokyonight.nvim" },
-  -- { "RRethy/vim-illuminate" },
-  -- { "lukas-reineke/indent-blankline.nvim",
-  --   event = "BufRead",
-  --   config = function()
-  --     require("indent_blankline").setup {
-  --       -- for example, context is off by default, use this to turn it on
-  --       char = "▏",
-  --       filetype_exclude = { "help", "terminal", "dashboard" },
-  --       buftype_exclude = { "terminal" },
-  --       blankline_indent = false,
-  --       space_char_blankline = " ",
-  --       show_current_context = true,
-  --       show_current_context_start = false,
-  --       show_first_indent_level = false,
-  --     }
-  --   end,
-  -- },
-  { "sindrets/diffview.nvim",
-    event = "BufRead",
-  },
-  { "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require("neoscroll").setup{
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true, -- Hide cursor while scrolling
-        stop_eof = true, -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil, -- Default easing function
-        pre_hook = nil, -- Function to run before the scrolling animation starts
-        post_hook = nil, -- Function to run after the scrolling animation ends
-      }
-    end,
-  },
-  { "ray-x/lsp_signature.nvim",
-    event = { "BufRead", "BufNew" },
-    config = function()
-      require "lsp_signature".on_attach()
-    end,
-  },
-  { "simrat39/symbols-outline.nvim",
-    config = function()
-      require('symbols-outline').setup()
-    end
-  },
-  { "norcalli/nvim-colorizer.lua",
-    event = "BufReadPre",
-    config = function()
-      require("colorizer").setup({ '*'; },
-        {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          RRGGBBAA = true, -- #RRGGBBAA hex codes
-          rgb_fn = true, -- CSS rgb() and rgba() functions
-          hsl_fn = true, -- CSS hsl() and hsla() functions
-          css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        }
-      )
-    end,
-  },
-  { "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
-  { "romgrk/nvim-treesitter-context",
-    config = function()
-      require("treesitter-context").setup{
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        throttle = true, -- Throttles plugin updates (may improve performance)
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-          -- For all filetypes
-          -- Note that setting an entry here replaces all other patterns for this entry.
-          -- By setting the 'default' entry below, you can control which nodes you want to
-          -- appear in the context window.
-          default = {
-            'class',
-            'function',
-            'for',
-            'while',
-            'if',
-            'switch',
-            'case',
-            'interface',
-            'struct',
-            'enum',
-            'method',
-          },
-        },
-      }
-    end
-  },
-  { "gen740/SmoothCursor.nvim",
-    config = function()
-      require('smoothcursor').setup{
-        speed = 100,
-      }
-    end
-  },
-  { "max397574/better-escape.nvim",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-  { "npxbr/glow.nvim",
-    ft = {"markdown"}
-  },
-  { "catppuccin/nvim" },
+	-- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
+	-- { "folke/tokyonight.nvim" },
+	-- { "RRethy/vim-illuminate" },
+	-- { "lukas-reineke/indent-blankline.nvim",
+	--   event = "BufRead",
+	--   config = function()
+	--     require("indent_blankline").setup {
+	--       -- for example, context is off by default, use this to turn it on
+	--       char = "▏",
+	--       filetype_exclude = { "help", "terminal", "dashboard" },
+	--       buftype_exclude = { "terminal" },
+	--       blankline_indent = false,
+	--       space_char_blankline = " ",
+	--       show_current_context = true,
+	--       show_current_context_start = false,
+	--       show_first_indent_level = false,
+	--     }
+	--   end,
+	-- },
+	{ "sindrets/diffview.nvim", event = "BufRead" },
+	{
+		"karb94/neoscroll.nvim",
+		event = "WinScrolled",
+		config = function()
+			require("neoscroll").setup({
+				-- All these keys will be mapped to their corresponding default scrolling animation
+				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+				hide_cursor = true, -- Hide cursor while scrolling
+				stop_eof = true, -- Stop at <EOF> when scrolling downwards
+				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+				easing_function = nil, -- Default easing function
+				pre_hook = nil, -- Function to run before the scrolling animation starts
+				post_hook = nil, -- Function to run after the scrolling animation ends
+			})
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = { "BufRead", "BufNew" },
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
+	},
+	{
+		"simrat39/symbols-outline.nvim",
+		event = "BufReadPost",
+		config = function()
+			require("symbols-outline").setup()
+		end,
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = "BufReadPre",
+		config = function()
+			require("colorizer").setup({ "*" }, {
+				RGB = true, -- #RGB hex codes
+				RRGGBB = true, -- #RRGGBB hex codes
+				RRGGBBAA = true, -- #RRGGBBAA hex codes
+				rgb_fn = true, -- CSS rgb() and rgba() functions
+				hsl_fn = true, -- CSS hsl() and hsla() functions
+				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+			})
+		end,
+	},
+	{
+		"folke/todo-comments.nvim",
+		event = "BufRead",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
+	{
+		"romgrk/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup({
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+				throttle = true, -- Throttles plugin updates (may improve performance)
+				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+				patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+					-- For all filetypes
+					-- Note that setting an entry here replaces all other patterns for this entry.
+					-- By setting the 'default' entry below, you can control which nodes you want to
+					-- appear in the context window.
+					default = {
+						"class",
+						"function",
+						"for",
+						"while",
+						"if",
+						"switch",
+						"case",
+						"interface",
+						"struct",
+						"enum",
+						"method",
+					},
+				},
+			})
+		end,
+	},
+	{
+		"gen740/SmoothCursor.nvim",
+		config = function()
+			require("smoothcursor").setup({
+				speed = 100,
+			})
+		end,
+	},
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup()
+		end,
+	},
+	{ "npxbr/glow.nvim", ft = { "markdown" } },
+	{ "catppuccin/nvim" },
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	},
+	{
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup({
+				auto_open = true,
+				auto_close = true,
+				padding = false,
+				height = 10,
+				use_diagnostic_signs = true,
+			})
+		end,
+		cmd = "Trouble",
+	},
+	{
+		"jinh0/eyeliner.nvim",
+		config = function()
+			require("eyeliner").setup({
+				highlight_on_key = true,
+			})
+		end,
+	},
+	{
+		"vigoux/notifier.nvim",
+		config = function()
+			require("notifier").setup({
+				-- You configuration here
+			})
+		end,
+	},
+
+	-- rust plugins
+	{ "simrat39/rust-tools.nvim" },
+	{
+		"saecki/crates.nvim",
+		tag = "v0.3.0",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("crates").setup({
+				null_ls = {
+					enabled = true,
+					name = "crates.nvim",
+				},
+				popup = {
+					border = "rounded",
+				},
+			})
+		end,
+	},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
