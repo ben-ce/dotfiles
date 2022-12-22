@@ -210,16 +210,86 @@ lvim.builtin.treesitter.auto_install = true
 --   },
 -- }
 
--- Additional Plugins
--- lvim.plugins = {
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
--- local cb = require 'diffview.config'.diffview_callback
+-- Rust LSP settings
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
+local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
+local codelldb_adapter = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = mason_path .. "bin/codelldb",
+		args = { "--port", "${port}" },
+		-- On windows you may have to uncomment this:
+		-- detached = false,
+	},
+}
+
+pcall(function()
+	require("rust-tools").setup({
+		tools = {
+			executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+			reload_workspace_from_cargo_toml = true,
+			runnables = {
+				use_telescope = true,
+			},
+			inlay_hints = {
+				auto = true,
+				only_current_line = false,
+				show_parameter_hints = false,
+				parameter_hints_prefix = "<-",
+				other_hints_prefix = "=>",
+				max_len_align = false,
+				max_len_align_padding = 1,
+				right_align = false,
+				right_align_padding = 7,
+				highlight = "Comment",
+			},
+			hover_actions = {
+				border = "rounded",
+			},
+			on_initialized = function()
+				vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
+					pattern = { "*.rs" },
+					callback = function()
+						local _, _ = pcall(vim.lsp.codelens.refresh)
+					end,
+				})
+			end,
+		},
+		dap = {
+			adapter = codelldb_adapter,
+		},
+		server = {
+			on_attach = function(client, bufnr)
+				require("lvim.lsp").common_on_attach(client, bufnr)
+				local rt = require("rust-tools")
+				vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+			end,
+
+			capabilities = require("lvim.lsp").common_capabilities(),
+			settings = {
+				["rust-analyzer"] = {
+					lens = {
+						enable = true,
+					},
+					checkOnSave = {
+						enable = true,
+						command = "clippy",
+					},
+				},
+			},
+		},
+	})
+end)
+
+-- Formatters
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ command = "stylua", filetypes = { "lua" } },
+})
+
+-- Additional Plugins
 lvim.plugins = {
 	-- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
 	-- { "folke/tokyonight.nvim" },
