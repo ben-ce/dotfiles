@@ -330,13 +330,6 @@ lvim.plugins = {
 		end,
 	},
 	{
-		"ray-x/lsp_signature.nvim",
-		event = { "BufRead", "BufNew" },
-		config = function()
-			require("lsp_signature").on_attach()
-		end,
-	},
-	{
 		"simrat39/symbols-outline.nvim",
 		event = "BufReadPost",
 		config = function()
@@ -411,12 +404,6 @@ lvim.plugins = {
 	{ "npxbr/glow.nvim", ft = { "markdown" } },
 	{ "catppuccin/nvim" },
 	{
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup()
-		end,
-	},
-	{
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({
@@ -437,6 +424,26 @@ lvim.plugins = {
 			})
 		end,
 	},
+
+	--these plugins can provide what noice can also
+	-- - signature: lsp_signature
+	-- - lsp progress status: fidget
+	-- - vim.notify: notifier
+	-- - input ui for rename etc: dressing
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup({
+				hint_prefix = " ",
+			})
+		end,
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	},
 	{
 		"vigoux/notifier.nvim",
 		config = function()
@@ -445,6 +452,57 @@ lvim.plugins = {
 			})
 		end,
 	},
+	{
+		"stevearc/dressing.nvim",
+		config = function()
+			require("dressing").setup({
+				select = {
+					enabled = false,
+				},
+			})
+		end,
+	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	config = function()
+	-- 		require("noice").setup({
+	-- 			cmdline = {
+	-- 				format = {
+	-- 					cmdline = {
+	-- 						view = "cmdline",
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 			presets = {
+	-- 				bottom_search = false, -- use a classic bottom cmdline for search
+	-- 				command_palette = false, -- position the cmdline and popupmenu together
+	-- 				long_message_to_split = false, -- long messages will be sent to a split
+	-- 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+	-- 				lsp_doc_border = true, -- add a border to hover docs and signature help
+	-- 			},
+	-- 			lsp = {
+	-- 				progress = {
+	-- 					enabled = true,
+	-- 				},
+	-- 				hover = { enabled = true },
+	-- 				signature = { enabled = true, auto_open = { enabled = false } },
+	-- 				override = {
+	-- 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+	-- 					["vim.lsp.util.stylize_markdown"] = true,
+	-- 					["cmp.entry.get_documentation"] = true,
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	requires = {
+	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		-- OPTIONAL:
+	-- 		--   `nvim-notify` is only needed, if you want to use the notification view.
+	-- 		--   If not available, we use `mini` as the fallback
+	-- 		-- "rcarriga/nvim-notify",
+	-- 	},
+	-- },
 
 	-- rust plugins
 	{ "simrat39/rust-tools.nvim" },
