@@ -1,31 +1,35 @@
--- general
+-- general Neovim level options
 vim.opt.fillchars = vim.opt.fillchars
 	+ {
 		fold = " ",
 		eob = " ", -- suppress ~ at EndOfBuffer
 		diff = "╱", -- alternatives = ⣿ ░ ─
-		foldsep = "│",
+		foldsep = " ",
 		foldopen = "",
 		foldclose = "",
 	}
 
 vim.opt.diffopt:append("vertical")
-vim.opt.wrap = true
-vim.opt.relativenumber = true
-lvim.log.level = "info"
+vim.opt.wrap = true -- set line wrap
+vim.opt.relativenumber = true -- enable rnu
+vim.opt.clipboard = "" -- unset neovim clipboard so it doesn't have access to system clipboard
 
 -- fold options
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.wo.foldlevel = 2
-vim.wo.foldcolumn = "1"
+vim.wo.foldcolumn = "2"
 vim.wo.foldtext =
 	[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 vim.wo.foldnestmax = 3
 vim.wo.foldminlines = 1
+
+-- LunarVim log level option
+lvim.log.level = "info"
+-- LunarVim format on save option
 lvim.format_on_save.enabled = true
 
--- Colorschemes
+-- Colorscheme config
 lvim.colorscheme = "tokyonight-storm"
 -- lvim.colorscheme = "onedark"
 -- lvim.colorscheme = "catppuccin"
@@ -72,16 +76,23 @@ vim.api.nvim_set_keymap("n", "N", "Nzz", { silent = true })
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
--- }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["t"] = {
+	name = "+Trouble",
+	r = { "<cmd>Trouble lsp_references<cr>", "References" },
+	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+}
+
+lvim.builtin.which_key.mappings["D"] = {
+	name = "+DiffView",
+	o = { "<cmd>DiffviewOpen<cr>", "Open" },
+	c = { "<cmd>DiffviewClose<cr>", "Close" },
+	f = { "<cmd>DiffviewToggleFiles<cr>", "Toggle Files" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
