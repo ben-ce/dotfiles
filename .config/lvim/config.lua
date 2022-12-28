@@ -301,6 +301,9 @@ end)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ command = "stylua", filetypes = { "lua" } },
+
+	-- we can use separate standaline rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
+	-- { command = "rustfmt", filetypes = { "rust" } },
 })
 
 -- Additional Plugins
