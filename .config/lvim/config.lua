@@ -102,6 +102,14 @@ lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.terminal.shading_factor = nil
 lvim.builtin.bufferline.options.always_show_bufferline = true
+
+-- Telescope plugin callback to load extra plugins. Enable if dressing is not used
+-- lvim.builtin.telescope.on_config_done = function(telescope)
+-- 	pcall(telescope.load_extension, "ui-select")
+-- 	-- any other extensions loading
+-- end
+
+-- NvimTree settings
 lvim.builtin.nvimtree.setup.view.number = true
 lvim.builtin.nvimtree.setup.view.relativenumber = true
 lvim.builtin.nvimtree.setup.open_on_setup_file = true
@@ -533,6 +541,10 @@ lvim.plugins = {
 			})
 		end,
 	},
+
+	-- telescope plugins
+	{ "nvim-telescope/telescope-ui-select.nvim" },
+	{ "nvim-telescope/telescope-project.nvim" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
