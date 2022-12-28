@@ -330,6 +330,18 @@ lvim.plugins = {
 	--   end,
 	-- },
 	{ "sindrets/diffview.nvim", event = "BufRead" },
+
+	-- Scroll animation plugins: mini.animate, neoscroll
+	-- {
+	-- 	"echasnovski/mini.animate",
+	-- 	config = function()
+	-- 		require("mini.animate").setup({
+	-- 			cursor = {
+	-- 				enable = false,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
