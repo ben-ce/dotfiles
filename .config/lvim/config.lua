@@ -463,6 +463,39 @@ lvim.plugins = {
 		end,
 		cmd = "Trouble",
 	},
+
+	-- Scrollbar with decorations
+	{
+		"petertriho/nvim-scrollbar",
+		event = "BufReadPost",
+		config = function()
+			require("scrollbar").setup({
+				excluded_filetypes = {
+					"prompt",
+					"TelescopePrompt",
+					"noice",
+					"notify",
+				},
+				marks = {
+					GitAdd = {
+						text = "│",
+					},
+					GitChange = {
+						text = "│",
+					},
+				},
+				handlers = {
+					cursor = false,
+					diagnostic = true,
+					gitsigns = false, -- Requires gitsigns
+					handle = true,
+					search = false, -- Requires hlslens
+				},
+			})
+		end,
+	},
+
+	-- f/F t/T indication for navigation
 	{
 		"jinh0/eyeliner.nvim",
 		config = function()
