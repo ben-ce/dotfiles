@@ -69,9 +69,8 @@ local function button(args)
 				widget:get_children_by_id("background_role")[1].border_width = pos.border_width
 			end
 			if pos.border_color then
-				widget:get_children_by_id("background_role")[1].border_color = helpers.color.rgb_to_hex(
-					pos.border_color
-				)
+				widget:get_children_by_id("background_role")[1].border_color =
+					helpers.color.rgb_to_hex(pos.border_color)
 			end
 		end,
 	})

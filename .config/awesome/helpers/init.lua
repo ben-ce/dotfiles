@@ -5,5 +5,5 @@ return {
 	misc = require(... .. ".misc"),
 	run = require(... .. ".run"),
 	ui = require(... .. ".ui"),
-  click_to_hide = require(... .. ".click_to_hide"),
+	click_to_hide = require(... .. ".click_to_hide"),
 }

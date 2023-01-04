@@ -8,38 +8,38 @@ local wbutton = require("ui.widgets.button")
 --- ~~~~~~~~~~~~~~~~~
 
 local function button(icon)
-  return wbutton.text.state({
-    forced_width = dpi(60),
-    forced_height = dpi(60),
-    normal_bg = beautiful.black,
-    normal_shape = gears.shape.circle,
-    on_normal_bg = beautiful.accent,
-    text_normal_bg = beautiful.accent,
-    text_on_normal_bg = beautiful.black,
-    font = beautiful.icon_font_name,
-    size = 18,
-    text = icon,
-  })
+	return wbutton.text.state({
+		forced_width = dpi(60),
+		forced_height = dpi(60),
+		normal_bg = beautiful.black,
+		normal_shape = gears.shape.circle,
+		on_normal_bg = beautiful.accent,
+		text_normal_bg = beautiful.accent,
+		text_on_normal_bg = beautiful.black,
+		font = beautiful.icon_font_name,
+		size = 18,
+		text = icon,
+	})
 end
 
 local widget = button("")
 
 local update_widget = function(is_muted)
-  if not is_muted then
-    widget:turn_off()
-  else
-    widget:turn_on()
-  end
+	if not is_muted then
+		widget:turn_off()
+	else
+		widget:turn_on()
+	end
 end
 
 --- buttons
 widget:buttons(gears.table.join(awful.button({}, 1, nil, function()
-  awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle", false)
+	awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle", false)
 end)))
 
 --- signal to use when using the mute hotkey
-awesome.connect_signal("signals::microphone", function (is_muted)
-  update_widget(is_muted)
+awesome.connect_signal("signals::microphone", function(is_muted)
+	update_widget(is_muted)
 end)
 
 return widget

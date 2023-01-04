@@ -30,7 +30,7 @@ ui_notifbox_builder.notifbox_title = function(title)
 		font = beautiful.font_name .. "Bold 12",
 		align = "left",
 		valign = "center",
-    ellipsize = "end",
+		ellipsize = "end",
 		widget = wibox.widget.textbox,
 	})
 end

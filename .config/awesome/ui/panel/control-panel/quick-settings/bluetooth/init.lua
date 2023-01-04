@@ -14,40 +14,40 @@ local wbutton = require("ui.widgets.button")
 local bluetooth_state = false
 
 local function button(icon)
-  return wbutton.text.state({
-    forced_width = dpi(60),
-    forced_height = dpi(60),
-    normal_bg = beautiful.black,
-    normal_shape = gears.shape.circle,
-    on_normal_bg = beautiful.accent,
-    text_normal_bg = beautiful.accent,
-    text_on_normal_bg = beautiful.black,
-    font = beautiful.icon_font_name,
-    size = 18,
-    text = icon,
-  })
+	return wbutton.text.state({
+		forced_width = dpi(60),
+		forced_height = dpi(60),
+		normal_bg = beautiful.black,
+		normal_shape = gears.shape.circle,
+		on_normal_bg = beautiful.accent,
+		text_normal_bg = beautiful.accent,
+		text_on_normal_bg = beautiful.black,
+		font = beautiful.icon_font_name,
+		size = 18,
+		text = icon,
+	})
 end
 
 local widget = button("")
 
 local update_widget = function()
-  if bluetooth_state then
-    widget:turn_on()
-  else
-    widget:turn_off()
-  end
+	if bluetooth_state then
+		widget:turn_on()
+	else
+		widget:turn_off()
+	end
 end
 
 local check_bluetooth_state = function()
-  awful.spawn.easy_async_with_shell("rfkill list bluetooth", function(stdout)
-    if stdout:match("Soft blocked: yes") then
-      bluetooth_state = false
-    else
-      bluetooth_state = true
-    end
+	awful.spawn.easy_async_with_shell("rfkill list bluetooth", function(stdout)
+		if stdout:match("Soft blocked: yes") then
+			bluetooth_state = false
+		else
+			bluetooth_state = true
+		end
 
-    update_widget()
-  end)
+		update_widget()
+	end)
 end
 
 check_bluetooth_state()
@@ -89,26 +89,26 @@ local power_off_cmd = [[
 ]]
 
 local toggle_action = function()
-  if bluetooth_state then
-    awful.spawn.easy_async_with_shell(power_off_cmd, function(stdout)
-      bluetooth_state = false
-      update_widget()
-    end)
-  else
-    awful.spawn.easy_async_with_shell(power_on_cmd, function(stdout)
-      bluetooth_state = true
-      update_widget()
-    end)
-  end
+	if bluetooth_state then
+		awful.spawn.easy_async_with_shell(power_off_cmd, function(stdout)
+			bluetooth_state = false
+			update_widget()
+		end)
+	else
+		awful.spawn.easy_async_with_shell(power_on_cmd, function(stdout)
+			bluetooth_state = true
+			update_widget()
+		end)
+	end
 end
 
 widget:buttons(gears.table.join(awful.button({}, 1, nil, function()
-  toggle_action()
+	toggle_action()
 end)))
 
 watch("rfkill list bluetooth", 5, function(_, stdout)
-  check_bluetooth_state()
-  collectgarbage("collect")
+	check_bluetooth_state()
+	collectgarbage("collect")
 end)
 
 return widget

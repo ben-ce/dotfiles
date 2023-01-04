@@ -20,48 +20,48 @@ theme.color15 = "#f7768e"
 theme.background = "#24283b"
 theme.foreground = "#c0caf5"
 
-theme.red    = theme.color15
+theme.red = theme.color15
 theme.orange = theme.color14
 theme.yellow = theme.color13
-theme.green  = theme.color12
-theme.teal   = theme.color11
-theme.sky    = theme.color10
+theme.green = theme.color12
+theme.teal = theme.color11
+theme.sky = theme.color10
 theme.sapphire = theme.color8
-theme.blue   = theme.color7
-theme.white  = theme.color5
-theme.gray   = theme.color1
-theme.black  = theme.color0
-theme.accent    = theme.white
+theme.blue = theme.color7
+theme.white = theme.color5
+theme.gray = theme.color1
+theme.black = theme.color0
+theme.accent = theme.white
 
-theme.bg_normal   = theme.background
-theme.bg_focus    = theme.black
-theme.bg_urgent   = theme.bg_normal
+theme.bg_normal = theme.background
+theme.bg_focus = theme.black
+theme.bg_urgent = theme.bg_normal
 theme.bg_minimize = theme.bg_normal
-theme.bg_systray  = theme.bg_normal
+theme.bg_systray = theme.bg_normal
 
-theme.fg_normal   = theme.foreground
-theme.fg_focus    = theme.fg_normal
-theme.fg_urgent   = theme.color1
+theme.fg_normal = theme.foreground
+theme.fg_focus = theme.fg_normal
+theme.fg_urgent = theme.color1
 theme.fg_minimize = theme.fg_normal
 
-theme.groups_bg   = theme.bg_normal
+theme.groups_bg = theme.bg_normal
 
 theme.border_normal = theme.color7
 theme.border_marked = theme.color15
-theme.border_focus  = theme.color7
+theme.border_focus = theme.color7
 
 theme.widget_bg = theme.bg_focus
 theme.wibar_bg = theme.bg_normal
 
 -- theme.taglist_spacing = dpi(5)
-theme.taglist_bg_focus    = theme.bg_focus
-theme.taglist_fg_focus    = theme.fg_normal
+theme.taglist_bg_focus = theme.bg_focus
+theme.taglist_fg_focus = theme.fg_normal
 theme.taglist_bg_occupied = theme.bg_normal
 theme.taglist_fg_occupied = theme.green
-theme.taglist_bg_empty    = theme.bg_normal
-theme.taglist_fg_empty    = theme.gray
-theme.taglist_bg_urgent   = theme.bg_normal
-theme.taglist_fg_urgent   = theme.red
+theme.taglist_bg_empty = theme.bg_normal
+theme.taglist_fg_empty = theme.gray
+theme.taglist_bg_urgent = theme.bg_normal
+theme.taglist_fg_urgent = theme.red
 
 theme.hotkeys_modifiers_fg = theme.white
 theme.hotkeys_border_color = theme.gray
