@@ -32,8 +32,7 @@ lvim.format_on_save.enabled = true
 -- Colorscheme config
 lvim.colorscheme = "tokyonight-storm"
 -- lvim.colorscheme = "onedark"
--- lvim.colorscheme = "catppuccin"
--- vim.g.catppuccin_flavour = "frappe"
+-- lvim.colorscheme = "catppuccin-frappe"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
