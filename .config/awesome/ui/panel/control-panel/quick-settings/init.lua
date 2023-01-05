@@ -9,7 +9,7 @@ local helpers = require("helpers")
 
 local quick_settings_text = wibox.widget({
 	font = beautiful.font_name .. "10",
-	markup = helpers.ui.colorize_text("Quick Settings", beautiful.accent),
+	markup = helpers.ui.colorize_text("Quick Settings", beautiful.fg_normal),
 	valign = "center",
 	widget = wibox.widget.textbox,
 })

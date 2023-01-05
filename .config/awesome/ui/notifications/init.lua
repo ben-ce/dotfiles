@@ -44,7 +44,7 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 	ruled.notification.append_rule({
 		rule = { urgency = "critical" },
-		properties = { bg = beautiful.red, implicit_timeout = 0 },
+		properties = { bg = beautiful.colors.red, implicit_timeout = 0 },
 	})
 end)
 
@@ -58,7 +58,7 @@ naughty.connect_signal("request::display", function(n)
 	}
 	if n.urgency == "critical" then
 		colors.foreground = beautiful.bg_normal
-		colors.background = beautiful.red
+		colors.background = beautiful.colors.red
 	end
 
 	--- table of icons
@@ -129,11 +129,11 @@ naughty.connect_signal("request::display", function(n)
 		paddings = dpi(8),
 		size = 14,
 		text = "",
-		normal_bg = beautiful.black,
+		normal_bg = beautiful.colors.surface1,
 		normal_shape = gears.shape.circle,
-		on_normal_bg = beautiful.accent,
-		text_normal_bg = beautiful.red,
-		text_on_normal_bg = beautiful.black,
+		on_normal_bg = beautiful.fg_normal,
+		text_normal_bg = beautiful.colors.red,
+		text_on_normal_bg = beautiful.colors.surface1,
 		animate_size = false,
 		on_release = function()
 			n:destroy(naughty.notification_closed_reason.dismissed_by_user)
@@ -153,7 +153,7 @@ naughty.connect_signal("request::display", function(n)
 					widget = wibox.widget.imagebox,
 				},
 				border_width = dpi(2),
-				border_color = beautiful.accent,
+				border_color = beautiful.fg_normal,
 				shape = gears.shape.circle,
 				widget = wibox.container.background,
 			},

@@ -15,7 +15,7 @@ return function(s)
 	--- Header
 	local function header()
 		local dashboard_text = wibox.widget({
-			markup = helpers.ui.colorize_text("Dashboard -", beautiful.accent),
+			markup = helpers.ui.colorize_text("Dashboard -", beautiful.fg_normal),
 			font = beautiful.font,
 			valign = "center",
 			widget = wibox.widget.textbox,
@@ -31,12 +31,11 @@ return function(s)
 			})
 
 			local reset_search_icon = function()
-				search_icon.markup = helpers.ui.colorize_text("\u{f002}", beautiful.accent)
+				search_icon.markup = helpers.ui.colorize_text("\u{f002}", beautiful.fg_normal)
 			end
 			reset_search_icon()
 
 			local search_text = wibox.widget({
-				-- markup = helpers.ui.colorize_text("Search", beautiful.color8),
 				align = "center",
 				valign = "center",
 				font = beautiful.font,
@@ -72,9 +71,9 @@ return function(s)
 				search_icon.visible = false
 				local prompt
 				if action == "run" then
-					prompt = generate_prompt_icon("\u{f120}", beautiful.accent)
+					prompt = generate_prompt_icon("\u{f120}", beautiful.fg_normal)
 				elseif action == "web_search" then
-					prompt = generate_prompt_icon("\u{fa9e}", beautiful.accent)
+					prompt = generate_prompt_icon("\u{fa9e}", beautiful.fg_normal)
 				end
 				helpers.misc.prompt(action, search_text, prompt, function()
 					search_icon.visible = true
@@ -110,7 +109,7 @@ return function(s)
 	s.awesomewm = wibox.widget({
 		{
 			{
-				image = gears.color.recolor_image(icons.awesome_logo, beautiful.accent),
+				image = gears.color.recolor_image(icons.awesome_logo, beautiful.fg_normal),
 				resize = true,
 				halign = "center",
 				valign = "center",

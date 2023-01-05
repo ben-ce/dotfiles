@@ -15,7 +15,7 @@ local helpers = require("helpers")
 local circle_animate = wibox.widget({
 	widget = wibox.container.background,
 	shape = helpers.ui.rrect(beautiful.border_radius),
-	bg = beautiful.accent,
+	bg = beautiful.fg_normal,
 	forced_width = 0,
 	forced_height = 0,
 })
@@ -153,10 +153,10 @@ return function(s)
 	local vol_mid = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_low = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_off = helpers.ui.colorize_text("", beautiful.fg_normal)
-	local vol_muted = helpers.ui.colorize_text("", beautiful.red)
+	local vol_muted = helpers.ui.colorize_text("", beautiful.colors.red)
 	local bri_icon = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local mic_icon = helpers.ui.colorize_text("", beautiful.fg_normal)
-	local mic_muted = helpers.ui.colorize_text("", beautiful.red)
+	local mic_muted = helpers.ui.colorize_text("", beautiful.colors.red)
 
 	-- volume signal
 	local volume_popup_isActived = true

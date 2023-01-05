@@ -8,7 +8,7 @@ local helpers = require("helpers")
 --- ~~~~~~~~~~~
 return function(s)
 	local icon = wibox.widget({
-		markup = helpers.ui.colorize_text("", beautiful.accent),
+		markup = helpers.ui.colorize_text("", beautiful.fg_normal),
 		align = "center",
 		valign = "center",
 		font = beautiful.font_name .. "Medium 12",

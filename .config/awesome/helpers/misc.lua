@@ -94,7 +94,7 @@ function _misc.prompt(action, textbox, prompt, callback)
 				naughty.notify({
 					title = "Searching the web for",
 					text = input,
-					icon = gears.color.recolor_image(icons.web_browser, beautiful.accent),
+					icon = gears.color.recolor_image(icons.web_browser, beautiful.fg_normal),
 					urgency = "low",
 				})
 			end,

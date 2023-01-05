@@ -69,44 +69,44 @@ local battery_tooltip = awful.tooltip({
 awesome.connect_signal("signal::battery", function(percentage, state, time_to_empty, time_to_full, kind)
 	local value = percentage
 	local bat_icon = ""
-	local bat_color = beautiful.white
+	local bat_color = beautiful.fg_normal
 	local time = time_to_empty
 	local time_to_x = "empty"
 
 	if kind == 0 then
 		bat_icon = ""
-		bat_color = beautiful.green
+		bat_color = beautiful.colors.green
 		battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
 		battery.value.markup = string.format("%s", "N/A")
 		battery_tooltip.text = string.format("%s", "Unknown device, likely running on AC Line Power.")
 	elseif kind == 1 then
 		bat_icon = ""
-		bat_color = beautiful.blue
+		bat_color = beautiful.colors.blue
 		battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)
 		battery.value.markup = string.format("%s", "value")
 		battery_tooltip.text = string.format("%s", "Running on AC Line Power.")
 	else
 		if value >= 0 and value <= 20 then
 			bat_icon = ""
-			bat_color = beautiful.red
+			bat_color = beautiful.colors.red
 		elseif value > 20 and value <= 40 then
 			bat_icon = ""
-			bat_color = beautiful.orange
+			bat_color = beautiful.colors.peach
 		elseif value > 40 and value <= 60 then
 			bat_icon = ""
-			bat_color = beautiful.yellow
+			bat_color = beautiful.colors.yellow
 		elseif value > 60 and value <= 85 then
 			bat_icon = ""
-			bat_color = beautiful.white
+			bat_color = beautiful.fg_normal
 		elseif value > 85 and value <= 100 then
 			bat_icon = ""
-			bat_color = beautiful.white
+			bat_color = beautiful.fg_normal
 		end
 
 		-- if charging
 		if state == 1 then
 			bat_icon = ""
-			bat_color = beautiful.green
+			bat_color = beautiful.colors.green
 			time = time_to_full
 			time_to_x = "full"
 			battery.icon.markup = string.format("<span size='28pt' foreground='%s'>%s</span>", bat_color, bat_icon)

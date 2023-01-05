@@ -177,19 +177,20 @@ theme.osd_styles = {
 theme.chosen_osd_style = theme.osd_styles[1]
 
 --- Accent colors
--- function theme.random_accent_color()
--- 	local accents = {
--- 		theme.color9,
--- 		theme.color10,
--- 		theme.color11,
--- 		theme.color12,
--- 		theme.color13,
--- 		theme.color14,
--- 	}
+function theme.random_accent_color()
+	local accents = {
+		-- theme.color9,
+		-- theme.color10,
+		-- theme.color11,
+		-- theme.color12,
+		-- theme.color13,
+		-- theme.color14,
+		theme.accent,
+	}
 
--- 	local i = math.random(1, #accents)
--- 	return accents[i]
--- end
+	local i = math.random(1, #accents)
+	return accents[i]
+end
 
 -- return theme
 require("beautiful").init(theme)

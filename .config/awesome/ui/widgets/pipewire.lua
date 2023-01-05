@@ -63,7 +63,7 @@ local function worker(user_args)
 			if is_mute then
 				volume_icon = string.format("%s", "\u{fc5d}")
 				volume_text = string.format("%s", "mute")
-				font_color = beautiful.gray
+				font_color = beautiful.colors.overlay1
 			elseif value >= 50 then
 				volume_icon = string.format("%s", "\u{f028}")
 			elseif value >= 25 then

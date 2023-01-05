@@ -30,13 +30,12 @@ end)
 
 return function()
 	local happy_color = beautiful.fg_normal
-	-- local ok_color = beautiful.color2
-	local warn_color = beautiful.orange
-	local sad_color = beautiful.red
-	local charging_color = beautiful.teal
+	local warn_color = beautiful.warn_color
+	local sad_color = beautiful.err_color
+	local charging_color = beautiful.battery_charging_color
 
 	local charging_icon = wibox.widget({
-		markup = helpers.ui.colorize_text("", beautiful.white),
+		markup = helpers.ui.colorize_text("", beautiful.fg_normal),
 		font = beautiful.icon_font_name .. " 14",
 		align = "center",
 		valign = "center",
@@ -52,9 +51,9 @@ return function()
 		paddings = dpi(1),
 		bar_shape = helpers.ui.rrect(2),
 		shape = helpers.ui.rrect(4),
-		color = beautiful.white,
+		color = beautiful.fg_normal,
 		background_color = beautiful.transparent,
-		border_color = beautiful.white .. "BB",
+		border_color = beautiful.fg_normal .. "BB",
 		widget = wibox.widget.progressbar,
 	})
 
@@ -62,7 +61,7 @@ return function()
 		{
 			wibox.widget.textbox,
 			widget = wibox.container.background,
-			bg = beautiful.white .. "BB",
+			bg = beautiful.fg_normal .. "BB",
 			forced_width = dpi(7.2),
 			forced_height = dpi(7.2),
 			shape = function(cr, width, height)
@@ -129,13 +128,13 @@ return function()
 
 		if kind == 0 then
 			battery_tooltip.text = string.format("%s", "Unknown device, likely running on AC Line Power.")
-			charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.white))
+			charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.fg_normal))
 			battery_bar.visible = false
 			battery_decoration.visible = false
 			battery_percentage_text.visible = false
 		elseif kind == 1 then
 			battery_tooltip.text = string.format("%s", "Running on AC Line Power.")
-			charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.white))
+			charging_icon:set_markup(helpers.ui.colorize_text("", beautiful.fg_normal))
 			battery_bar.visible = false
 			battery_decoration.visible = false
 			battery_percentage_text.visible = false

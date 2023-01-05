@@ -1,74 +1,69 @@
-local theme = {}
-
 -- Tokyo Night color scheme
-theme.color0 = "#414868"
-theme.color1 = "#565f89"
-theme.color2 = "#cfc9c2"
-theme.color3 = "#9aa5ce"
-theme.color4 = "#a9b1d6"
-theme.color5 = "#c0caf5"
-theme.color6 = "#bb9af7"
-theme.color7 = "#7aa2f7"
-theme.color8 = "#7dcfff"
-theme.color9 = "#2ac3de"
-theme.color10 = "#b4f9f8"
-theme.color11 = "#73daca"
-theme.color12 = "#9ece6a"
-theme.color13 = "#e0af68"
-theme.color14 = "#ff9e64"
-theme.color15 = "#f7768e"
-theme.background = "#24283b"
-theme.foreground = "#c0caf5"
+local theme = {
+	colors = {
+		lavender = "#2ac3de",
+		blue = "#7aa2f7",
+		sapphire = "#7dcfff",
+		sky = "#89ddff",
+		teal = "#73daca",
+		green = "#9ece6a",
+		yellow = "#e0af68",
+		peach = "#ff9e64",
+		maroon = "#db4b4b",
+		red = "#f7768e",
+		magenta = "#ff007c",
+		mauve = "#bb9af7",
+		purple = "#9d7cd8",
 
-theme.red = theme.color15
-theme.orange = theme.color14
-theme.yellow = theme.color13
-theme.green = theme.color12
-theme.teal = theme.color11
-theme.sky = theme.color10
-theme.sapphire = theme.color8
-theme.blue = theme.color7
-theme.white = theme.color5
-theme.gray = theme.color1
-theme.black = theme.color0
-theme.accent = theme.white
+		text = "#c0caf5",
+		subtext1 = "#a9b1d6",
+		subtext0 = "#9aa5ce",
+		overlay2 = "#737aa2",
+		overlay1 = "#565f89",
+		overlay0 = "#545c7e",
+		surface2 = "#506d9b",
+		surface1 = "#414868",
+		surface0 = "#3b4261",
 
-theme.bg_normal = theme.background
-theme.bg_focus = theme.black
-theme.bg_urgent = theme.bg_normal
-theme.bg_minimize = theme.bg_normal
-theme.bg_systray = theme.bg_normal
+		mantle = "#292e42",
+		base = "#24283b",
+		crust = "#1f2335",
+		black = "#1d202f",
+	},
+}
 
-theme.fg_normal = theme.foreground
-theme.fg_focus = theme.fg_normal
-theme.fg_urgent = theme.color1
-theme.fg_minimize = theme.fg_normal
-
-theme.groups_bg = theme.bg_normal
-
-theme.border_normal = theme.color7
-theme.border_marked = theme.color15
-theme.border_focus = theme.color7
-
-theme.widget_bg = theme.bg_focus
-theme.wibar_bg = theme.bg_normal
-
--- theme.taglist_spacing = dpi(5)
-theme.taglist_bg_focus = theme.bg_focus
-theme.taglist_fg_focus = theme.fg_normal
-theme.taglist_bg_occupied = theme.bg_normal
-theme.taglist_fg_occupied = theme.green
-theme.taglist_bg_empty = theme.bg_normal
-theme.taglist_fg_empty = theme.gray
-theme.taglist_bg_urgent = theme.bg_normal
-theme.taglist_fg_urgent = theme.red
-
-theme.hotkeys_modifiers_fg = theme.white
-theme.hotkeys_border_color = theme.gray
-
-theme.window_switcher_widget_bg = theme.bg_normal -- The bg color of the widget
-theme.window_switcher_widget_border_color = theme.border_normal -- The border color of the widget
-theme.window_switcher_name_normal_color = theme.fg_normal -- The color of one title if the client is unfocused
-theme.window_switcher_name_focus_color = theme.yellow -- The color of one title if the client is focused
+theme.taglist_slidey_color = theme.colors.overlay2
+theme.warn_color = theme.colors.peach
+theme.err_color = theme.colors.red
+theme.battery_charging_color = theme.colors.teal
+theme.bg_normal = theme.colors.base
+theme.bg_focus = theme.colors.mantle
+theme.bg_urgent = theme.colors.base
+theme.bg_minimize = theme.colors.base
+theme.bg_systray = theme.colors.base
+theme.fg_normal = theme.colors.text
+theme.fg_focus = theme.colors.text
+theme.fg_urgent = theme.colors.mantle
+theme.fg_minimize = theme.colors.text
+theme.groups_bg = theme.colors.base
+theme.border_normal = theme.colors.blue
+theme.border_marked = theme.colors.red
+theme.border_focus = theme.colors.blue
+theme.widget_bg = theme.colors.surface0
+theme.wibar_bg = theme.colors.base
+theme.taglist_bg_focus = theme.colors.mantle
+theme.taglist_fg_focus = theme.colors.text
+theme.taglist_bg_occupied = theme.colors.base
+theme.taglist_fg_occupied = theme.colors.green
+theme.taglist_bg_empty = theme.colors.base
+theme.taglist_fg_empty = theme.colors.mantle
+theme.taglist_bg_urgent = theme.colors.base
+theme.taglist_fg_urgent = theme.colors.red
+theme.hotkeys_modifiers_fg = theme.colors.fg_normal
+theme.hotkeys_border_color = theme.colors.mantle
+theme.window_switcher_widget_bg = theme.colors.base -- the bg color of the widget
+theme.window_switcher_widget_border_color = theme.colors.blue -- the border color of the widget
+theme.window_switcher_name_normal_color = theme.colors.text -- the color of one title if the client is unfocused
+theme.window_switcher_name_focus_color = theme.colors.yellow -- the color of one title if the client is focused
 
 return theme

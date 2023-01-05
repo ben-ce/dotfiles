@@ -18,10 +18,10 @@ local mod = require("bindings.modkeys")
 rubato.set_def_rate(60)
 
 --- useful color constants
-local ia_rgb = color.color({ hex = beautiful.gray, disable_hsl = true }) --inactive color
-local a_rgb = color.color({ hex = beautiful.green, disable_hsl = true }) --active color
-local u_rgb = color.color({ hex = beautiful.red, disable_hsl = true }) --urgent color
-local s_rgb = color.color({ hex = beautiful.gray, disable_hsl = true }) --slidey color
+local ia_rgb = color.color({ hex = beautiful.colors.overlay1, disable_hsl = true }) --inactive color
+local a_rgb = color.color({ hex = beautiful.colors.green, disable_hsl = true }) --active color
+local u_rgb = color.color({ hex = beautiful.colors.red, disable_hsl = true }) --urgent color
+local s_rgb = color.color({ hex = beautiful.colors.overlay1, disable_hsl = true }) --slidey color
 
 -- Calculate the diff in colors for some stuff later on
 local diff = {}

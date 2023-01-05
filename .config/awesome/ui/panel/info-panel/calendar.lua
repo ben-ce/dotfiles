@@ -33,7 +33,7 @@ local function date_widget(date, is_current, is_another_month)
 	if is_current == true then
 		text_color = beautiful.widget_bg
 	elseif is_another_month == true then
-		text_color = beautiful.gray
+		text_color = beautiful.colors.overlay1
 	end
 
 	return wibox.widget({
@@ -41,7 +41,7 @@ local function date_widget(date, is_current, is_another_month)
 		forced_width = dpi(30),
 		forced_height = dpi(30),
 		shape = gshape.circle,
-		bg = is_current and beautiful.accent,
+		bg = is_current and beautiful.fg_normal,
 		widgets.text({
 			halign = "center",
 			size = 10,
@@ -114,7 +114,7 @@ local function new()
 		text = os.date("%B %Y"),
 		size = 16,
 		bold = true,
-		text_normal_bg = beautiful.accent,
+		text_normal_bg = beautiful.fg_normal,
 		normal_bg = beautiful.widget_bg,
 		on_release = function()
 			ret:set_date_current()

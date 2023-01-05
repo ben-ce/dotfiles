@@ -17,10 +17,10 @@ local function tasklist(s)
 		filter = awful.widget.tasklist.filter.currenttags,
 		style = {
 			shape = gears.shape.circle,
-			bg_focus = beautiful.gray,
+			bg_focus = beautiful.colors.overlay1,
 			bg_normal = beautiful.bg_focus .. "4d",
 			bg_minimize = beautiful.bg_normal,
-			fg_minimize = beautiful.gray,
+			fg_minimize = beautiful.colors.overlay1,
 		},
 		buttons = {
 			awful.button({}, 1, function(c)

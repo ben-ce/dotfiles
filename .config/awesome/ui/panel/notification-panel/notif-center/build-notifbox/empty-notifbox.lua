@@ -14,14 +14,14 @@ return wibox.widget({
 	{
 		{
 			widget = wibox.widget.textbox,
-			markup = helpers.ui.colorize_text("", beautiful.accent),
+			markup = helpers.ui.colorize_text("", beautiful.fg_normal),
 			font = beautiful.icon_font_name .. "Round 84",
 			valign = "center",
 			align = "center",
 		},
 		{
 			widget = wibox.widget.textbox,
-			markup = helpers.ui.colorize_text("No Notifications", beautiful.white),
+			markup = helpers.ui.colorize_text("No Notifications", beautiful.fg_normal),
 			font = beautiful.font_name .. "Bold 14",
 			valign = "center",
 			align = "center",

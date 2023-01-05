@@ -55,7 +55,7 @@ local function mkchart(header, icon)
 							rounded_edge = true,
 							widget = wibox.container.arcchart,
 							bg = beautiful.bg_normal,
-							colors = beautiful.blue,
+							colors = beautiful.colors.blue,
 						},
 						direction = "east",
 						widget = wibox.container.rotate,

@@ -71,7 +71,7 @@ local music_display = wibox.widget({
 		widget = wibox.container.margin,
 	},
 	widget = wibox.container.background,
-	bg = beautiful.accent,
+	bg = beautiful.fg_normal,
 	shape = gears.shape.rounded_bar,
 })
 
@@ -309,7 +309,7 @@ local mainbox = wibox.widget({
 			type = "linear",
 			from = { 0, 0 },
 			to = { 350, 0 },
-			stops = { { 0, beautiful.color3 }, { 1, beautiful.bg_focus } },
+			stops = { { 0, beautiful.colors.sapphire }, { 1, beautiful.bg_focus } },
 		}),
 	},
 	margins = dpi(10),
