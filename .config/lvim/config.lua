@@ -523,6 +523,14 @@ lvim.plugins = {
 		end,
 	},
 
+	-- Fold text eye candy plugin
+	{
+		"anuvyklack/pretty-fold.nvim",
+		config = function()
+			require("pretty-fold").setup()
+		end,
+	},
+
 	-- f/F t/T indication for navigation
 	{
 		"jinh0/eyeliner.nvim",
