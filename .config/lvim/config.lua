@@ -204,7 +204,6 @@ lvim.builtin.treesitter.auto_install = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
 -- local formatters = require "lvim.lsp.null-ls.formatters"
 -- formatters.setup {
 --   { command = "stylua" },
@@ -214,16 +213,9 @@ lvim.builtin.treesitter.auto_install = true
 --     filetypes = { "typescript", "typescriptreact" },
 --   },
 -- }
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { command = "flake8", filetypes = { "python" } },
---   {
---     command = "shellcheck",
---     args = { "--severity", "warning" },
---   },
--- }
 
--- Rust LSP settings
+-- LSP settings
+-- Rust
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
@@ -296,14 +288,51 @@ pcall(function()
 	})
 end)
 
--- Formatters
+-- Markdown
+require("lvim.lsp.manager").setup("marksman")
+
+-- Linters / Formatters
+-- <https://www.lunarvim.org/docs/languages#lintingformatting>
+-- Set a linter/formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ command = "stylua", filetypes = { "lua" } },
+	{ command = "prettier", filetypes = { "markdown" } },
+	{
+		command = "prettier",
+		args = { "--print-width", "100" },
+		filetypes = { "typescript", "typescriptreact" },
+	},
 
 	-- we can use separate standaline rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
 })
+
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "flake8", filetypes = { "python" } },
+--   {
+--     command = "shellcheck",
+--     args = { "--severity", "warning" },
+--   },
+-- }
+
+-- DAP settings
+lvim.builtin.dap.on_config_done = function(dap)
+	dap.adapters.codelldb = codelldb_adapter
+	dap.configurations.rust = {
+		{
+			name = "Launch file",
+			type = "codelldb",
+			request = "launch",
+			program = function()
+				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+		},
+	}
+end
 
 -- Additional Plugins
 lvim.plugins = {
