@@ -201,6 +201,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:z:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
