@@ -7,7 +7,7 @@ configuration {
   show-icons:           true;
   icon-theme:           "Papirus";
   drun-display-format:  "{name}";
-  font: 			    "MesloLGS Nerd Font 12";
+  font:                 "MesloLGS Nerd Font 12";
   display-run:          " ";
   display-drun:         " ";
   display-window:       " ";

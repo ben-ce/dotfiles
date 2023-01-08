@@ -1,7 +1,6 @@
 configuration {
   modi: "window,run,drun";
   show-icons: true;
-  font: "Hack 10";
 }
 @theme "colorschemes/tokyonight"
 
