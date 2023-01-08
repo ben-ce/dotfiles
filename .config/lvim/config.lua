@@ -105,6 +105,8 @@ lvim.builtin.which_key.mappings["D"] = {
 	f = { "<cmd>DiffviewToggleFiles<cr>", "Toggle Files" },
 }
 
+lvim.builtin.which_key.mappings["S"] = { "<cmd>SymbolsOutline<cr>", "SymbolsOutline" }
+
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
