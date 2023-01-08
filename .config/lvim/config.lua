@@ -45,9 +45,23 @@ vim.api.nvim_set_keymap("n", "<A-l>", ":BufferLineCycleNext<CR>", { noremap = tr
 vim.api.nvim_set_keymap("n", "<A-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 lvim.keys.normal_mode["<A-Right>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
--- Map n, N to center cursor with zz
-vim.api.nvim_set_keymap("n", "n", "nzz", { silent = true })
-vim.api.nvim_set_keymap("n", "N", "Nzz", { silent = true })
+-- Map n, N, *, #, g*, g# to center cursor with zz and start hlslens search count virtualtext
+vim.api.nvim_set_keymap(
+	"n",
+	"n",
+	"<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz",
+	{ silent = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"N",
+	"<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz",
+	{ silent = true }
+)
+vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>zz]], { silent = true })
+vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>zz]], { silent = true })
+vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>zz]], { silent = true })
+vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>zz]], { silent = true })
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
@@ -586,6 +600,12 @@ lvim.plugins = {
 					},
 				},
 			})
+		end,
+	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			require("hlslens").setup()
 		end,
 	},
 	-- {
