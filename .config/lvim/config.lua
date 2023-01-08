@@ -541,11 +541,7 @@ lvim.plugins = {
 		end,
 	},
 
-	--these plugins can provide what noice can also
-	-- - signature: lsp_signature
-	-- - lsp progress status: fidget
-	-- - vim.notify: notifier
-	-- - input, select ui for rename etc: dressing
+	-- signature: lsp_signature
 	{
 		"ray-x/lsp_signature.nvim",
 		config = function()
@@ -554,6 +550,11 @@ lvim.plugins = {
 			})
 		end,
 	},
+
+	--these plugins can provide what noice can also
+	-- - lsp progress status: fidget.nvim
+	-- - vim.notify: notifier.nvim
+	-- - input, select ui for rename etc: dressing.nvim
 	{
 		"j-hui/fidget.nvim",
 		config = function()
@@ -571,38 +572,54 @@ lvim.plugins = {
 	{
 		"stevearc/dressing.nvim",
 		config = function()
-			require("dressing").setup()
+			require("dressing").setup({
+				-- input = {
+				-- 	enabled = false,
+				-- },
+				select = {
+					format_item_override = {
+						codeaction = function(action_tuple)
+							local title = action_tuple[2].title:gsub("\r\n", "\\r\\n")
+							local client = vim.lsp.get_client_by_id(action_tuple[1])
+							return string.format("%s\t[%s]", title:gsub("\n", "\\n"), client.name)
+						end,
+					},
+				},
+			})
 		end,
 	},
 	-- {
 	-- 	"folke/noice.nvim",
 	-- 	config = function()
 	-- 		require("noice").setup({
-	-- 			cmdline = {
-	-- 				format = {
-	-- 					cmdline = {
-	-- 						view = "cmdline",
-	-- 					},
-	-- 				},
-	-- 			},
+	-- 			-- cmdline = {
+	-- 			-- 	format = {
+	-- 			-- 		cmdline = {
+	-- 			-- 			view = "cmdline",
+	-- 			-- 		},
+	-- 			-- 	},
+	-- 			-- },
 	-- 			presets = {
 	-- 				bottom_search = false, -- use a classic bottom cmdline for search
 	-- 				command_palette = false, -- position the cmdline and popupmenu together
-	-- 				long_message_to_split = false, -- long messages will be sent to a split
+	-- 				long_message_to_split = true, -- long messages will be sent to a split
 	-- 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
 	-- 				lsp_doc_border = true, -- add a border to hover docs and signature help
 	-- 			},
 	-- 			lsp = {
 	-- 				progress = {
-	-- 					enabled = true,
+	-- 					enabled = false,
 	-- 				},
 	-- 				hover = { enabled = true },
-	-- 				signature = { enabled = true, auto_open = { enabled = false } },
+	-- 				signature = { enabled = false, auto_open = { enabled = false } },
 	-- 				override = {
 	-- 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 	-- 					["vim.lsp.util.stylize_markdown"] = true,
 	-- 					["cmp.entry.get_documentation"] = true,
 	-- 				},
+	-- 			},
+	-- 			messages = {
+	-- 				enabled = false,
 	-- 			},
 	-- 		})
 	-- 	end,
@@ -636,8 +653,8 @@ lvim.plugins = {
 	},
 
 	-- telescope plugins
-	{ "nvim-telescope/telescope-ui-select.nvim" },
-	{ "nvim-telescope/telescope-project.nvim" },
+	-- { "nvim-telescope/telescope-ui-select.nvim" }, -- if dressing.nvim is not used then enabling this gets us nice telescope select ui
+	-- { "nvim-telescope/telescope-project.nvim" }, -- if https://github.com/ahmedkhalf/project.nvim gets out of the builtins then we can use this
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
