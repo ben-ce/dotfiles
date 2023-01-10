@@ -114,6 +114,7 @@ lvim.builtin.which_key.mappings["sm"] = {
 	"Harpoon Marks",
 }
 
+--- LunarVim builtin options override
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -121,11 +122,11 @@ lvim.builtin.terminal.direction = "horizontal"
 lvim.builtin.terminal.shading_factor = nil
 lvim.builtin.bufferline.options.always_show_bufferline = true
 
--- Telescope plugin callback to load extra plugins. Enable if dressing is not used
--- lvim.builtin.telescope.on_config_done = function(telescope)
--- 	pcall(telescope.load_extension, "ui-select")
--- 	-- any other extensions loading
--- end
+-- Telescope plugin callback to load extra plugins.
+lvim.builtin.telescope.on_config_done = function(telescope)
+	pcall(telescope.load_extension, "harpoon")
+	-- pcall(telescope.load_extension, "ui-select") -- Enable if dressing is not used
+end
 
 -- NvimTree settings
 lvim.builtin.nvimtree.setup.view.number = true
@@ -138,6 +139,11 @@ lvim.builtin.nvimtree.setup.hijack_directories = {
 	enable = true,
 	auto_open = true,
 }
+lvim.builtin.nvimtree.setup.renderer.indent_markers = {
+	enable = true,
+	inline_arrows = false,
+}
+-- lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = false
 
 lvim.builtin.treesitter.matchup = { enable = true }
 lvim.builtin.gitsigns.opts.signs = {
@@ -392,8 +398,7 @@ lvim.plugins = {
 	-- 	end,
 	-- },
 	{
-		"karb94/neoscroll.nvim",
-		event = "WinScrolled",
+		"declancm/cinnamon.nvim",
 		config = function()
 			require("cinnamon").setup({
 				extra_keymaps = true,
