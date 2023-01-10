@@ -38,13 +38,9 @@ lvim.colorscheme = "tokyonight-storm"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- Map H, L, Alt-Left, Alt-Right to buffer cycle
+-- Map H, L to buffer cycle
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-vim.api.nvim_set_keymap("n", "<A-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<A-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-lvim.keys.normal_mode["<A-Right>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<A-Left>"] = ":BufferLineCyclePrev<CR>"
 -- Map n, N, *, #, g*, g# to center cursor with zz and start hlslens search count virtualtext
 vim.api.nvim_set_keymap(
 	"n",
@@ -89,7 +85,7 @@ vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>zz
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
-	name = "+Trouble",
+	name = " 飯Trouble",
 	r = { "<cmd>Trouble lsp_references<cr>", "References" },
 	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
 	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
@@ -99,13 +95,24 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings["D"] = {
-	name = "+DiffView",
+	name = "  DiffView",
 	o = { "<cmd>DiffviewOpen<cr>", "Open" },
 	c = { "<cmd>DiffviewClose<cr>", "Close" },
 	f = { "<cmd>DiffviewToggleFiles<cr>", "Toggle Files" },
 }
 
 lvim.builtin.which_key.mappings["S"] = { "<cmd>SymbolsOutline<cr>", "SymbolsOutline" }
+-- Harpoon keymappings
+lvim.builtin.which_key.mappings["<leader>"] = {
+	name = "  Harpoon",
+	["<leader>"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", " Toggle Quick Menu" },
+	a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", " Add Mark" },
+}
+lvim.keys.normal_mode["<C-Space>"] = "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>"
+lvim.builtin.which_key.mappings["sm"] = {
+	"<cmd>lua require'telescope'.extensions.harpoon.marks{}<CR>",
+	"Harpoon Marks",
+}
 
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
