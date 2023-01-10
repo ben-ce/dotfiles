@@ -373,7 +373,7 @@ lvim.plugins = {
 	-- },
 	{ "sindrets/diffview.nvim", event = "BufRead" },
 
-	-- Scroll animation plugins: mini.animate, neoscroll
+	-- Scroll animation plugins: mini.animate, neoscroll.nvim, cinnamon.nvim
 	-- {
 	-- 	"echasnovski/mini.animate",
 	-- 	config = function()
@@ -388,20 +388,30 @@ lvim.plugins = {
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
 		config = function()
-			require("neoscroll").setup({
-				-- All these keys will be mapped to their corresponding default scrolling animation
-				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
-				hide_cursor = true, -- Hide cursor while scrolling
-				stop_eof = true, -- Stop at <EOF> when scrolling downwards
-				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-				easing_function = nil, -- Default easing function
-				pre_hook = nil, -- Function to run before the scrolling animation starts
-				post_hook = nil, -- Function to run after the scrolling animation ends
+			require("cinnamon").setup({
+				extra_keymaps = true,
+				extende_keymaps = true,
 			})
 		end,
 	},
+	-- {
+	-- 	"karb94/neoscroll.nvim",
+	-- 	event = "WinScrolled",
+	-- 	config = function()
+	-- 		require("neoscroll").setup({
+	-- 			-- All these keys will be mapped to their corresponding default scrolling animation
+	-- 			mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+	-- 			hide_cursor = true, -- Hide cursor while scrolling
+	-- 			stop_eof = true, -- Stop at <EOF> when scrolling downwards
+	-- 			use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+	-- 			respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+	-- 			cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+	-- 			easing_function = nil, -- Default easing function
+	-- 			pre_hook = nil, -- Function to run before the scrolling animation starts
+	-- 			post_hook = nil, -- Function to run after the scrolling animation ends
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- LSP Symbols plugin
 	{
@@ -475,6 +485,7 @@ lvim.plugins = {
 		config = function()
 			require("smoothcursor").setup({
 				speed = 100,
+				disabled_filetypes = { "TelescopePrompt", "NvimTree", "harpoon" },
 			})
 		end,
 	},
@@ -557,6 +568,13 @@ lvim.plugins = {
 		end,
 	},
 
+	{
+		"ThePrimeagen/harpoon",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-lua/popup.nvim" },
+		},
+	},
 	-- signature: lsp_signature
 	{
 		"ray-x/lsp_signature.nvim",
