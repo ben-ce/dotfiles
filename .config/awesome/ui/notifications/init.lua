@@ -290,7 +290,7 @@ naughty.connect_signal("request::display", function(n)
 			shape = gears.shape.rounded_rect,
 		},
 	})
-	widget.buttons = {}
+	-- widget.buttons = {} -- don't destroy notification on click
 	if n.category ~= "music" then
 		play_sound(n)
 	end
