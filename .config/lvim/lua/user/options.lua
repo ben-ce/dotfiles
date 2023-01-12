@@ -22,7 +22,7 @@ vim.wo.foldcolumn = "2"
 vim.wo.foldtext =
 	[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 vim.wo.foldnestmax = 3
-vim.wo.foldminlines = 1
+vim.wo.foldminlines = 5
 
 -- LunarVim log level option
 lvim.log.level = "info"
