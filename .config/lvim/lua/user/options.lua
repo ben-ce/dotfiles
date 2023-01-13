@@ -27,7 +27,14 @@ vim.wo.foldminlines = 5
 -- LunarVim log level option
 lvim.log.level = "info"
 -- LunarVim format on save option
-lvim.format_on_save.enabled = true
+lvim.format_on_save = {
+	enabled = true,
+	pattern = {
+		"*.go",
+		"*.lua",
+		"*.rs",
+	},
+}
 
 -- Colorscheme config
 lvim.colorscheme = "tokyonight-storm"
@@ -106,6 +113,8 @@ lvim.builtin.lualine.sections = {
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
+	"go",
+	"gomod",
 	"javascript",
 	"json",
 	"lua",

@@ -4,6 +4,10 @@
 -- Rust
 require("user.lsp.languages.rust")
 
+-- Go is configured by Lunarvim in `$RUNTIME_DIR/after/ftplugin/go.lua` with 'require("lvim.lsp.manager").setup("gopls")'
+-- But we override this because by default it does not use every capability. Another option is to define settings in lsp-settings/gopls.json, but that is limited.
+require("user.lsp.languages.go")
+
 -- Markdown
 require("lvim.lsp.manager").setup("marksman")
 
@@ -19,8 +23,10 @@ formatters.setup({
 		args = { "--print-width", "100" },
 		filetypes = { "typescript", "typescriptreact" },
 	},
+	{ command = "goimports", filetypes = { "go" } },
+	{ command = "gofumpt", filetypes = { "go" } },
 
-	-- we can use separate standaline rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
+	-- we can use separate standalone rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
 })
 

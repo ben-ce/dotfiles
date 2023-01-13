@@ -1,0 +1,7 @@
+{
+  "Lua.hint.enable": true,
+  "Lua.hint.paramName": "All",
+  "Lua.hint.paramType": true,
+  "Lua.hint.setType": true,
+  "Lua.hint.arrayIndex": "Disable"
+}

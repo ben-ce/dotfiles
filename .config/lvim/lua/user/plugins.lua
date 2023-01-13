@@ -3,6 +3,7 @@ lvim.plugins.smoothcursor = false
 lvim.plugins.noice = false
 lvim.plugins.animation_provider = "cinnamon"
 lvim.plugins.motion_provider = "leap"
+lvim.plugins.inlay_hints = true
 
 lvim.plugins = {
 	-- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
@@ -87,6 +88,20 @@ lvim.plugins = {
 		event = {
 			"BufRead",
 			"BufNew,",
+		},
+	},
+
+	-- inlay hints for some supported languages (lua, go)
+	{
+		"lvimuser/lsp-inlayhints.nvim",
+		config = function()
+			require("user.lsp-inlayhints")
+		end,
+		enabled = lvim.plugins.inlay_hints,
+		-- event = "LspAttach",
+		ft = {
+			"lua",
+			"go",
 		},
 	},
 
@@ -267,6 +282,38 @@ lvim.plugins = {
 				},
 			})
 		end,
+	},
+
+	-- Go plugins
+	{
+		"olexsmir/gopher.nvim",
+		config = function()
+			require("gopher").setup({
+				commands = {
+					go = "go",
+					gomodifytags = "gomodifytags",
+					gotests = "gotests",
+					impl = "impl",
+					iferr = "iferr",
+				},
+			})
+		end,
+		ft = { "go", "gomod" },
+		event = {
+			"BufRead",
+			"BufNew",
+		},
+	},
+	{
+		"leoluz/nvim-dap-go",
+		config = function()
+			require("dap-go").setup()
+		end,
+		ft = { "go", "gomod" },
+		event = {
+			"BufRead",
+			"BufNew",
+		},
 	},
 
 	-- telescope plugins

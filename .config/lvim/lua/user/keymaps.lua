@@ -77,3 +77,9 @@ lvim.builtin.which_key.mappings["sm"] = {
 	"<cmd>lua require'telescope'.extensions.harpoon.marks{}<CR>",
 	"Harpoon Marks",
 }
+
+if lvim.plugins.inlay_hints then
+	lvim.builtin.which_key.mappings["m"] = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "  Toggle Inlay" }
+end
+lvim.builtin.which_key.mappings.l.name = "  LSP"
+lvim.builtin.which_key.mappings.g.name = "  Git"
