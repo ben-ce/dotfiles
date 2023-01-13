@@ -2,6 +2,7 @@ lvim.plugins.treesitter_context = true
 lvim.plugins.smoothcursor = false
 lvim.plugins.noice = false
 lvim.plugins.animation_provider = "cinnamon"
+lvim.plugins.motion_provider = "leap"
 
 lvim.plugins = {
 	-- These plugins moved to lvim builtin plugins, so it's not necessary to use them here
@@ -13,6 +14,7 @@ lvim.plugins = {
 	-- Tabpage interface for git diffs
 	{
 		"sindrets/diffview.nvim",
+		lazy = true,
 		dependencies = "nvim-lua/plenary.nvim",
 		event = "BufRead",
 	},
@@ -21,19 +23,19 @@ lvim.plugins = {
 	{
 		"simrat39/symbols-outline.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
-		event = "BufReadPost",
 		config = function()
 			require("symbols-outline").setup()
 		end,
+		event = "BufReadPost",
 	},
 
 	-- Highlight, list, search TODO comments
 	{
 		"folke/todo-comments.nvim",
-		event = "BufRead",
 		config = function()
 			require("todo-comments").setup()
 		end,
+		event = "BufRead",
 	},
 
 	-- escape sequence for jj and jk
@@ -42,6 +44,7 @@ lvim.plugins = {
 		config = function()
 			require("better_escape").setup()
 		end,
+		event = "InsertEnter",
 	},
 
 	-- Markdown rendering plugin with glow CLI
@@ -51,7 +54,10 @@ lvim.plugins = {
 	},
 
 	-- Colorschemes
-	{ "catppuccin/nvim" },
+	{
+		"catppuccin/nvim",
+		build = ":CatppuccinCompile",
+	},
 
 	-- Fold text eye candy plugin
 	{
@@ -75,16 +81,21 @@ lvim.plugins = {
 		config = function()
 			require("lsp_signature").setup({
 				hint_prefix = " ",
+				floating_window = false,
 			})
 		end,
+		event = {
+			"BufRead",
+			"BufNew,",
+		},
 	},
 
 	-- Syntax aware text-objects, move, swap and peek support
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		lazy = true,
 		dependencies = "nvim-treesitter",
 		event = "BufReadPre",
-		lazy = true,
 	},
 
 	-- Diagnostic, LSP References, Implementations, Definitions, QuickFix list
@@ -96,60 +107,87 @@ lvim.plugins = {
 			})
 		end,
 		cmd = "Trouble",
+		event = "VeryLazy",
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+		event = "BufRead",
+	},
+	{
+		"ggandor/leap.nvim",
+		enabled = lvim.plugins.motion_provider == "leap",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	},
+	{
+		"phaazon/hop.nvim",
+		enabled = lvim.plugins.motion_provider == "hop",
+		config = function()
+			require("user.hop")
+		end,
+		event = "VeryLazy",
+		cmd = { "HopChar1CurrentLineAC", "HopChar1CurrentLineBC", "HopChar2MW", "HopWordMW" },
 	},
 
 	-- --- Custom config for these plugins loaded from their separate modules
 	-- Scroll animation plugins: neoscroll.nvim, cinnamon.nvim
 	{
 		"declancm/cinnamon.nvim",
+		enabled = lvim.plugins.animation_provider == "cinnamon",
 		config = function()
 			require("user.cinnamon")
 		end,
-		enabled = lvim.plugins.animation_provider == "cinnamon",
+		event = "WinScrolled",
 	},
 	{
 		"karb94/neoscroll.nvim",
-		event = "WinScrolled",
+		enabled = lvim.plugins.animation_provider == "neoscroll",
 		config = function()
 			require("user.neoscroll")
 		end,
-		enabled = lvim.plugins.animation_provider == "neoscroll",
+		event = "WinScrolled",
 	},
 
 	-- Color highlighter plugin
 	{
 		"norcalli/nvim-colorizer.lua",
-		event = "BufReadPre",
 		config = function()
 			require("user.colorizer")
 		end,
+		event = "BufReadPre",
 	},
 
 	-- Show code context
 	{
 		"romgrk/nvim-treesitter-context",
+		enabled = lvim.plugins.treesitter_context,
 		config = function()
 			require("user.treesitter-context")
 		end,
-		enabled = lvim.plugins.treesitter_context,
+		event = "BufReadPre",
 	},
 
 	-- Cursor eye candy
 	{
 		"gen740/SmoothCursor.nvim",
+		enabled = lvim.plugins.smoothcursor,
 		config = function()
 			require("user.smoothcursor")
 		end,
-		enabled = lvim.plugins.smoothcursor,
 	},
 
 	-- Scrollbar with decorations
 	{
 		"petertriho/nvim-scrollbar",
-		event = "BufReadPost",
 		config = function()
 			require("user.scrollbar")
 		end,
+		event = "BufReadPost",
 	},
 
 	-- f/F t/T indication for navigation
@@ -176,29 +214,29 @@ lvim.plugins = {
 	},
 	{
 		"vigoux/notifier.nvim",
+		enabled = not lvim.plugins.noice,
 		config = function()
 			require("notifier").setup()
 		end,
-		enabled = not lvim.plugins.noice,
 	},
 	{
 		"stevearc/dressing.nvim",
+		lazy = true,
 		config = function()
 			require("user.dressing")
 		end,
+		event = "BufWinEnter",
 	},
 	{
 		"kevinhwang91/nvim-hlslens",
+		enabled = not lvim.plugins.noice,
 		config = function()
 			require("hlslens").setup()
 		end,
-		enabled = not lvim.plugins.noice,
 	},
 	{
 		"folke/noice.nvim",
-		config = function()
-			require("user.noice")
-		end,
+		enabled = lvim.plugins.noice,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
@@ -207,15 +245,17 @@ lvim.plugins = {
 			--   If not available, we use `mini` as the fallback
 			-- "rcarriga/nvim-notify",
 		},
-		enabled = lvim.plugins.noice,
+		config = function()
+			require("user.noice")
+		end,
 	},
 
 	-- rust plugins
 	{ "simrat39/rust-tools.nvim" },
 	{
 		"saecki/crates.nvim",
-		version = "v0.3.0",
 		dependencies = "nvim-lua/plenary.nvim",
+		version = "v0.3.0",
 		config = function()
 			require("crates").setup({
 				null_ls = {
