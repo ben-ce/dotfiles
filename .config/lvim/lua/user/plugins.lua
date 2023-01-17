@@ -139,15 +139,6 @@ lvim.plugins = {
 			require("leap").add_default_mappings()
 		end,
 	},
-	{
-		"phaazon/hop.nvim",
-		enabled = lvim.plugins.motion_provider == "hop",
-		config = function()
-			require("user.hop")
-		end,
-		event = "VeryLazy",
-		cmd = { "HopChar1CurrentLineAC", "HopChar1CurrentLineBC", "HopChar2MW", "HopWordMW" },
-	},
 
 	-- --- Custom config for these plugins loaded from their separate modules
 	-- Scroll animation plugins: neoscroll.nvim, cinnamon.nvim
