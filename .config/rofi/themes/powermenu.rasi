@@ -1,6 +1,5 @@
 configuration {
-  modi: "window,run,drun";
-  show-icons: true;
+  font: "MesloLGS Nerd Font 10";
 }
 @theme "colorschemes/tokyonight"
 
@@ -12,7 +11,7 @@ configuration {
 window {
   width: 450px;
   height: 120px;
-  background-color: @background-solid;
+  background-color: @background;
   padding: 5px;
 }
 
@@ -20,7 +19,7 @@ mainbox {
   border:  0;
   padding: 0;
   children: [listview];
-  background-color: @background-solid;
+  background-color: @background;
 }
 
 listview {

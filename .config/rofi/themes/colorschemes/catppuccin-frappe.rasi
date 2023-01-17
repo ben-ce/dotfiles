@@ -1,0 +1,56 @@
+//----------------------
+// Catppuccin Frappe Colors
+//----------------------
+
+* {
+    color20: #F2D5CF;
+    color19: #EEBEBE;
+    color18: #F4B8E4;
+    color17: #CA9EE6;
+    color16: #E78284;
+    color15: #EA999C;
+    color14: #EF9F76;
+    color13: #E5C890;
+    color12: #A6D189;
+    color11: #81C8BE;
+    color10: #99D1DB;
+    color9: #85C1DC;
+    color8: #8CAAEE;
+    color7: #BABBF1;
+    color6: #b5bfe2;
+    color5: #a5adce;
+    color4: #949cbb;
+    color3: #838ba7;
+    color2: #737994;
+    color1: #626880;
+    color0: #51576d;
+    color00: #414559;
+    color01: #292C3C;
+    color02: #232634;
+    background: #303446;
+    foreground: #c6d0f5;
+    selected-normal-foreground:  @foreground;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @background;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @color13;
+    border-color:                @color0;
+    spacing:                     2;
+    separatorcolor:              @background;
+    urgent-background:           @background;
+    selected-urgent-background:  @color2;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @color2;
+}
+
+/* vim:ft=css

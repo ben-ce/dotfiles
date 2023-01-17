@@ -1,0 +1,57 @@
+//----------------------
+// Catppuccin Macchiato Colors
+//----------------------
+
+* {
+    color20: #F4DBD6;
+    color19: #F0C6C6;
+    color18: #F5BDE6;
+    color17: #C6A0F6;
+    color16: #ED8796;
+    color15: #EE99A0;
+    color14: #F5A97F;
+    color13: #EED49F;
+    color12: #A6DA95;
+    color11: #8BD5CA;
+    color10: #91D7E3;
+    color9: #7DC4E4;
+    color8: #8AADF4;
+    color7: #B7BDF8;
+    color6: #B8C0E0;
+    color5: #A5ADCB;
+    color4: #939AB7;
+    color3: #8087A2;
+    color2: #6E738D;
+    color1: #5B6078;
+    color0: #494D64;
+    color00: #363A4F;
+    color01: #1E2030;
+    color02: #181926;
+    background: #24273A;
+    foreground: #CAD3F5;
+    selected-normal-foreground:  @foreground;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @background;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @color13;
+    border-color:                @color0;
+    spacing:                     2;
+    separatorcolor:              @background;
+    urgent-background:           @background;
+    selected-urgent-background:  @color2;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @color2;
+}
+
+/* vim:ft=css
+
