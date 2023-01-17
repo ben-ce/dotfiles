@@ -1,7 +1,8 @@
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- Ctrl-s for saving buffer to file, but only if it changed
+lvim.keys.normal_mode["<C-s>"] = ":update<cr>"
 -- Map H, L to buffer cycle
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
