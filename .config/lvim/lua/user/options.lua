@@ -13,6 +13,7 @@ vim.opt.diffopt:append("vertical")
 vim.opt.wrap = true -- set line wrap
 vim.opt.relativenumber = true -- enable rnu
 vim.opt.clipboard = "" -- unset neovim clipboard so it doesn't have access to system clipboard
+vim.opt.iskeyword:append("-")
 
 -- fold options
 vim.wo.foldmethod = "expr"
