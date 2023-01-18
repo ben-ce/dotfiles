@@ -57,7 +57,7 @@ lvim.plugins = {
 	-- Colorschemes
 	{
 		"catppuccin/nvim",
-		build = ":CatppuccinCompile",
+		name = "catppuccin",
 	},
 
 	-- Fold text eye candy plugin
@@ -88,20 +88,6 @@ lvim.plugins = {
 		event = {
 			"BufRead",
 			"BufNew,",
-		},
-	},
-
-	-- inlay hints for some supported languages (lua, go)
-	{
-		"lvimuser/lsp-inlayhints.nvim",
-		config = function()
-			require("user.lsp-inlayhints")
-		end,
-		enabled = lvim.plugins.inlay_hints,
-		-- event = "LspAttach",
-		ft = {
-			"lua",
-			"go",
 		},
 	},
 
@@ -139,6 +125,9 @@ lvim.plugins = {
 			require("leap").add_default_mappings()
 		end,
 	},
+	{
+		"windwp/nvim-ts-autotag",
+	},
 
 	-- --- Custom config for these plugins loaded from their separate modules
 	-- Scroll animation plugins: neoscroll.nvim, cinnamon.nvim
@@ -157,6 +146,20 @@ lvim.plugins = {
 			require("user.neoscroll")
 		end,
 		event = "WinScrolled",
+	},
+
+	-- inlay hints for some supported languages (lua, go)
+	{
+		"lvimuser/lsp-inlayhints.nvim",
+		config = function()
+			require("user.lsp-inlayhints")
+		end,
+		enabled = lvim.plugins.inlay_hints,
+		-- event = "LspAttach",
+		ft = {
+			"lua",
+			"go",
+		},
 	},
 
 	-- Color highlighter plugin
