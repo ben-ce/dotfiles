@@ -72,7 +72,6 @@ lvim.builtin.nvimtree.setup.renderer.indent_markers = {
 }
 -- lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = false
 
-lvim.builtin.treesitter.matchup = { enable = true }
 lvim.builtin.gitsigns.opts.signs = {
 	add = { text = "▌" },
 	change = { text = "▌" },
@@ -109,6 +108,9 @@ lvim.builtin.lualine.sections = {
 	},
 }
 
+-- --- Treesitter options
+lvim.builtin.treesitter.matchup = { enable = true }
+lvim.builtin.treesitter.autotag = { enable = true }
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
@@ -132,3 +134,58 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
+lvim.builtin.treesitter.textobjects = {
+	select = {
+		enable = true,
+		lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+		keymaps = {
+			-- You can use the capture groups defined in textobjects.scm
+			["aA"] = "@attribute.outer",
+			["iA"] = "@attribute.inner",
+			["ab"] = "@block.outer",
+			["ib"] = "@block.inner",
+			["ac"] = "@call.outer",
+			["ic"] = "@call.inner",
+			["at"] = "@class.outer",
+			["it"] = "@class.inner",
+			["a/"] = "@comment.outer",
+			["i/"] = "@comment.inner",
+			["ai"] = "@conditional.outer",
+			["ii"] = "@conditional.inner",
+			["aF"] = "@frame.outer",
+			["iF"] = "@frame.inner",
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["al"] = "@loop.outer",
+			["il"] = "@loop.inner",
+			["aa"] = "@parameter.outer",
+			["ia"] = "@parameter.inner",
+			["is"] = "@scopename.inner",
+			["as"] = "@statement.outer",
+			["av"] = "@variable.outer",
+			["iv"] = "@variable.inner",
+		},
+	},
+	move = {
+		enable = true,
+		set_jumps = true, -- whether to set jumps in the jumplist
+		goto_next_start = {
+			["]p"] = "@parameter.inner",
+			["]m"] = "@function.outer",
+			["]]"] = "@class.outer",
+		},
+		goto_next_end = {
+			["]M"] = "@function.outer",
+			["]["] = "@class.outer",
+		},
+		goto_previous_start = {
+			["[p"] = "@parameter.inner",
+			["[m"] = "@function.outer",
+			["[["] = "@class.outer",
+		},
+		goto_previous_end = {
+			["[M"] = "@function.outer",
+			["[]"] = "@class.outer",
+		},
+	},
+}
