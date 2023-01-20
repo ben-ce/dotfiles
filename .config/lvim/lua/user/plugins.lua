@@ -55,9 +55,31 @@ lvim.plugins = {
 	},
 
 	-- Colorschemes
+	-- --- Catppuccin
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = false,
+		enabled = lvim.colorscheme == "catppuccin",
+		config = function()
+			require("catppuccin").setup({
+				flavour = "frappe",
+			})
+		end,
+		priority = 1000,
+	},
+	-- --- Rose Pine
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		lazy = false,
+		enabled = lvim.colorscheme == "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				dark_variant = "moon",
+			})
+		end,
+		priority = 1000,
 	},
 
 	-- Fold text eye candy plugin
@@ -218,9 +240,14 @@ lvim.plugins = {
 	{
 		"j-hui/fidget.nvim",
 		config = function()
-			require("fidget").setup()
+			require("fidget").setup({
+				text = {
+					spinner = "moon",
+				},
+			})
 		end,
 	},
+
 	{
 		"vigoux/notifier.nvim",
 		enabled = not lvim.plugins.noice,
