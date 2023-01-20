@@ -1,0 +1,48 @@
+//----------------------
+// Rosé Pine Moon Colors
+//----------------------
+
+* {
+    color0 : #2a273f;
+    color1 : #393552;
+    color2 : #2a283e;
+    color3 : #44415a;
+    color4 : #56526e;
+    color5 : #6e6a86;
+    color6: #817c9c;
+    color7 : #908caa;
+    color8 : #3e8fb0;
+    color9 : #9ccfd8;
+    color10 : #c4a7e7;
+    color11 : #9ccfd8;
+    color12 : #3e8fb0;
+    color13 : #f6c177;
+    color14 : #ea9a97;
+    color15 : #eb6f92;
+    background : #232136;
+    foreground : #e0def4;
+    selected-normal-foreground:  @foreground;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @background;
+    selected-urgent-foreground:  @foreground;
+    urgent-foreground:           @foreground;
+    alternate-urgent-background: @background;
+    active-foreground:           @foreground;
+    selected-active-foreground:  @foreground;
+    alternate-active-background: @background;
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    selected-normal-background:  @color13;
+    border-color:                @color0;
+    spacing:                     2;
+    separatorcolor:              @background;
+    urgent-background:           @background;
+    selected-urgent-background:  @color2;
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            @background;
+    alternate-active-foreground: @active-foreground;
+    active-background:           @background;
+    selected-active-background:  @color2;
+}
+
+/* vim:ft=css
