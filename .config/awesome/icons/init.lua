@@ -17,4 +17,10 @@ return {
 	charging = dir .. "charging.svg",
 	web_browser = dir .. "firefox.svg",
 	awesome_logo = dir .. "awesome-logo.svg",
+
+	["nord"] = dir .. "nord.svg",
+	["tokyonight"] = dir .. "tokyonight.svg",
+	["catppuccin-frappe"] = dir .. "catppuccin.png",
+	["catppuccin-macchiato"] = dir .. "catppuccin.png",
+	["rose-pine-moon"] = dir .. "rose-pine.svg",
 }
