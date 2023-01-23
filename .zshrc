@@ -233,6 +233,3 @@ unsetopt ALL_EXPORT
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
-
-# To customize prompt, run `p10k configure` or edit ~/git/dotfiles/.p10k.zsh.
-[[ ! -f ~/git/dotfiles/.p10k.zsh ]] || source ~/git/dotfiles/.p10k.zsh
