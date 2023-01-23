@@ -11,7 +11,10 @@ _M.launcher = require("ui.widgets.launcher")
 _M.taglist = require("ui.widgets.taglist")
 _M.tasklist = require("ui.widgets.tasklist")
 _M.clock = require("ui.widgets.clock")
+_M.keyboardlayout = awful.widget.keyboardlayout()
 _M.systray = require("ui.widgets.systray")
+_M.controlcenter_button = require("ui.widgets.controlcenter_button")
+_M.notification_button = require("ui.widgets.notification_button")
 _M.volume = require("ui.widgets.pipewire")
 _M.battery = require("ui.widgets.battery")
 _M.brightness = require("ui.widgets.brightness")({
@@ -19,12 +22,9 @@ _M.brightness = require("ui.widgets.brightness")({
 	program = "brightnessctl",
 	percentage = true,
 })
-_M.controlcenter = require("ui.widgets.controlcenter")
 _M.layoutbox = require("ui.widgets.layoutbox")
-_M.notification_button = require("ui.widgets.notification_button")
 _M.osd = require("ui.widgets.osd")
-
-_M.keyboardlayout = awful.widget.keyboardlayout()
+_M.colorscheme_popup = require("ui.widgets.colorscheme_popup")
 
 function _M.create_keyboardlayout()
 	return _M.button.elevated.state({
@@ -58,7 +58,7 @@ function _M.create_wibox(s)
 				layout = wibox.layout.fixed.horizontal,
 				s.kblayout,
 				s.systray,
-				s.controlcenter,
+				s.controlcenter_button,
 				s.notification_button,
 				s.volume,
 				s.brightness,

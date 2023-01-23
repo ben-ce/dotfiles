@@ -1,4 +1,5 @@
 local awful = require("awful")
+local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
@@ -22,10 +23,9 @@ local function button(icon)
 end
 
 local widget = button("")
-
---- buttons
+-- buttons
 widget:buttons(gears.table.join(awful.button({}, 1, nil, function()
-	require("ui.widgets.colorscheme_popup").toggle()
+	awesome.emit_signal("colorscheme_popup::toggle", awful.screen.focused())
 end)))
 
 return widget
