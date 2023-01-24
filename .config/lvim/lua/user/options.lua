@@ -38,9 +38,12 @@ lvim.format_on_save = {
 }
 
 -- Colorscheme config
+-- Available options:
+-- tokyonight-storm
+-- catppuccin-frappe
+-- catppuccin-macchiato
+-- rose-pine
 lvim.colorscheme = "tokyonight-storm"
--- lvim.colorscheme = "catppuccin"
--- lvim.colorscheme = "rose-pine"
 
 --- LunarVim builtin options override
 lvim.builtin.alpha.active = true

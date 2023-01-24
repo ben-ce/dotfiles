@@ -6,13 +6,6 @@ local gears = require("gears")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
--- local colorschemes = {
--- 	"nord", -- 1
--- 	"tokyonight", -- 2
--- 	"catppuccin-frappe", -- 3
--- 	"catppuccin-macchiato", -- 4
--- 	"rose-pine-moon", -- 5
--- }
 local colorschemes = require("theme.colorschemes")
 local theme = require("theme.colorschemes." .. colorschemes[2])
 

@@ -60,12 +60,7 @@ lvim.plugins = {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		lazy = false,
-		enabled = lvim.colorscheme == "catppuccin",
-		config = function()
-			require("catppuccin").setup({
-				flavour = "frappe",
-			})
-		end,
+		enabled = lvim.colorscheme == "catppuccin-frappe" or lvim.colorscheme == "catppuccin-macchiato",
 		priority = 1000,
 	},
 	-- --- Rose Pine
