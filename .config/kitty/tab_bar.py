@@ -1,19 +1,19 @@
-from typing import (
-    Dict, Tuple)
-
 from kitty.fast_data_types import Screen
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb, draw_title
 from kitty.utils import color_as_int
-from kitty.typing import PowerlineStyle
 
-powerline_symbols: Dict[PowerlineStyle, Tuple[str, str]] = {
-    'slanted': ('', '╱'),
-    'round': ('', '')
-}
+LEFT_START_SYMBOL = ''
+LEFT_END_SYMBOL = ''
+SEPARATOR_SYMBOL, SOFT_SEPARATOR_SYMBOL = ('', '')
 
 def draw_tab(
-    draw_data: DrawData, screen: Screen, tab: TabBarData,
-    before: int, max_title_length: int, index: int, is_last: bool,
+    draw_data: DrawData,
+    screen: Screen,
+    tab: TabBarData,
+    before: int,
+    max_title_length: int,
+    index: int,
+    is_last: bool,
     extra_data: ExtraData
 ) -> int:
     tab_bg = screen.cursor.bg
@@ -26,14 +26,13 @@ def draw_tab(
         next_tab_bg = default_bg
         needs_soft_separator = False
 
-    separator_symbol, soft_separator_symbol = powerline_symbols.get(draw_data.powerline_style, ('', ''))
     min_title_length = 1 + 2
     start_draw = 2
 
     if screen.cursor.x == 0:
         screen.cursor.bg = default_bg
         screen.cursor.fg = tab_bg
-        screen.draw('')
+        screen.draw(LEFT_START_SYMBOL)
         screen.cursor.bg = tab_bg
         screen.cursor.fg = tab_fg
         start_draw = 1
@@ -52,7 +51,10 @@ def draw_tab(
         screen.draw(' ')
         screen.cursor.fg = tab_bg
         screen.cursor.bg = next_tab_bg
-        screen.draw(separator_symbol)
+        if is_last:
+            screen.draw(LEFT_END_SYMBOL)
+        else:
+            screen.draw(SEPARATOR_SYMBOL)
     else:
         prev_fg = screen.cursor.fg
         if tab_bg == tab_fg:
@@ -62,7 +64,7 @@ def draw_tab(
             c2 = draw_data.inactive_bg.contrast(draw_data.inactive_fg)
             if c1 < c2:
                 screen.cursor.fg = default_bg
-        screen.draw(f' {soft_separator_symbol}')
+        screen.draw(f' {SOFT_SEPARATOR_SYMBOL}')
         screen.cursor.fg = prev_fg
 
     end = screen.cursor.x
