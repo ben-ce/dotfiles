@@ -19,7 +19,7 @@ return {
 	awesome_logo = dir .. "awesome-logo.svg",
 
 	["nord"] = dir .. "nord.svg",
-	["tokyo-night-storm"] = dir .. "tokyo-night-storm.svg",
+	["tokyonight-storm"] = dir .. "tokyonight-storm.svg",
 	["catppuccin-frappe"] = dir .. "catppuccin.png",
 	["catppuccin-macchiato"] = dir .. "catppuccin.png",
 	["rose-pine-moon"] = dir .. "rose-pine.svg",
