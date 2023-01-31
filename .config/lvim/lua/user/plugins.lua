@@ -226,6 +226,13 @@ lvim.plugins = {
 		end,
 	},
 
+	{
+		"monaqa/dial.nvim",
+		config = function()
+			require("user.dial")
+		end,
+	},
+
 	-- --- UI plugins
 	--these plugins can provide what noice can also
 	-- - lsp progress status: fidget.nvim
