@@ -23,8 +23,6 @@ _M.brightness = require("ui.widgets.brightness")({
 	percentage = true,
 })
 _M.layoutbox = require("ui.widgets.layoutbox")
-_M.osd = require("ui.widgets.osd")
-_M.colorscheme_popup = require("ui.widgets.colorscheme_popup")
 
 function _M.create_keyboardlayout()
 	return _M.button.elevated.state({

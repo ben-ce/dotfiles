@@ -5,6 +5,7 @@ local wibox = require("wibox")
 
 local vars = require("config.vars")
 local widgets = require("ui.widgets")
+local popups = require("ui.popups")
 
 -- Simple single wallpaper
 -- screen.connect_signal('request::wallpaper', function(s)
@@ -63,7 +64,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	s.brightness = widgets.brightness
 	s.battery = widgets.battery()
 	s.layoutbox = widgets.layoutbox(s)
-	s.osd = widgets.osd(s)
-	s.colorscheme_popup = widgets.colorscheme_popup(s)
+	s.osd = popups.osd_popup(s)
+	s.colorscheme_popup = popups.colorscheme_popup(s)
 	s.wibox = widgets.create_wibox(s)
 end)
