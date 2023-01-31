@@ -8,3 +8,6 @@ kitty +kitten themes --reload-in all "Catppuccin-Frappe"
 
 # Change neovim colorscheme
 sed -i -E 's/(^lvim\.colorscheme = \")[[:alnum:]-]+(\")/\1catppuccin-frappe\2/' ~/.config/lvim/lua/user/options.lua
+
+# Change fzf colors in zsh
+sed -i -E 's/(COLORSCHEME=")[[:alnum:]-]+(")/\1catppuccin-frappe\2/' ~/.zshrc
