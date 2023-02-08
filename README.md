@@ -52,7 +52,7 @@ ln -s .config/autostart ~/.config/autostart
 ln -s .config/awesome ~/.config/awesome
 ln -s .config/bat ~/.config/bat
 ln -s .config/kitty ~/.config/kitty
-ln -s .config/lvim/config.lua ~/.config/lvim/config.lua
+ln -s .config/lvim ~/.config/lvim
 ln -s .config/picom ~/.config/picom
 ln -s .config/rofi ~/.config/rofi
 ln -s .config/sheldon ~/.config/sheldon
