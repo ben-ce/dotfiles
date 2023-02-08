@@ -27,8 +27,8 @@
 - `cat` replacement: `bat`
 - `cd` replacement: `zoxide`
 - Used fonts:
-  - `nerd-fonts-jetbrains-mono`
-  - `nerd-fonts-meslo`
+  - `ttf-jetbrains-mono-nerd`
+  - `ttf-meslo-nerd`
   - `ttf-font-awesome`
   - `ttf-iosevka-nerd`
   - `ttf-material-icons-git`
