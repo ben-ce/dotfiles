@@ -1,9 +1,12 @@
 <!--toc:start-->
-
+- [Preview](#preview)
 - [Required packages (by Arch Linux package name)](#required-packages-by-arch-linux-package-name)
 - [Install](#install)
 - [Required plugins](#required-plugins)
 <!--toc:end-->
+
+### Preview
+![preview](preview.png) 
 
 ### Required packages (by Arch Linux package name)
 
