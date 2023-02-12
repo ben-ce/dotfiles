@@ -25,6 +25,7 @@ formatters.setup({
 	},
 	{ command = "goimports", filetypes = { "go" } },
 	{ command = "gofumpt", filetypes = { "go" } },
+	{ command = "rubocop", filetypes = { "ruby" } },
 
 	-- we can use separate standalone rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
