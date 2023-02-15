@@ -22,6 +22,15 @@ awful.keyboard.append_global_keybindings({
 	}),
 	awful.key({
 		modifiers = { mod.super },
+		key = "a",
+		description = "show rofi",
+		group = "launcher",
+		on_press = function()
+			awful.spawn("rofi -show window")
+		end,
+	}),
+	awful.key({
+		modifiers = { mod.super },
 		key = "d",
 		description = "show rofi",
 		group = "launcher",
