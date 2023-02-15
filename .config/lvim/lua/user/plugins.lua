@@ -142,9 +142,7 @@ lvim.plugins = {
 			require("leap").add_default_mappings()
 		end,
 	},
-	{
-		"windwp/nvim-ts-autotag",
-	},
+	{ "windwp/nvim-ts-autotag" },
 
 	-- --- Custom config for these plugins loaded from their separate modules
 	-- Scroll animation plugins: neoscroll.nvim, cinnamon.nvim
@@ -338,6 +336,9 @@ lvim.plugins = {
 			"BufNew",
 		},
 	},
+
+	-- Python plugins
+	{ "mfussenegger/nvim-dap-python" },
 
 	-- telescope plugins
 	-- { "nvim-telescope/telescope-ui-select.nvim" }, -- if dressing.nvim is not used then enabling this gets us nice telescope select ui

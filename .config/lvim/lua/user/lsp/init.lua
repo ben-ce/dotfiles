@@ -8,6 +8,9 @@ require("user.lsp.languages.rust")
 -- But we override this because by default it does not use every capability. Another option is to define settings in lsp-settings/gopls.json, but that is limited.
 require("user.lsp.languages.go")
 
+-- Python
+require("user.lsp.languages.python")
+
 -- Markdown
 require("lvim.lsp.manager").setup("marksman")
 
@@ -26,9 +29,15 @@ formatters.setup({
 	{ command = "goimports", filetypes = { "go" } },
 	{ command = "gofumpt", filetypes = { "go" } },
 	{ command = "rubocop", filetypes = { "ruby" } },
+	{ command = "black", filetypes = { "python" } },
 
 	-- we can use separate standalone rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
+})
+
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	{ command = "flake8", filetypes = { "python" } },
 })
 
 -- --- EXAMPLE CONFIGS
