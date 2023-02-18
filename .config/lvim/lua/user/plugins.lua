@@ -342,7 +342,22 @@ lvim.plugins = {
 	},
 
 	-- Python plugins
-	{ "mfussenegger/nvim-dap-python" },
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = { "python" },
+	},
+	{
+		"AckslD/swenv.nvim",
+		config = function()
+			require("swenv").setup({
+				-- get_venvs = function (venvs_path)
+				--   return require("swenv.api").get_venvs(venvs_path)
+				-- end,
+				venvs_path = vim.fn.expand("~/.virtualenvs"),
+			})
+		end,
+		ft = { "python" },
+	},
 
 	-- telescope plugins
 	-- { "nvim-telescope/telescope-ui-select.nvim" }, -- if dressing.nvim is not used then enabling this gets us nice telescope select ui
