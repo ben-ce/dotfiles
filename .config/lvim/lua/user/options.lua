@@ -34,6 +34,8 @@ lvim.format_on_save = {
 		"*.go",
 		"*.lua",
 		"*.rs",
+		"*.py",
+		"*.md",
 	},
 }
 
