@@ -287,7 +287,10 @@ lvim.plugins = {
 	},
 
 	-- rust plugins
-	{ "simrat39/rust-tools.nvim" },
+	{
+		"simrat39/rust-tools.nvim",
+		ft = { "rust" },
+	},
 	{
 		"saecki/crates.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
@@ -303,6 +306,7 @@ lvim.plugins = {
 				},
 			})
 		end,
+		ft = { "rust" },
 	},
 
 	-- Go plugins
