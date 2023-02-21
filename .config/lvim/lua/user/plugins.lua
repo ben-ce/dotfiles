@@ -324,10 +324,6 @@ lvim.plugins = {
 			})
 		end,
 		ft = { "go", "gomod" },
-		event = {
-			"BufRead",
-			"BufNew",
-		},
 	},
 	{
 		"leoluz/nvim-dap-go",
@@ -335,10 +331,6 @@ lvim.plugins = {
 			require("dap-go").setup()
 		end,
 		ft = { "go", "gomod" },
-		event = {
-			"BufRead",
-			"BufNew",
-		},
 	},
 
 	-- Python plugins
