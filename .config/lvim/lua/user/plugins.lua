@@ -286,6 +286,15 @@ lvim.plugins = {
 		end,
 	},
 
+	-- Annotation generator. Supports multiple languages and annotation conventions.
+	{
+		"danymat/neogen",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true,
+		-- Uncomment next line if you want to follow only stable versions
+		-- version = "*"
+	},
+
 	-- rust plugins
 	{
 		"simrat39/rust-tools.nvim",
