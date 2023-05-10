@@ -9,7 +9,8 @@ fi
 # Load personal prompt config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Load powerlevel10k
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]] || source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme 
+[[ ! -f ~/.local/share/sheldon/repos/github.com/romkatv/powerlevel10k/powerlevel10k.zsh-theme ]] || source ~/.local/share/sheldon/repos/github.com/romkatv/powerlevel10k/powerlevel10k.zsh-theme
 
 #########################################
 ####### ZSH configuration file    #######
@@ -100,6 +101,7 @@ HOSTNAME="`hostname`"
 EDITOR=nvim
 MANPAGER="sh -c 'col -b | bat -l man -p'"
 COLORSCHEME="tokyonight-storm"
+PATH=$PATH:$HOME/.cargo/bin
 
 ### Set alias
 #############
@@ -207,7 +209,8 @@ zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 ### fzf bindings and completion
-source /usr/share/fzf/key-bindings.zsh
+[[ ! -f /usr/share/fzf/key-bindings.zsh ]] || source /usr/share/fzf/key-bindings.zsh
+[[ ! -f /usr/share/fzf/shell/key-bindings.zsh ]] || source /usr/share/fzf/shell/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source ~/.config/fzf/fzf-$COLORSCHEME.conf
 
@@ -216,13 +219,15 @@ eval "$(sheldon source)"
 
 ### Source plugins
 ##################
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+[[ ! -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ ! -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]] || source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+[[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] || source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+[[ ! -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+[[ ! -f /usr/bin/virtualenvwrapper.sh ]] || source /usr/bin/virtualenvwrapper.sh
 
 unsetopt ALL_EXPORT
 
