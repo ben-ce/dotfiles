@@ -1,5 +1,13 @@
 [Desktop Entry]
-Exec=/usr/bin/picom -b --config $HOME/.config/picom/picom_noblur_rounded_corners.conf
+Version=1.0
+Categories=Utility;
+TryExec=picom
+Exec=sh -c "/usr/bin/picom -b --config $XDG_CONFIG_HOME/picom/picom.conf"
+StartupNotify=false
+Terminal=false
 Name=picom
-Comment=a compositor for X11
+GenericName=X compositor
+Comment=An X compositor
+NoDisplay=false
 Type=Application
+Icon=picom
