@@ -79,10 +79,10 @@ local function mkchart(header, icon)
 end
 
 -- initialize charts
-local cpu = mkchart("CPU", "")
-local mem = mkchart("RAM", "")
-local disk = mkchart("Disk", "")
-local temp = mkchart("Temp", "")
+local cpu = mkchart("CPU", "\u{f4bc}")
+local mem = mkchart("RAM", "\u{e266}")
+local disk = mkchart("Disk", "\u{f02ca}")
+local temp = mkchart("Temp", "\u{f03c8}")
 
 -- give charts values
 awesome.connect_signal("cpu::percent", function(percent)

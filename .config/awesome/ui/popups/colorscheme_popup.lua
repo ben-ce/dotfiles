@@ -103,7 +103,7 @@ return function(s)
 		font = beautiful.alt_font_name,
 		paddings = dpi(8),
 		size = 14,
-		text = "",
+		text = "\u{f00d}",
 		normal_bg = beautiful.colors.surface1,
 		normal_shape = gears.shape.circle,
 		on_normal_bg = beautiful.fg_normal,

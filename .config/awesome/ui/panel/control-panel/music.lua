@@ -51,7 +51,7 @@ local music_display = wibox.widget({
 		{
 			{
 				widget = wibox.widget.textbox,
-				markup = helpers.ui.colorize_text("\u{f7ca}", beautiful.bg_normal),
+				markup = helpers.ui.colorize_text("\u{f02cb}", beautiful.bg_normal),
 				font = beautiful.alt_font_name .. "12",
 				align = "right",
 				valign = "center",

@@ -47,7 +47,7 @@ local function worker(user_args)
 			align = "center",
 			valign = "center",
 			resize = true,
-			font = "Iosevka 24",
+			font = beautiful.alt_font_name .. 24,
 			widget = wibox.widget.textbox,
 		},
 		{

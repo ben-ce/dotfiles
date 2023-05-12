@@ -21,7 +21,7 @@ local function button(icon)
 		on_normal_bg = beautiful.fg_normal,
 		text_normal_bg = beautiful.fg_normal,
 		text_on_normal_bg = beautiful.colors.surface1,
-		font = beautiful.icon_font_name,
+		font = beautiful.alt_font_name,
 		size = 18,
 		text = icon,
 	})

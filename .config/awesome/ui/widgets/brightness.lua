@@ -77,9 +77,9 @@ local function worker(user_args)
 				align = "center",
 				valign = "center",
 				resize = true,
-				font = "Iosevka 24",
+				font = beautiful.alt_font_name .. 24,
 				widget = wibox.widget.textbox,
-				text = "",
+				text = "\u{f00df}",
 			},
 			{
 				id = "txt",
@@ -125,6 +125,7 @@ local function worker(user_args)
 		current_level = value
 		spawn.easy_async(string.format(set_brightness_cmd, value), function() end)
 	end
+
 	local old_level = 0
 	function brightness:toggle()
 		if old_level < 0.1 then
@@ -141,9 +142,11 @@ local function worker(user_args)
 		end
 		brightness:set(current_level)
 	end
+
 	function brightness:inc()
 		spawn.easy_async(inc_brightness_cmd, function() end)
 	end
+
 	function brightness:dec()
 		spawn.easy_async(dec_brightness_cmd, function() end)
 	end
