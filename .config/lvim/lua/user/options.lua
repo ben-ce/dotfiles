@@ -64,8 +64,6 @@ end
 -- NvimTree settings
 lvim.builtin.nvimtree.setup.view.number = true
 lvim.builtin.nvimtree.setup.view.relativenumber = true
-lvim.builtin.nvimtree.setup.open_on_setup_file = true
-lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
 lvim.builtin.nvimtree.setup.hijack_directories = {
