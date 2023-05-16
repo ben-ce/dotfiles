@@ -132,6 +132,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"java",
 	"yaml",
 	"toml",
+	"markdown_inline",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }

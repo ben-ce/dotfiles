@@ -1,18 +1,5 @@
--- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
-
 -- LSP settings
--- Rust
-require("user.lsp.languages.rust")
-
--- Go is configured by Lunarvim in `$RUNTIME_DIR/after/ftplugin/go.lua` with 'require("lvim.lsp.manager").setup("gopls")'
--- But we override this because by default it does not use every capability. Another option is to define settings in lsp-settings/gopls.json, but that is limited.
-require("user.lsp.languages.go")
-
--- Python
-require("user.lsp.languages.python")
-
--- Markdown
-require("lvim.lsp.manager").setup("marksman")
+-- Rust, Python, Go is configured by Lunarvim in `$RUNTIME_DIR/ftplugin/$LANGUAGE.lua` to enable lazy loading: https://www.lunarvim.org/docs/master/configuration/language-features/linting-and-formatting#lazy-loading-the-linterformattercode_actions-setup
 
 -- Linters / Formatters
 -- <https://www.lunarvim.org/docs/languages#lintingformatting>
@@ -26,18 +13,10 @@ formatters.setup({
 		args = { "--print-width", "100" },
 		filetypes = { "typescript", "typescriptreact" },
 	},
-	{ command = "goimports", filetypes = { "go" } },
-	{ command = "gofumpt", filetypes = { "go" } },
 	{ command = "rubocop", filetypes = { "ruby" } },
-	{ command = "black", filetypes = { "python" } },
 
 	-- we can use separate standalone rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
-})
-
-local linters = require("lvim.lsp.null-ls.linters")
-linters.setup({
-	{ command = "flake8", filetypes = { "python" } },
 })
 
 -- --- EXAMPLE CONFIGS
