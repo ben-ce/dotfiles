@@ -150,7 +150,6 @@ return function(s)
 	-- icons
 	local vol_default = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_high = helpers.ui.colorize_text("", beautiful.fg_normal)
-	local vol_mid = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_low = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_off = helpers.ui.colorize_text("", beautiful.fg_normal)
 	local vol_muted = helpers.ui.colorize_text("", beautiful.colors.red)
@@ -163,16 +162,12 @@ return function(s)
 	awesome.connect_signal("signals::volume", function(value, muted, scr)
 		if muted then
 			textIcon.icon.markup = vol_muted
+		elseif value >= 50 then
+			textIcon.icon.markup = vol_high
+		elseif value >= 25 then
+			textIcon.icon.markup = vol_low
 		else
-			if value <= 0 then
-				textIcon.icon.markup = vol_off
-			elseif value < 25 then
-				textIcon.icon.markup = vol_low
-			elseif value < 45 then
-				textIcon.icon.markup = vol_mid
-			else
-				textIcon.icon.markup = vol_high
-			end
+			textIcon.icon.markup = vol_off
 		end
 
 		progressbar.bar.value = value
