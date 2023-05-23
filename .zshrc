@@ -101,7 +101,6 @@ HOSTNAME="`hostname`"
 EDITOR=nvim
 MANPAGER="sh -c 'col -b | bat -l man -p'"
 COLORSCHEME="tokyonight-storm"
-PATH=$PATH:$HOME/.cargo/bin
 
 ### Set alias
 #############
@@ -209,10 +208,15 @@ zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 ### fzf bindings and completion
-[[ ! -f /usr/share/fzf/key-bindings.zsh ]] || source /usr/share/fzf/key-bindings.zsh
-[[ ! -f /usr/share/fzf/shell/key-bindings.zsh ]] || source /usr/share/fzf/shell/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-source ~/.config/fzf/fzf-$COLORSCHEME.conf
+function fzf_init() {
+  [[ ! -f /usr/share/fzf/key-bindings.zsh ]] || source /usr/share/fzf/key-bindings.zsh
+  [[ ! -f /usr/share/fzf/shell/key-bindings.zsh ]] || source /usr/share/fzf/shell/key-bindings.zsh
+  [[ ! -f /usr/share/fzf/completion.zsh ]] || source /usr/share/fzf/completion.zsh
+  [[ ! -f ~/.config/fzf/fzf-$COLORSCHEME.conf ]] || source ~/.config/fzf/fzf-$COLORSCHEME.conf
+}
+
+### Make jeffreytse/zsh-vi-mode compatible with fzf key-bindings
+zvm_after_init_commands+=(fzf_init)
 
 ### Source plugins with sheldon plugin manager
 eval "$(sheldon source)"
