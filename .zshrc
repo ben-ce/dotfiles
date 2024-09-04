@@ -99,7 +99,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HOSTNAME="`hostname`"
 EDITOR=nvim
-MANPAGER="sh -c 'col -b | bat -l man -p'"
+# MANPAGER="sh -c 'col -b | bat -l man -p'"
 COLORSCHEME="tokyonight-storm"
 
 ### Set alias
@@ -214,6 +214,7 @@ function fzf_init() {
   [[ ! -f /usr/share/fzf/completion.zsh ]] || source /usr/share/fzf/completion.zsh
   [[ ! -f ~/.config/fzf/fzf-$COLORSCHEME.conf ]] || source ~/.config/fzf/fzf-$COLORSCHEME.conf
 }
+fzf_init
 
 ### Make jeffreytse/zsh-vi-mode compatible with fzf key-bindings
 zvm_after_init_commands+=(fzf_init)
@@ -230,12 +231,15 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 [[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] || source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 [[ ! -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-WORKON_HOME=~/.virtualenvs
-[[ ! -f /usr/bin/virtualenvwrapper.sh ]] || source /usr/bin/virtualenvwrapper.sh
-
-unsetopt ALL_EXPORT
-
 ### autostart tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+### pyenv initialization
+PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+unsetopt ALL_EXPORT
