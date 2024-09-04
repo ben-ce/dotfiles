@@ -33,8 +33,8 @@ local function worker(user_args)
 
 	if program == "pactl" then
 		get_volume_cmd = 'bash -c "pactl get-sink-volume @DEFAULT_SINK@ && pactl get-sink-mute @DEFAULT_SINK@"'
-		inc_volume_cmd = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-		dec_volume_cmd = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+		inc_volume_cmd = "pactl set-sink-volume @DEFAULT_SINK@ +1%"
+		dec_volume_cmd = "pactl set-sink-volume @DEFAULT_SINK@ -1%"
 		mute_volume_cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 	end
 
