@@ -35,6 +35,29 @@ pcall(function()
 	require("dap-python").test_runner = "pytest"
 end)
 
+table.insert(require("dap").configurations.python, {
+	type = "python",
+	request = "attach",
+	name = "Attach to Django",
+	host = "localhost",
+	port = 5678,
+})
+
+table.insert(require("dap").configurations.python, {
+	type = "python",
+	request = "launch",
+	name = "Django",
+	program = vim.fn.getcwd() .. "/manage.py",
+	args = { "runserver", "--noreload" },
+})
+
+table.insert(require("dap").configurations.python, {
+	type = "python",
+	request = "launch",
+	name = "Django shell",
+	program = vim.fn.getcwd() .. "/manage.py",
+	args = { "shell" },
+})
 ------------------------
 -- Key mappings
 ------------------------

@@ -4,7 +4,9 @@ if not status_ok then
 end
 
 cinnamon.setup({
-	extra_keymaps = true,
-	extended_keymaps = true,
-	hide_cursor = true,
+	keymaps = {
+		extra = true,
+		basic = true,
+	},
+	options = { mode = "window" },
 })

@@ -104,7 +104,7 @@ lvim.plugins = {
 		end,
 		event = {
 			"BufRead",
-			"BufNew,",
+			"BufNew",
 		},
 	},
 
@@ -246,6 +246,7 @@ lvim.plugins = {
 				},
 			})
 		end,
+		branch = "legacy",
 	},
 
 	{
@@ -354,7 +355,7 @@ lvim.plugins = {
 				-- get_venvs = function (venvs_path)
 				--   return require("swenv.api").get_venvs(venvs_path)
 				-- end,
-				venvs_path = vim.fn.expand("~/.virtualenvs"),
+				venvs_path = vim.fn.resolve(vim.fs.normalize("~/.pyenv/versions")),
 			})
 		end,
 		ft = { "python" },

@@ -7,7 +7,7 @@
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ command = "stylua", filetypes = { "lua" } },
-	{ command = "prettier", filetypes = { "markdown" } },
+	{ command = "prettier", filetypes = { "markdown", "yaml" } },
 	{
 		command = "prettier",
 		args = { "--print-width", "100" },
@@ -17,6 +17,11 @@ formatters.setup({
 
 	-- we can use separate standalone rustfmt to format on save with null-ls but if we use rust-analyzer that has builtin rustfmt formatter
 	-- { command = "rustfmt", filetypes = { "rust" } },
+})
+-- --- Linter
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	{ command = "yamllint", filetypes = { "yaml" } },
 })
 
 -- --- EXAMPLE CONFIGS
