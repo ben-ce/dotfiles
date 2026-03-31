@@ -101,6 +101,7 @@ HOSTNAME="`hostname`"
 EDITOR=nvim
 # MANPAGER="sh -c 'col -b | bat -l man -p'"
 COLORSCHEME="tokyonight-storm"
+PATH="$HOME/.local/bin:$PATH"
 
 ### Set alias
 #############
@@ -116,9 +117,9 @@ alias sudo='nocorrect sudo'
 alias vim='nocorrect ~/.local/bin/lvim'
 alias cat='bat --theme=TokyoNight'
 alias ssh='kitty +kitten ssh'
-alias ls='exa --git -h --icons'
-alias ll='exa --git -lhgb --icons'
-alias la='exa --git -alhgb --icons'
+alias ls='eza --git -h --icons'
+alias ll='eza --git -lhgb --icons'
+alias la='eza --git -alhgb --icons'
 
 ### Bind keys
 #############
@@ -200,9 +201,9 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 # zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
@@ -237,9 +238,12 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 ### pyenv initialization
-PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+### uv initialization
+eval "$(uv generate-shell-completion zsh)"
 
 unsetopt ALL_EXPORT
